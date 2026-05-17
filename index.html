@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anushka — My Forever</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--rose:#e8b4b8;--rose-dark:#c47a80;--rose-deep:#a85d63;--cream:#faf3f0;--warm-white:#fff8f5;--soft-pink:#ffd1dc;--blush:#f4c2c2;--gold:#d4a574;--text-dark:#3d2b2b;--text-soft:#6b4e4e;--shadow:rgba(168,93,99,0.15)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:var(--warm-white);color:var(--text-dark);overflow-x:hidden}
+#loginScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#faf3f0 0%,#f4c2c2 50%,#e8b4b8 100%);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity 1.2s ease,transform 1.2s ease}
+#loginScreen.hidden{opacity:0;transform:scale(1.1);pointer-events:none}
+.login-card{background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);padding:50px 60px;border-radius:30px;box-shadow:0 25px 80px var(--shadow);text-align:center;max-width:420px;width:90%;border:1px solid rgba(255,255,255,0.6)}
+.login-card h1{font-family:'Great Vibes',cursive;font-size:3.2rem;color:var(--rose-deep);margin-bottom:8px}
+.login-card .subtitle{font-family:'Playfair Display',serif;font-style:italic;color:var(--text-soft);font-size:1rem;margin-bottom:35px;letter-spacing:1px}
+.login-card input{width:100%;padding:15px 20px;margin:10px 0;border:2px solid var(--blush);border-radius:15px;font-family:'Poppins',sans-serif;font-size:0.95rem;background:rgba(255,255,255,0.7);color:var(--text-dark);transition:all .3s;outline:none}
+.login-card input:focus{border-color:var(--rose-deep);box-shadow:0 0 15px rgba(168,93,99,0.15)}
+.login-card button{width:100%;padding:16px;margin-top:20px;background:linear-gradient(135deg,var(--rose-deep),var(--rose-dark));color:white;border:none;border-radius:15px;font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;letter-spacing:1px}
+.login-card button:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(168,93,99,0.3)}
+.forgot-link{display:block;margin-top:18px;color:var(--rose-deep);font-size:0.85rem;cursor:pointer;text-decoration:none;transition:color .3s}
+.forgot-link:hover{color:var(--text-dark)}
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center;z-index:10001;backdrop-filter:blur(5px)}
+.modal-overlay.active{display:flex}
+.modal-card{background:white;padding:40px;border-radius:25px;max-width:400px;width:90%;box-shadow:0 25px 80px rgba(0,0,0,0.2);text-align:center;animation:modalPop .4s ease;position:relative}
+@keyframes modalPop{from{opacity:0;transform:scale(0.8) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-card h3{font-family:'Playfair Display',serif;color:var(--rose-deep);margin-bottom:10px;font-size:1.4rem}
+.modal-card p{color:var(--text-soft);font-size:0.9rem;margin-bottom:20px}
+.otp-display{background:linear-gradient(135deg,var(--cream),var(--soft-pink));padding:20px;border-radius:15px;margin:20px 0;font-family:'Poppins',monospace;font-size:2rem;letter-spacing:8px;color:var(--rose-deep);font-weight:600}
+.phone-display{color:var(--text-soft);font-size:0.85rem;margin-bottom:15px}
+.modal-card input{width:100%;padding:14px 18px;margin:8px 0;border:2px solid var(--blush);border-radius:12px;font-family:'Poppins',sans-serif;font-size:0.9rem;outline:none}
+.modal-card button{width:100%;padding:14px;margin-top:12px;background:var(--rose-deep);color:white;border:none;border-radius:12px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer;transition:all .3s}
+.modal-card button:hover{background:var(--text-dark)}
+.close-modal{position:absolute;top:15px;right:20px;font-size:1.5rem;cursor:pointer;color:var(--text-soft)}
+.heart{position:fixed;font-size:20px;color:var(--rose);pointer-events:none;animation:floatUp 8s linear infinite;z-index:9999;opacity:0.6}
+@keyframes floatUp{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:0.6}90%{opacity:0.6}100%{transform:translateY(-10vh) rotate(360deg);opacity:0}}
+#mainNav{position:fixed;top:0;left:0;width:100%;background:rgba(255,248,245,0.92);backdrop-filter:blur(15px);z-index:1000;padding:12px 0;box-shadow:0 2px 20px var(--shadow);transition:all .4s}
+.nav-container{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 30px}
+.nav-logo{font-family:'Great Vibes',cursive;font-size:1.8rem;color:var(--rose-deep);text-decoration:none}
+.nav-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.nav-links a{text-decoration:none;color:var(--text-soft);font-size:0.78rem;font-weight:500;padding:8px 14px;border-radius:20px;transition:all .3s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{background:var(--rose);color:white}
+.logout-btn{background:none;border:2px solid var(--rose);color:var(--rose-deep);padding:8px 20px;border-radius:20px;font-family:'Poppins',sans-serif;font-size:0.8rem;cursor:pointer;transition:all .3s}
+.logout-btn:hover{background:var(--rose);color:white}
+section{min-height:100vh;padding:100px 20px 60px;position:relative;overflow:hidden}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-title{font-family:'Great Vibes',cursive;font-size:4rem;color:var(--rose-deep);text-align:center;margin-bottom:10px}
+.section-subtitle{font-family:'Playfair Display',serif;font-style:italic;text-align:center;color:var(--text-soft);font-size:1.1rem;margin-bottom:50px;letter-spacing:2px}
+#hero{background:linear-gradient(135deg,var(--warm-white) 0%,var(--cream) 50%,var(--soft-pink) 100%);display:flex;align-items:center;justify-content:center;text-align:center;min-height:100vh}
+.hero-content{max-width:800px;padding:40px}
+.hero-name{font-family:'Great Vibes',cursive;font-size:6rem;color:var(--rose-deep);line-height:1;margin-bottom:20px;animation:fadeInUp 1.5s ease}
+.hero-tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:var(--text-soft);margin-bottom:30px;animation:fadeInUp 1.8s ease}
+.hero-quote{font-family:'Dancing Script',cursive;font-size:1.6rem;color:var(--rose-dark);margin-bottom:40px;line-height:1.8;animation:fadeInUp 2.1s ease}
+.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);animation:bounce 2s infinite}
+.scroll-indicator span{display:block;width:30px;height:50px;border:2px solid var(--rose-dark);border-radius:15px;position:relative}
+.scroll-indicator span::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:6px;height:6px;background:var(--rose-deep);border-radius:50%;animation:scrollDot 2s infinite}
+@keyframes scrollDot{0%,100%{top:8px;opacity:1}50%{top:28px;opacity:0.3}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+#timeline{background:var(--warm-white)}
+.timeline-container{position:relative;max-width:900px;margin:0 auto}
+.timeline-line{position:absolute;left:50%;transform:translateX(-50%);width:3px;height:100%;background:linear-gradient(to bottom,var(--rose),var(--rose-deep));border-radius:3px}
+.timeline-item{display:flex;margin-bottom:60px;position:relative;opacity:0;transform:translateY(30px);transition:all .8s ease}
+.timeline-item.visible{opacity:1;transform:translateY(0)}
+.timeline-item:nth-child(odd){flex-direction:row-reverse;text-align:right}
+.timeline-item:nth-child(odd) .timeline-content{padding-right:60px;padding-left:0}
+.timeline-item:nth-child(even) .timeline-content{padding-left:60px}
+.timeline-dot{position:absolute;left:50%;transform:translateX(-50%);width:20px;height:20px;background:var(--rose-deep);border-radius:50%;border:4px solid white;box-shadow:0 0 0 4px var(--rose);z-index:2}
+.timeline-content{width:50%;padding:0 40px}
+.timeline-date{font-family:'Great Vibes',cursive;font-size:1.6rem;color:var(--rose-deep);margin-bottom:8px}
+.timeline-text{background:white;padding:25px;border-radius:20px;box-shadow:0 10px 40px var(--shadow);border-left:4px solid var(--rose)}
+.timeline-item:nth-child(odd) .timeline-text{border-left:none;border-right:4px solid var(--rose)}
+.timeline-text h4{font-family:'Playfair Display',serif;color:var(--rose-deep);font-size:1.2rem;margin-bottom:10px}
+.timeline-text p{color:var(--text-soft);font-size:0.9rem;line-height:1.7}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:25px;max-width:1200px;margin:0 auto}
+.gallery-card{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 15px 40px var(--shadow);transition:all .5s ease;background:white;cursor:pointer}
+.gallery-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 25px 60px rgba(168,93,99,0.25)}
+.gallery-card img{width:100%;height:320px;object-fit:cover;display:block;transition:all .5s}
+.gallery-card:hover img{transform:scale(1.1)}
+.gallery-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(61,43,43,0.85),transparent);padding:30px 20px 20px;transform:translateY(60%);transition:all .4s ease}
+.gallery-card:hover .gallery-overlay{transform:translateY(0)}
+.gallery-overlay p{color:white;font-family:'Dancing Script',cursive;font-size:1.3rem;line-height:1.5;text-shadow:0 2px 10px rgba(0,0,0,0.3)}
+.gallery-overlay .song-lyric{font-family:'Poppins',sans-serif;font-size:0.75rem;color:var(--soft-pink);margin-top:8px;font-style:italic;opacity:0.9}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:30px;max-width:1200px;margin:0 auto}
+.video-card{background:white;border-radius:20px;overflow:hidden;box-shadow:0 15px 40px var(--shadow);transition:all .4s}
+.video-card:hover{transform:translateY(-8px);box-shadow:0 25px 50px rgba(168,93,99,0.2)}
+.video-wrapper{position:relative;padding-bottom:177.78%;height:0;overflow:hidden}
+.video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.video-caption{padding:20px;text-align:center}
+.video-caption h4{font-family:'Playfair Display',serif;color:var(--rose-deep);font-size:1.1rem;margin-bottom:8px}
+.video-caption p{color:var(--text-soft);font-size:0.85rem;font-style:italic}
+.quote-block{max-width:800px;margin:40px auto;text-align:center;padding:50px 40px;background:white;border-radius:25px;box-shadow:0 15px 50px var(--shadow);position:relative}
+.quote-block::before{content:'"';font-family:'Playfair Display',serif;font-size:6rem;color:var(--rose);position:absolute;top:-10px;left:30px;line-height:1;opacity:0.5}
+.quote-block p{font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--rose-deep);line-height:1.8;position:relative;z-index:1}
+.quote-block .author{font-family:'Poppins',sans-serif;font-size:0.9rem;color:var(--text-soft);margin-top:20px;font-style:italic}
+.letter-container{max-width:700px;margin:0 auto;background:white;padding:60px 50px;border-radius:25px;box-shadow:0 20px 60px var(--shadow);position:relative}
+.letter-container::before{content:'';position:absolute;top:0;left:0;width:100%;height:8px;background:linear-gradient(90deg,var(--rose),var(--rose-deep),var(--rose));border-radius:25px 25px 0 0}
+.letter-container h3{font-family:'Great Vibes',cursive;font-size:2.5rem;color:var(--rose-deep);margin-bottom:25px;text-align:center}
+.letter-container p{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--text-soft);line-height:2;margin-bottom:18px;text-align:justify}
+.letter-signature{text-align:right;margin-top:30px;font-family:'Great Vibes',cursive;font-size:1.8rem;color:var(--rose-deep)}
+.memory-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:30px;max-width:1200px;margin:0 auto}
+.memory-card{background:white;border-radius:20px;padding:35px;box-shadow:0 15px 40px var(--shadow);transition:all .4s;border-top:5px solid var(--rose)}
+.memory-card:hover{transform:translateY(-8px);box-shadow:0 25px 50px rgba(168,93,99,0.2)}
+.memory-card h4{font-family:'Playfair Display',serif;color:var(--rose-deep);font-size:1.3rem;margin-bottom:15px}
+.memory-card p{color:var(--text-soft);font-size:0.95rem;line-height:1.8}
+.memory-card .memory-tag{display:inline-block;background:var(--cream);color:var(--rose-deep);padding:5px 15px;border-radius:15px;font-size:0.75rem;margin-top:15px;font-weight:500}
+.lyrics-container{max-width:700px;margin:0 auto;text-align:center}
+.lyrics-box{background:linear-gradient(135deg,white,var(--cream));padding:50px 40px;border-radius:25px;box-shadow:0 15px 50px var(--shadow);margin-bottom:30px;border:2px solid var(--blush)}
+.lyrics-box h4{font-family:'Great Vibes',cursive;font-size:2rem;color:var(--rose-deep);margin-bottom:20px}
+.lyrics-box p{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--text-dark);line-height:2.2}
+.lyrics-box .song-name{font-family:'Poppins',sans-serif;font-size:0.85rem;color:var(--text-soft);margin-top:20px;font-style:italic}
+.countdown-box{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin:40px 0}
+.countdown-item{background:white;padding:25px 30px;border-radius:20px;box-shadow:0 10px 30px var(--shadow);text-align:center;min-width:100px}
+.countdown-item .number{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--rose-deep);font-weight:700}
+.countdown-item .label{font-size:0.8rem;color:var(--text-soft);margin-top:5px;text-transform:uppercase;letter-spacing:2px}
+.parallax-divider{height:400px;background-attachment:fixed;background-position:center;background-size:cover;display:flex;align-items:center;justify-content:center;position:relative}
+.parallax-divider::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(61,43,43,0.4)}
+.parallax-text{position:relative;z-index:1;text-align:center;color:white}
+.parallax-text h2{font-family:'Great Vibes',cursive;font-size:4rem;text-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.parallax-text p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;margin-top:10px;text-shadow:0 2px 10px rgba(0,0,0,0.3)}
+footer{background:var(--text-dark);color:var(--cream);padding:60px 20px;text-align:center}
+footer h2{font-family:'Great Vibes',cursive;font-size:3rem;color:var(--rose);margin-bottom:20px}
+footer p{font-family:'Playfair Display',serif;font-style:italic;color:var(--blush);font-size:1.1rem;max-width:600px;margin:0 auto 30px;line-height:1.8}
+.final-quote{font-family:'Dancing Script',cursive;font-size:1.6rem;color:white;margin-top:20px}
+.fade-in{opacity:0;transform:translateY(40px);transition:all 1s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){.hero-name{font-size:3.5rem}.section-title{font-size:2.5rem}.timeline-line{left:20px}.timeline-item,.timeline-item:nth-child(odd){flex-direction:column;text-align:left}.timeline-content,.timeline-item:nth-child(odd) .timeline-content{width:100%;padding-left:50px;padding-right:0}.timeline-dot{left:20px}.nav-links{display:none}.login-card{padding:30px}.login-card h1{font-size:2.2rem}.letter-container{padding:30px 20px}}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--cream)}::-webkit-scrollbar-thumb{background:var(--rose);border-radius:5px}::-webkit-scrollbar-thumb:hover{background:var(--rose-deep)}
+.audio-bars{display:flex;align-items:flex-end;justify-content:center;gap:4px;height:40px;margin:20px 0}
+.audio-bar{width:4px;background:var(--rose-deep);border-radius:2px;animation:audioWave 1.2s ease-in-out infinite}
+.audio-bar:nth-child(1){height:15px;animation-delay:0s}.audio-bar:nth-child(2){height:25px;animation-delay:0.1s}.audio-bar:nth-child(3){height:35px;animation-delay:0.2s}.audio-bar:nth-child(4){height:20px;animation-delay:0.3s}.audio-bar:nth-child(5){height:30px;animation-delay:0.4s}.audio-bar:nth-child(6){height:18px;animation-delay:0.5s}.audio-bar:nth-child(7){height:28px;animation-delay:0.6s}.audio-bar:nth-child(8){height:22px;animation-delay:0.7s}
+@keyframes audioWave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.5)}}
+.polaroid{background:white;padding:15px 15px 50px 15px;box-shadow:0 10px 30px var(--shadow);transform:rotate(-3deg);transition:all .4s;display:inline-block;margin:15px}
+.polaroid:hover{transform:rotate(0deg) scale(1.05);box-shadow:0 20px 50px rgba(168,93,99,0.3)}
+.polaroid img{width:250px;height:250px;object-fit:cover;display:block}
+.polaroid-caption{font-family:'Dancing Script',cursive;font-size:1.1rem;color:var(--text-soft);text-align:center;margin-top:15px}
+.polaroid-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;padding:30px 0}
+#group-chat{background:linear-gradient(135deg,var(--warm-white),#f0e6ff)}
+#fights{background:linear-gradient(135deg,#fff0f0,var(--warm-white))}
+#gap{background:linear-gradient(135deg,#f5f5f5,#e8e8e8)}
+#choosing{background:linear-gradient(135deg,var(--cream),var(--soft-pink))}
+#forgiveness{background:linear-gradient(135deg,var(--warm-white),#e0f7fa)}
+#blocking{background:linear-gradient(135deg,#fff3e0,var(--warm-white))}
+#gurgaon{background:linear-gradient(135deg,#e8f5e9,var(--cream))}
+#missed{background:linear-gradient(135deg,#fce4ec,var(--warm-white))}
+#calls{background:linear-gradient(135deg,var(--warm-white),#f3e5f5)}
+#dance{background:linear-gradient(135deg,#fff8e1,var(--cream))}
+#laugh{background:linear-gradient(135deg,var(--soft-pink),var(--blush))}
+#her-world{background:linear-gradient(135deg,var(--cream),var(--warm-white))}
+#final{background:linear-gradient(135deg,var(--rose),var(--rose-deep));color:white}
+#final .section-title{color:white}
+#final .section-subtitle{color:rgba(255,255,255,0.8)}
+.drunk-call-card{background:linear-gradient(135deg,#2c1810,#4a2c2c);color:white;padding:40px;border-radius:20px;margin:20px auto;max-width:600px;text-align:center;box-shadow:0 15px 40px rgba(0,0,0,0.3);position:relative;overflow:hidden}
+.drunk-call-card::before{content:'🍷';position:absolute;top:15px;right:20px;font-size:2rem;opacity:0.3}
+.drunk-call-card h4{font-family:'Great Vibes',cursive;font-size:2rem;color:var(--soft-pink);margin-bottom:15px}
+.drunk-call-card p{font-family:'Dancing Script',cursive;font-size:1.3rem;line-height:1.8;color:#ffccbc}
+.call-screen{background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:25px;padding:30px;max-width:500px;margin:20px auto;box-shadow:0 20px 60px rgba(0,0,0,0.4);position:relative}
+.call-screen .caller-name{font-family:'Poppins',sans-serif;color:white;font-size:1.2rem;text-align:center;margin-bottom:20px}
+.call-screen .call-status{color:#4caf50;font-size:0.85rem;text-align:center;margin-bottom:20px;letter-spacing:2px}
+.call-screen .call-duration{font-family:'Poppins',monospace;color:white;font-size:1.5rem;text-align:center;margin:20px 0}
+.call-buttons{display:flex;justify-content:center;gap:20px;margin-top:25px}
+.call-btn{width:55px;height:55px;border-radius:50%;border:none;cursor:pointer;font-size:1.3rem;transition:all .3s}
+.call-btn.end{background:#f44336;color:white}.call-btn.mute{background:#555;color:white}.call-btn.video{background:#555;color:white}
+.call-btn:hover{transform:scale(1.1)}
+.mobile-menu-btn{display:none;background:none;border:none;font-size:1.5rem;color:var(--rose-deep);cursor:pointer}
+@media(max-width:768px){.mobile-menu-btn{display:block}}
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<div id="hearts-container"></div>
+
+<div id="loginScreen">
+<div class="login-card">
+<h1>For Anushka</h1>
+<p class="subtitle">A journey written in love, fights, and forever</p>
+<input type="text" id="loginUser" placeholder="Username" value="AnushkaDangwal">
+<input type="password" id="loginPass" placeholder="Password" value="iloveyoupuneet">
+<button onclick="doLogin()">Enter Your World</button>
+<a class="forgot-link" onclick="openForgot()">Forgot Password?</a>
+</div>
+</div>
+
+<div class="modal-overlay" id="forgotModal">
+<div class="modal-card">
+<span class="close-modal" onclick="closeForgot()">&times;</span>
+<h3>Reset Password</h3>
+<p>OTP will be sent to your registered number</p>
+<div class="phone-display">+91-7895624291</div>
+<button onclick="generateOTP()" id="sendOtpBtn">Send OTP</button>
+<div id="otpSection" style="display:none;">
+<div class="otp-display" id="otpCode"></div>
+<input type="text" id="otpInput" placeholder="Enter OTP" maxlength="6">
+<input type="password" id="newPass" placeholder="New Password">
+<input type="password" id="confirmPass" placeholder="Confirm Password">
+<button onclick="resetPassword()">Reset Password</button>
+</div>
+</div>
+</div>
+
+<nav id="mainNav" style="display:none;">
+<div class="nav-container">
+<a href="#hero" class="nav-logo">Anushka</a>
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+<div class="nav-links" id="navLinks">
+<a href="#hero" class="active">Home</a>
+<a href="#timeline">Our Story</a>
+<a href="#group-chat">The Beginning</a>
+<a href="#fights">The Storms</a>
+<a href="#gap">3 Months</a>
+<a href="#choosing">Choosing Us</a>
+<a href="#forgiveness">Forgiveness</a>
+<a href="#blocking">Block & Unblock</a>
+<a href="#gurgaon">Gurgaon</a>
+<a href="#missed">The Missed Meet</a>
+<a href="#calls">Calls & FaceTime</a>
+<a href="#dance">Her Dance</a>
+<a href="#laugh">Her Laugh</a>
+<a href="#her-world">Her World</a>
+<a href="#videos">Videos</a>
+<a href="#final">Forever</a>
+</div>
+<button class="logout-btn" onclick="doLogout()">Logout</button>
+</div>
+</nav>
+
+<main id="mainContent" style="display:none;">
+
+<section id="hero">
+<div class="hero-content">
+<div class="hero-name">Anushka</div>
+<div class="hero-tagline">The girl who turned my world upside down</div>
+<div class="hero-quote">"From a random group chat to the only chat I ever want to have.<br>You didn't just enter my life — you became my life."</div>
+<div class="audio-bars"><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div></div>
+<p style="color:var(--text-soft);font-size:0.9rem;margin-top:10px;font-style:italic;">Every beat is a memory of you</p>
+</div>
+<div class="scroll-indicator"><span></span></div>
+</section>
+
+<section id="timeline">
+<div class="section-inner">
+<h2 class="section-title">Our Journey</h2>
+<p class="section-subtitle">Every chapter, every tear, every smile — all leading to us</p>
+<div class="timeline-container">
+<div class="timeline-line"></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">The Beginning</div><div class="timeline-text"><h4>A Group Chat</h4><p>Who knew a random group chat would lead to this? You were just a name, then a voice, then the only voice I wanted to hear. From "hi" to "I can't live without you" — what a journey.</p></div></div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">The Fights</div><div class="timeline-text"><h4>When Love Hurts</h4><p>We fought like we loved — intensely, passionately, without holding back. Every argument was proof that we cared too much. The silence after hurt more than the words during.</p></div></div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">3 Months Apart</div><div class="timeline-text"><h4>The Longest Gap</h4><p>Three months of no us. Three months of missing you in every song, every place, every moment. I learned that absence doesn't make the heart grow fonder — it makes it ache.</p></div></div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">Choosing Again</div><div class="timeline-text"><h4>We Chose Each Other</h4><p>After everything — the fights, the silence, the pain — we still chose each other. That's not weakness, that's strength. That's love that refuses to die.</p></div></div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">Forgiveness</div><div class="timeline-text"><h4>Forgiving the Lies</h4><p>I lied. You hurt. But love is bigger than mistakes. You forgave me not because I deserved it, but because your heart couldn't stay angry at me forever.</p></div></div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">Block & Unblock</div><div class="timeline-text"><h4>The Digital Dance</h4><p>Block. Unblock. Block. Unblock. Our love language in the digital age. Every block was "I need space" and every unblock was "I need you more."</p></div></div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">Gurgaon</div><div class="timeline-text"><h4>When We Met</h4><p>Finally, after screens and miles, we were in the same city. Gurgaon wasn't just a place — it was where digital love became real. Your touch, your smell, your presence.</p></div></div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">The Missed Meet</div><div class="timeline-text"><h4>So Close, Yet So Far</h4><p>I came to your city, but a fight kept us apart. I was kilometers away from you and it felt like light years. The city had you, and I couldn't.</p></div></div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">Long Distance</div><div class="timeline-text"><h4>Miles Between Us</h4><p>Video calls at 2 AM. FaceTime during lunch breaks. Drunk calls at midnight saying "I miss you" a hundred times. Distance made us creative lovers.</p></div></div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">Forever</div><div class="timeline-text"><h4>This Is Just The Start</h4><p>Every fight brought us closer. Every gap made us stronger. Every choice confirmed we're meant to be. This isn't the end of our story — it's just the beautiful beginning.</p></div></div></div>
+</div>
+</div>
+</section>
+
+<div class="parallax-divider" style="background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1200');">
+<div class="parallax-text"><h2>It All Started With A Text</h2><p>And now I can't imagine a day without your name on my screen</p></div>
+</div>
+
+<section id="group-chat">
+<div class="section-inner">
+<h2 class="section-title">The Group Chat</h2>
+<p class="section-subtitle">Where strangers became soulmates</p>
+<div class="quote-block fade-in"><p>"In a sea of messages, yours was the one that made my heart skip. I didn't know it then, but that 'hi' was the beginning of my forever."</p><div class="author">— How it all began</div></div>
+<div class="letter-container fade-in">
+<h3>Dear Anushka,</h3>
+<p>Do you remember the group chat? I do. Vividly. You were just another name, another profile picture. But then you spoke — and something in me listened differently.</p>
+<p>Those late-night conversations when everyone else had slept. The inside jokes that only we understood. The way you typed "haha" when you actually meant "I'm thinking about you."</p>
+<p>I didn't know I was falling until I had already fallen. The group chat became our secret world. Every notification from you was a spark. Every reply from me was a prayer that you'd keep talking.</p>
+<p>From "who is she?" to "she's everything" — that's what you became.</p>
+<div class="letter-signature">Yours, from the very first text</div>
+</div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in">
+<h4>How It Started</h4>
+<p>"I never knew that it could mean so much, so much<br>You're the fear, I don't care<br>'Cause I've never been so high<br>Follow me through the dark<br>Let me take you past the satellites<br>You can see the world you brought to life"</p>
+<div class="song-name">— Love Me Like You Do, Ellie Goulding</div>
+</div>
+</div>
+<div class="polaroid-grid">
+<div class="polaroid fade-in"><img src="https://i.ibb.co/r2pqB8QH" alt="Anushka" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400'"><div class="polaroid-caption">The first photo I saved of you</div></div>
+<div class="polaroid fade-in"><img src="https://i.ibb.co/zV7D1FkP" alt="Anushka" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400'"><div class="polaroid-caption">The smile that started it all</div></div>
+<div class="polaroid fade-in"><img src="https://i.ibb.co/Jf9hP8b" alt="Anushka" onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400'"><div class="polaroid-caption">When I knew — this is her</div></div>
+</div>
+</div>
+</section>
+
+<section id="fights">
+<div class="section-inner">
+<h2 class="section-title">The Storms We Weathered</h2>
+<p class="section-subtitle">Because love that doesn't fight, doesn't feel</p>
+<div class="memory-grid">
+<div class="memory-card fade-in"><h4>🌩️ The First Big Fight</h4><p>I said things I didn't mean. You heard things I didn't say. The silence that followed was louder than any argument. I stared at my phone for hours, waiting for you to come back. You did. You always do.</p><span class="memory-tag">The Night I Almost Lost You</span></div>
+<div class="memory-card fade-in"><h4>💔 The Lies I Told</h4><p>I thought I was protecting you. I was only protecting myself. When the truth came out, I saw the hurt in your eyes — and I hated myself more than you ever could. But you stayed. You chose to stay.</p><span class="memory-tag">Forgiveness Over Pride</span></div>
+<div class="memory-card fade-in"><h4>😢 Tears Over Text</h4><p>We fought through screens. Typed anger. Sent crying emojis instead of holding each other. Long distance fights are the worst — you can't hug your way out of them. But we found a way. We always do.</p><span class="memory-tag">Distance Can't Break Us</span></div>
+<div class="memory-card fade-in"><h4>🌙 Sleepless Nights</h4><p>Nights we didn't sleep because we were too busy hurting each other. Nights we didn't sleep because we were too busy fixing us. I'd rather lose sleep over you than dream about anyone else.</p><span class="memory-tag">Worth Every Lost Hour</span></div>
+</div>
+<div class="quote-block fade-in"><p>"We fight because we care. We cry because we love. We stay because we're meant to. Every storm just proves our roots run deeper."</p></div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in">
+<h4>Through The Storm</h4>
+<p>"When the rain is blowing in your face<br>And the whole world is on your case<br>I could offer you a warm embrace<br>To make you feel my love"</p>
+<div class="song-name">— Make You Feel My Love, Adele</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="gap">
+<div class="section-inner">
+<h2 class="section-title">3 Months of Silence</h2>
+<p class="section-subtitle">The longest 90 days of my life</p>
+<div class="countdown-box fade-in">
+<div class="countdown-item"><div class="number">90</div><div class="label">Days</div></div>
+<div class="countdown-item"><div class="number">2160</div><div class="label">Hours</div></div>
+<div class="countdown-item"><div class="number">129600</div><div class="label">Minutes</div></div>
+<div class="countdown-item"><div class="number">∞</div><div class="label">Missed You</div></div>
+</div>
+<div class="letter-container fade-in">
+<h3>Those 3 Months</h3>
+<p>Day 1: I told myself I was fine. I wasn't.</p>
+<p>Day 10: Every song was about you. Every silence was missing you.</p>
+<p>Day 30: I started writing messages I'd never send. Drafts full of "I'm sorry" and "come back" and "I can't do this without you."</p>
+<p>Day 60: I saw something funny and reached for my phone to text you. Then I remembered. The emptiness after was worse than any fight.</p>
+<p>Day 90: You came back. Not because you had to. Because you wanted to. Because somewhere in those 90 days, you realized what I already knew — we're not whole without each other.</p>
+<div class="letter-signature">I counted every day</div>
+</div>
+<div class="quote-block fade-in"><p>"They say time heals all wounds. They lied. Time just made me realize that the wound was worth the love. I'd take 90 days of pain over a lifetime without you."</p></div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in">
+<h4>The Silence Between Us</h4>
+<p>"I don't know how it gets better than this<br>You take my hand and drag me head first<br>Fearless<br>And I don't know why but with you I'd dance<br>In a storm in my best dress<br>Fearless"</p>
+<div class="song-name">— Fearless, Taylor Swift</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="choosing">
+<div class="section-inner">
+<h2 class="section-title">Choosing Each Other</h2>
+<p class="section-subtitle">Again. And again. And again.</p>
+<div class="quote-block fade-in"><p>"We didn't fall in love once. We fall in love every single day. Every morning I wake up and choose you. Every night I sleep and dream of you. That's not habit — that's devotion."</p></div>
+<div class="memory-grid">
+<div class="memory-card fade-in"><h4>💍 The Choice</h4><p>After the fights, after the gap, after the hurt — you still chose me. That choice is the most precious thing I own. You could have walked away. The world is full of easier options. But you stayed. For me.</p><span class="memory-tag">Every Day I Choose You</span></div>
+<div class="memory-card fade-in"><h4>🤝 The Promise</h4><p>No more lies. No more running. No more letting fear win. We promised each other that we'd fight for us — not against each other. And promises with you feel like vows.</p><span class="memory-tag">Promises Kept</span></div>
+<div class="memory-card fade-in"><h4>🌅 New Beginnings</h4><p>Every sunrise after a fight is a new beginning. Every "good morning" text is a renewal of our contract. We don't just love — we rebuild, we restart, we refuse to give up.</p><span class="memory-tag">Forever Starting Over</span></div>
+</div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in">
+<h4>I Choose You</h4>
+<p>"I choose you<br>And I'll choose you<br>Over and over and over<br>Without pause, without a doubt<br>In a heartbeat<br>I'll keep choosing you"</p>
+<div class="song-name">— I Choose You, Sara Bareilles</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="forgiveness">
+<div class="section-inner">
+<h2 class="section-title">Forgive Me</h2>
+<p class="section-subtitle">For the lies, the hurt, the times I wasn't enough</p>
+<div class="letter-container fade-in">
+<h3>An Open Apology</h3>
+<p>I lied to you. I hid things. I thought I was protecting something, but all I did was break the one thing that mattered — your trust.</p>
+<p>You found out. The look on your face (even through a screen) broke me more than any punishment could. I saw the person I love most realize I wasn't who she thought I was.</p>
+<p>But here's what I learned: forgiveness isn't about forgetting. It's about choosing to love despite the scars. And you chose. You chose to see past my mistakes and love the person trying to be better.</p>
+<p>I don't deserve you. But I'm going to spend every day trying to.</p>
+<div class="letter-signature">I'm sorry. I'm grateful. I'm yours.</div>
+</div>
+<div class="quote-block fade-in"><p>"Forgiveness is the fragrance that the violet sheds on the heel that has crushed it. You forgave me when I was the heel and you were the violet. That's the kind of heart you have."</p></div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in">
+<h4>Please Forgive Me</h4>
+<p>"I know I haven't been the man I promised you I'd be<br>But I'm trying, I'm trying<br>To be the man you need me to be<br>And I'm sorry for the things I've done<br>But every time I try to tell you<br>That's when you have to tell me<br>This kind of trouble's only just begun"</p>
+<div class="song-name">— Please Forgive Me, Bryan Adams</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="blocking">
+<div class="section-inner">
+<h2 class="section-title">Block. Unblock. Repeat.</h2>
+<p class="section-subtitle">Our digital love language</p>
+<div class="memory-grid">
+<div class="memory-card fade-in"><h4>🚫 The First Block</h4><p>It hurt more than I expected. Seeing that single tick instead of double. The realization that you had shut a door. I sat there staring at my phone, wondering if I'd lost you for real this time.</p><span class="memory-tag">The Night My World Stopped</span></div>
+<div class="memory-card fade-in"><h4>✅ The Unblock</h4><p>And then — the unblock. Like a sunrise after the darkest night. I saw your profile picture again and I cried. Actual tears. Because unblocking me meant you still wanted me in your world.</p><span class="memory-tag">Hope Restored</span></div>
+<div class="memory-card fade-in"><h4>🔄 The Cycle</h4><p>Block. Unblock. Block. Unblock. We did this dance so many times. But here's what I realized — we never blocked love. We just blocked access until we were ready to feel again.</p><span class="memory-tag">Love Always Finds A Way</span></div>
+<div class="memory-card fade-in"><h4>💬 The Message After</h4><p>Every unblock was followed by the same thing — "I miss you." No matter how angry, how hurt, how done we thought we were. Three words. Always the same. Always true.</p><span class="memory-tag">Three Words, Infinite Meaning</span></div>
+</div>
+<div class="quote-block fade-in"><p>"You can block my number, but you can't block my heart from beating your name. Every unblock was proof that love is stronger than anger. Every block was proof that we feel too much."</p></div>
+</div>
+</section>
+
+<div class="parallax-divider" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200');">
+<div class="parallax-text"><h2>Finally, We Met</h2><p>Gurgaon — where pixels became touch, and voice became breath</p></div>
+</div>
+
+<section id="gurgaon">
+<div class="section-inner">
+<h2 class="section-title">Gurgaon</h2>
+<p class="section-subtitle">The city where our screens became real</p>
+<div class="letter-container fade-in">
+<h3>The First Real Touch</h3>
+<p>I was nervous. Can you believe it? After all those video calls, all those late nights, all those "I love you's" — I was nervous to finally see you.</p>
+<p>But then you walked in. And every nervousness melted. Every doubt vanished. Every screen conversation became real in the most beautiful way.</p>
+<p>Gurgaon wasn't just a city anymore. It was where I held your hand for the first time. Where I smelled your perfume in real life instead of imagining it. Where I realized that you were even more beautiful in person than any camera could capture.</p>
+<p>We walked through streets that didn't matter. Ate food I don't remember. Because all I remember is you. Your eyes. Your smile. The way you looked at me like I was the only person in the world.</p>
+<p>That city has a piece of my heart now. Because it has a piece of us.</p>
+<div class="letter-signature">Take me back to Gurgaon</div>
+</div>
+<div class="gallery-grid">
+<div class="gallery-card fade-in"><img src="https://i.ibb.co/p6hYpZ5y" alt="Gurgaon Memory" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400'"><div class="gallery-overlay"><p>"The city where I first held your hand and never wanted to let go."</p><div class="song-lyric">"I knew I loved you before I met you" — Savage Garden</div></div></div>
+<div class="gallery-card fade-in"><img src="https://i.ibb.co/5Xr2S7SY" alt="Together" onerror="this.src='https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=400'"><div class="gallery-overlay"><p>"Every street in Gurgaon reminds me of the first time I walked beside you."</p><div class="song-lyric">"I don't care where we go, as long as I'm with you"</div></div></div>
+<div class="gallery-card fade-in"><img src="https://i.ibb.co/spFpp7Bp" alt="Moments" onerror="this.src='https://images.unsplash.com/photo-1522673607200-1645062cd958?w=400'"><div class="gallery-overlay"><p>"Your city became my favorite place because you were in it."</p><div class="song-lyric">"Home is wherever I'm with you" — Edward Sharpe</div></div></div>
+</div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in">
+<h4>Gurgaon Nights</h4>
+<p>"I don't want to close my eyes<br>I don't want to fall asleep<br>'Cause I'd miss you, baby<br>And I don't want to miss a thing"</p>
+<div class="song-name">— I Don't Want To Miss A Thing, Aerosmith</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="missed">
+<div class="section-inner">
+<h2 class="section-title">The Missed Meet</h2>
+<p class="section-subtitle">So close, yet a fight kept us apart</p>
+<div class="letter-container fade-in">
+<h3>The City That Had You</h3>
+<p>I came to your city. I was there. Kilometers away from you. And we fought.</p>
+<p>I stood in a city full of strangers, knowing the one person I wanted to see was somewhere in the same city — but unreachable. Because of us. Because of our stubbornness. Because love sometimes loses to ego.</p>
+<p>I walked streets hoping to accidentally bump into you. I sat in cafes wondering if you were in one nearby. I looked at every passing face, half-hoping it was yours.</p>
+<p>The worst part? I could have fixed it. I could have swallowed my pride. But I didn't. And I left your city without seeing you. The city had you, and I couldn't.</p>
+<p>Never again. I promise. No fight is worth missing you.</p>
+<div class="letter-signature">The biggest regret of my life</div>
+</div>
+<div class="quote-block fade-in"><p>"I was in your city and I couldn't see you. That's a special kind of hell — being close enough to touch, but far enough to hurt. I'll never let that happen again."</p></div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in">
+<h4>So Close, So Far</h4>
+<p>"So close, no matter how far<br>Couldn't be much more from the heart<br>Forever trusting who we are<br>And nothing else matters"</p>
+<div class="song-name">— Nothing Else Matters, Metallica</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="calls">
+<div class="section-inner">
+<h2 class="section-title">Calls, FaceTime & Video Calls</h2>
+<p class="section-subtitle">Our love lived on screens before it lived in the same room</p>
+<div class="call-screen fade-in">
+<div class="caller-name">Anushka 💕</div>
+<div class="call-status">● VIDEO CALL CONNECTED</div>
+<div style="width:100%;height:250px;background:linear-gradient(135deg,#2a2a4a,#1a1a2e);border-radius:15px;display:flex;align-items:center;justify-content:center;color:white;font-family:'Dancing Script',cursive;font-size:1.5rem;">Your Beautiful Face Here 💕</div>
+<div class="call-duration">02:34:18</div>
+<p style="color:#aaa;text-align:center;font-size:0.85rem;margin:10px 0;">"This is how we loved — one screen at a time."</p>
+<div class="call-buttons"><button class="call-btn mute">🎤</button><button class="call-btn video">📹</button><button class="call-btn end">📞</button></div>
+</div>
+<div class="memory-grid">
+<div class="memory-card fade-in"><h4>📱 Late Night Calls</h4><p>2 AM. 3 AM. 4 AM. Time didn't matter when we were talking. Your voice was my lullaby and my alarm clock. I fell asleep to your stories and woke up to your "good morning."</p><span class="memory-tag">Sleep Is Overrated</span></div>
+<div class="memory-card fade-in"><h4>💻 FaceTime Dates</h4><p>We ate dinner together — you on your screen, me on mine. We watched movies "together" by counting down "3, 2, 1, play!" We made long distance feel like no distance at all.</p><span class="memory-tag">Digital Dates</span></div>
+<div class="memory-card fade-in"><h4>🎭 Video Call Screenshots</h4><p>I have a gallery full of your FaceTime screenshots. You making faces. You laughing. You looking sleepy. You looking beautiful without even trying. My favorite photo album.</p><span class="memory-tag">My Favorite Gallery</span></div>
+<div class="memory-card fade-in"><h4>📞 The "Just Checking" Calls</h4><p>"Just checking if you're okay." "Just wanted to hear your voice." "Just missing you." Every "just" was actually "I need you." And you always answered.</p><span class="memory-tag">Every Call Was Love</span></div>
+</div>
+<div class="drunk-call-card fade-in">
+<h4>🍷 The Drunk Calls</h4>
+<p>"I miss you" at 1 AM.<br>"I love you" at 2 AM.<br>"Come back" at 3 AM.<br><br>Alcohol didn't make me say things I didn't mean.<br>It just made me brave enough to say what I always meant.<br><br>Every drunk call was a sober truth.<br>Every slurred word was a clear confession.<br><br>You laughed at me. You recorded me.<br>And you loved me anyway.</p>
+</div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in">
+<h4>Through The Phone</h4>
+<p>"I just called to say I love you<br>I just called to say how much I care<br>I just called to say I love you<br>And I mean it from the bottom of my heart"</p>
+<div class="song-name">— I Just Called To Say I Love You, Stevie Wonder</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="dance">
+<div class="section-inner">
+<h2 class="section-title">Her Dance</h2>
+<p class="section-subtitle">The way she moves is the way my heart beats</p>
+<div class="quote-block fade-in"><p>"You dance like nobody's watching — but I am. I'm always watching. Not because I'm possessive, but because I'm captivated. Your dance is my favorite show, and I have the best seat in the house."</p></div>
+<div class="gallery-grid">
+<div class="gallery-card fade-in"><img src="https://i.ibb.co/zH8ywSgF" alt="Dance" onerror="this.src='https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400'"><div class="gallery-overlay"><p>"When you dance, the world stops. And I just watch — grateful that you're mine."</p><div class="song-lyric">"Dance like no one's watching, love like you'll never be hurt"</div></div></div>
+<div class="gallery-card fade-in"><img src="https://i.ibb.co/PZGDSDTn" alt="Move" onerror="this.src='https://images.unsplash.com/photo-1547153760-18fc86324498?w=400'"><div class="gallery-overlay"><p>"Your rhythm is chaos and beauty combined. Just like you."</p><div class="song-lyric">"She's a dancer for money, but she dances for me" — The Police</div></div></div>
+<div class="gallery-card fade-in"><img src="https://i.ibb.co/hRh2PpRH" alt="Performance" onerror="this.src='https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=400'"><div class="gallery-overlay"><p>"I could watch you dance forever and never get bored."</p><div class="song-lyric">"I don't need no money, as long as I can feel the beat"</div></div></div>
+</div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in">
+<h4>Your Dance, My Heart</h4>
+<p>"I hope you dance<br>I hope you never lose your sense of wonder<br>You get your fill to eat<br>But always keep that hunger<br>May you never take one single breath for granted<br>God forbid love ever leave you empty handed"</p>
+<div class="song-name">— I Hope You Dance, Lee Ann Womack</div>
+</div>
+</div>
+<div class="polaroid-grid">
+<div class="polaroid fade-in"><img src="https://i.ibb.co/1tJfYSPn" alt="Dance Moment" onerror="this.src='https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=400'"><div class="polaroid-caption">The dance that made me fall harder</div></div>
+<div class="polaroid fade-in"><img src="https://i.ibb.co/GQDPVTQS" alt="Performance" onerror="this.src='https://images.unsplash.com/photo-1535525153412-5a42439a210d?w=400'"><div class="polaroid-caption">My favorite performer</div></div>
+<div class="polaroid fade-in"><img src="https://i.ibb.co/N6czzFnH" alt="Move" onerror="this.src='https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400'"><div class="polaroid-caption">Dance like everyone's watching — because I am</div></div>
+</div>
+</div>
+</section>
+
+<section id="laugh">
+<div class="section-inner">
+<h2 class="section-title">Her Laugh</h2>
+<p class="section-subtitle">The sound I want to hear for the rest of my life</p>
+<div class="quote-block fade-in"><p>"Your laugh is my favorite song. I could listen to it on repeat for eternity and never get tired. It's the sound of happiness, and it's the sound of home."</p></div>
+<div class="letter-container fade-in">
+<h3>The Sound of You</h3>
+<p>I've heard a lot of laughs in my life. Polite laughs. Fake laughs. Laughs that fade as quickly as they come. But yours? Yours is different.</p>
+<p>Your laugh is uninhibited. It's loud when it wants to be, soft when it needs to be. It comes from your belly, not your throat. It's genuine in a world full of pretense.</p>
+<p>When you laugh, your eyes crinkle. Your head tilts back. You look like a child who just discovered joy for the first time. And every time I see it, I fall in love all over again.</p>
+<p>I have voice notes of your laugh saved on my phone. I play them when I'm sad. I play them when I miss you. I play them when I need to remember that the world has beauty in it — because your laugh is proof.</p>
+<div class="letter-signature">Never stop laughing</div>
+</div>
+<div class="gallery-grid">
+<div class="gallery-card fade-in"><img src="https://i.ibb.co/KjKkYPVx" alt="Laugh" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400'"><div class="gallery-overlay"><p>"This laugh — this exact laugh — is why I wake up every morning wanting to make you happy."</p><div class="song-lyric">"Your laughter brings me joy"</div></div></div>
+<div class="gallery-card fade-in"><img src="https://i.ibb.co/ymF4p42G" alt="Smile" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400'"><div class="gallery-overlay"><p>"I don't need music when I have your laughter as my soundtrack."</p><div class="song-lyric">"You make me laugh when I'm not even in the mood to smile"</div></div></div>
+<div class="gallery-card fade-in"><img src="https://i.ibb.co/JwRwg9Px" alt="Joy" onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400'"><div class="gallery-overlay"><p>"Your happiness is my purpose. Your laugh is my reward."</p><div class="song-lyric">"I just want to see you smile"</div></div></div>
+</div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in">
+<h4>The Sound of Your Laugh</h4>
+<p>"You are the best thing<br>That's ever been mine<br>I fall back into your arms<br>And you make me laugh<br>When I'm not even in the mood to smile"</p>
+<div class="song-name">— You Are The Best Thing, Ray LaMontagne</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="her-world">
+<div class="section-inner">
+<h2 class="section-title">Her World</h2>
+<p class="section-subtitle">Everything that makes you, you</p>
+<div class="memory-grid">
+<div class="memory-card fade-in"><h4>🌸 Her Kindness</h4><p>You forgive when you shouldn't. You care when it's not convenient. You love when it's hard. Your heart is too big for this world, and I'm just lucky you made room for me in it.</p><span class="memory-tag">Heart of Gold</span></div>
+<div class="memory-card fade-in"><h4>🎨 Her Creativity</h4><p>The way you see the world is different. You find beauty in chaos. You turn ordinary moments into art. You make everything around you more colorful just by being in it.</p><span class="memory-tag">Artist of Life</span></div>
+<div class="memory-card fade-in"><h4>💪 Her Strength</h4><p>You've been through things you don't talk about. You carry weights you don't show. And yet, you still show up. You still love. You still choose to be soft in a hard world. That's strength.</p><span class="memory-tag">Warrior in Disguise</span></div>
+<div class="memory-card fade-in"><h4>🌙 Her Dreams</h4><p>You dream big. You work hard. You don't settle. Watching you chase your goals is watching magic happen. And I want to be there when every single one comes true.</p><span class="memory-tag">Dream Chaser</span></div>
+<div class="memory-card fade-in"><h4>☕ Her Little Things</h4><p>The way you take your coffee. The way you tie your hair. The way you bite your lip when you're thinking. The way you say "hmm" when you're not really listening. I know all of them. I love all of them.</p><span class="memory-tag">Every Detail Matters</span></div>
+<div class="memory-card fade-in"><h4>🦋 Her Growth</h4><p>I've watched you become stronger, wiser, more you. Every version of you is my favorite, but watching you grow into who you're meant to be? That's my privilege.</p><span class="memory-tag">Always Evolving</span></div>
+</div>
+<div class="quote-block fade-in"><p>"I don't just love you. I love the way you exist. I love your presence in the world. I love that out of billions of people, I got to know the one who makes everything better just by being."</p></div>
+<div class="polaroid-grid">
+<div class="polaroid fade-in"><img src="https://i.ibb.co/BHrxps99" alt="Her" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400'"><div class="polaroid-caption">The girl who changed everything</div></div>
+<div class="polaroid fade-in"><img src="https://i.ibb.co/B5J9SB4j" alt="Beautiful" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400'"><div class="polaroid-caption">My favorite view</div></div>
+<div class="polaroid fade-in"><img src="https://i.ibb.co/R4tT0HsM" alt="Perfect" onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400'"><div class="polaroid-caption">Perfectly imperfect, perfectly mine</div></div>
+<div class="polaroid fade-in"><img src="https://i.ibb.co/hF2BLM7P" alt="Lovely" onerror="this.src='https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400'"><div class="polaroid-caption">The one I never saw coming</div></div>
+</div>
+</div>
+</section>
+
+<section id="videos">
+<div class="section-inner">
+<h2 class="section-title">Our Moments in Motion</h2>
+<p class="section-subtitle">Videos that hold pieces of our story</p>
+<div class="video-grid">
+<div class="video-card fade-in"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/fvvXNVtutGU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="video-caption"><h4>Moment One</h4><p>"Every frame reminds me of you."</p></div></div>
+<div class="video-card fade-in"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Xa0RW7trqoA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="video-caption"><h4>Moment Two</h4><p>"This is how I remember us — beautiful and real."</p></div></div>
+<div class="video-card fade-in"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/d0L46Cu-PRc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="video-caption"><h4>Moment Three</h4><p>"Your energy in motion — my favorite sight."</p></div></div>
+<div class="video-card fade-in"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/N99c2m4JrGM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="video-caption"><h4>Moment Four</h4><p>"The moments I replay when I miss you."</p></div></div>
+<div class="video-card fade-in"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zx9mYJbt0pE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="video-caption"><h4>Moment Five</h4><p>"This is the you I fell in love with."</p></div></div>
+<div class="video-card fade-in"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/mpVNxrqTC9g" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="video-caption"><h4>Moment Six</h4><p>"Every video of you is a treasure I keep."</p></div></div>
+<div class="video-card fade-in"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/YccCt39HxXw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="video-caption"><h4>Moment Seven</h4><p>"The you that makes my heart skip."</p></div></div>
+<div class="video-card fade-in"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/UCmavj7PnII" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="video-caption"><h4>Moment Eight</h4><p>"My favorite story — told in your smile."</p></div></div>
+</div>
+</div>
+</section>
+
+<div class="parallax-divider" style="background-image:url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=1200');">
+<div class="parallax-text"><h2>This Is Just The Beginning</h2><p>Every ending is just a new chapter waiting to be written</p></div>
+</div>
+
+<section id="final">
+<div class="section-inner">
+<h2 class="section-title">Forever & Always</h2>
+<p class="section-subtitle">This isn't the end. This is just us, continuing.</p>
+<div class="letter-container fade-in" style="background:rgba(255,255,255,0.95);">
+<h3 style="color:var(--rose-deep);">To My Anushka,</h3>
+<p>If you've scrolled this far, you've seen our story. The good, the bad, the beautiful, the broken. And through it all — we're still here.</p>
+<p>I built this for you because words weren't enough. Because "I love you" felt too small for what I feel. Because you deserve to know that every fight, every gap, every tear — was worth it. Because it led us here.</p>
+<p>You are not just my girlfriend. You are my best friend, my biggest supporter, my harshest critic, my softest comfort, my wildest dream, and my safest home.</p>
+<p>I'm sorry for the lies. I'm sorry for the fights. I'm sorry for the times I made you feel less than the queen you are.</p>
+<p>But I'm not sorry for loving you. I'm not sorry for choosing you. I'm not sorry for building this entire website just to tell you what I should say every single day — you are my everything.</p>
+<p>The group chat was the beginning. Gurgaon was the proof. The fights were the tests. The gaps were the lessons. And this — right here, right now — is the promise.</p>
+<p>I promise to choose you. I promise to fight for us. I promise to never let ego win over love. I promise to make you laugh when you want to cry. I promise to be the person you deserve — even if it takes me a lifetime to get there.</p>
+<p>Thank you for forgiving me. Thank you for unblocking me. Thank you for meeting me. Thank you for dancing. Thank you for laughing. Thank you for being you.</p>
+<p>This website is yours. This heart is yours. This life — I want to spend it with you.</p>
+<div class="letter-signature">Forever Yours,<br>Puneet</div>
+</div>
+<div class="quote-block fade-in" style="background:rgba(255,255,255,0.9);">
+<p style="color:var(--rose-deep);">"I didn't know I was looking for you until I found you. And now that I have, I can't imagine a world where you're not mine. This is our story — messy, beautiful, real. And it's far from over."</p>
+</div>
+<div class="lyrics-container">
+<div class="lyrics-box fade-in" style="background:rgba(255,255,255,0.9);border-color:rgba(255,255,255,0.5);">
+<h4 style="color:var(--rose-deep);">Our Song</h4>
+<p style="color:var(--text-dark);">"I will love you till the end of time<br>I would wait a million years<br>Promise you'll remember that you're mine<br>Baby can you see through the tears?<br>Love you more than those bitches before<br>Say you'll remember, say you'll remember<br>Oh baby, ooh<br>I will love you till the end of time"</p>
+<div class="song-name" style="color:var(--text-soft);">— Blue Jeans, Lana Del Rey</div>
+</div>
+</div>
+<div style="text-align:center;margin-top:60px;">
+<p style="font-family:'Great Vibes',cursive;font-size:2.5rem;color:white;margin-bottom:20px;">Anushka + Puneet</p>
+<p style="font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.8);font-size:1.1rem;">From a group chat to forever</p>
+</div>
+</div>
+</section>
+
+<footer>
+<h2>Anushka</h2>
+<p>This website was built with love, regret, gratitude, and an unshakeable belief that we are meant to be. Every pixel, every word, every line of code — it's all for you.</p>
+<p class="final-quote">"In a world of billions, I found the one. And I'll spend forever making sure she knows it."</p>
+<p style="margin-top:30px;font-size:0.85rem;color:rgba(255,255,255,0.5);">Made with ❤️ for the girl who deserves the world</p>
+</footer>
+
+</main>
+
+<script>
+function doLogin(){
+var user=document.getElementById('loginUser').value.trim();
+var pass=document.getElementById('loginPass').value.trim();
+if(user==='AnushkaDangwal'&&pass==='iloveyoupuneet'){
+document.getElementById('loginScreen').classList.add('hidden');
+document.getElementById('mainNav').style.display='block';
+document.getElementById('mainContent').style.display='block';
+document.body.style.overflow='auto';
+startHearts();
+initScrollAnimations();
+}else{
+alert('Invalid credentials. This world is only for Anushka.');
+}
+}
+function doLogout(){location.reload();}
+document.getElementById('loginPass').addEventListener('keypress',function(e){if(e.key==='Enter')doLogin();});
+function openForgot(){document.getElementById('forgotModal').classList.add('active');}
+function closeForgot(){
+document.getElementById('forgotModal').classList.remove('active');
+document.getElementById('otpSection').style.display='none';
+document.getElementById('sendOtpBtn').style.display='block';
+}
+function generateOTP(){
+var otp=Math.floor(100000+Math.random()*900000);
+document.getElementById('otpCode').textContent=otp;
+document.getElementById('sendOtpBtn').style.display='none';
+document.getElementById('otpSection').style.display='block';
+alert('OTP sent to +91-7895624291');
+}
+function resetPassword(){
+var newPass=document.getElementById('newPass').value;
+var confirmPass=document.getElementById('confirmPass').value;
+var otpInput=document.getElementById('otpInput').value;
+var displayedOtp=document.getElementById('otpCode').textContent;
+if(!otpInput||otpInput!==displayedOtp){alert('Invalid OTP. Please check the OTP sent to +91-7895624291');return;}
+if(!newPass||newPass!==confirmPass){alert('Passwords do not match or are empty.');return;}
+alert('Password updated successfully! Please login with your new password.');
+closeForgot();
+}
+function startHearts(){
+var container=document.getElementById('hearts-container');
+var hearts=['❤️','💖','💕','💗','💓','💝','💘'];
+setInterval(function(){
+var heart=document.createElement('div');
+heart.className='heart';
+heart.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+heart.style.left=Math.random()*100+'vw';
+heart.style.fontSize=(Math.random()*20+15)+'px';
+heart.style.animationDuration=(Math.random()*5+6)+'s';
+container.appendChild(heart);
+setTimeout(function(){heart.remove();},12000);
+},800);
+}
+function initScrollAnimations(){
+var observer=new IntersectionObserver(function(entries){
+entries.forEach(function(entry){
+if(entry.isIntersecting){entry.target.classList.add('visible');}
+});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in,.timeline-item').forEach(function(el){observer.observe(el);});
+}
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+anchor.addEventListener('click',function(e){
+e.preventDefault();
+var target=document.querySelector(this.getAttribute('href'));
+if(target){target.scrollIntoView({behavior:'smooth',block:'start'});}
+document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active');});
+this.classList.add('active');
+});
+});
+var lastScroll=0;
+window.addEventListener('scroll',function(){
+var nav=document.getElementById('mainNav');
+if(window.scrollY>100){nav.style.boxShadow='0 2px 30px rgba(168,93,99,0.2)';}else{nav.style.boxShadow='0 2px 20px var(--shadow)';}
+lastScroll=window.scrollY;
+});
+function toggleMobileMenu(){
+var navLinks=document.getElementById('navLinks');
+if(navLinks.style.display==='flex'){navLinks.style.display='none';}else{
+navLinks.style.display='flex';
+navLinks.style.position='absolute';
+navLinks.style.top='60px';
+navLinks.style.left='0';
+navLinks.style.right='0';
+navLinks.style.background='rgba(255,248,245,0.98)';
+navLinks.style.flexDirection='column';
+navLinks.style.padding='20px';
+navLinks.style.boxShadow='0 10px 30px var(--shadow)';
+}
+}
+document.querySelectorAll('.call-btn').forEach(function(btn){
+btn.addEventListener('click',function(){
+if(this.classList.contains('end')){this.style.background='#d32f2f';setTimeout(function(){this.style.background='#f44336';}.bind(this),300);}
+else{this.style.background=this.style.background==='rgb(76, 175, 80)'?'#555':'#4caf50';}
+});
+});
+document.body.style.overflow='hidden';
+</script>
+
+</body>
+</html>
