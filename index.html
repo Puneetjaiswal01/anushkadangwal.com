@@ -12,30 +12,46 @@ body{min-height:100vh;background:linear-gradient(135deg,#faf3f0 0%,#f4c2c2 55%,#
 #petals{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
 .petal{position:absolute;animation:floatPetal linear infinite;opacity:0.55}
 @keyframes floatPetal{0%{transform:translateY(110vh) rotate(0deg);opacity:0}8%{opacity:.55}92%{opacity:.55}100%{transform:translateY(-10vh) rotate(400deg);opacity:0}}
-.card{position:relative;z-index:2;background:rgba(255,255,255,0.82);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,0.65);border-radius:32px;padding:48px 44px 38px;max-width:480px;width:92%;text-align:center;box-shadow:0 30px 90px rgba(168,93,99,0.18);animation:cardIn 1.2s cubic-bezier(.22,1,.36,1) both}
+
+.card{position:relative;z-index:2;background:rgba(255,255,255,0.82);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,0.65);border-radius:32px;padding:44px 44px 36px;max-width:480px;width:92%;text-align:center;box-shadow:0 30px 90px rgba(168,93,99,0.18);animation:cardIn 1.2s cubic-bezier(.22,1,.36,1) both}
 @keyframes cardIn{from{opacity:0;transform:translateY(40px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+
 .lock{font-size:2.6rem;display:block;margin-bottom:4px;animation:heartbeat 2.4s ease-in-out infinite}
 @keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.18)}28%{transform:scale(1)}42%{transform:scale(1.12)}56%{transform:scale(1)}}
 .name{font-family:'Great Vibes',cursive;font-size:3.8rem;color:#a85d63;line-height:1.1;margin-bottom:4px}
-.tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:#6b4e4e;letter-spacing:1.5px;margin-bottom:22px}
-.divider{display:flex;align-items:center;gap:10px;margin:0 auto 20px}
+.tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:#6b4e4e;letter-spacing:1.5px;margin-bottom:20px}
+.divider{display:flex;align-items:center;gap:10px;margin:0 auto 18px}
 .divider-line{flex:1;height:1px;background:#f4c2c2}
-.message{font-family:'Dancing Script',cursive;font-size:1.35rem;color:#3d2b2b;line-height:1.75;margin-bottom:24px}
+
+/* ANALOG CLOCK */
+.clock-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:20px}
+.clock-face{position:relative;width:180px;height:180px;margin-bottom:12px}
+.clock-svg{width:180px;height:180px;filter:drop-shadow(0 8px 24px rgba(168,93,99,0.2))}
+
+/* DIGITAL DISPLAY */
+.digital{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:#a85d63;letter-spacing:4px;margin-bottom:4px}
+.digital-date{font-family:'Poppins',sans-serif;font-size:.78rem;color:#6b4e4e;letter-spacing:2px;margin-bottom:18px}
+
+.message{font-family:'Dancing Script',cursive;font-size:1.25rem;color:#3d2b2b;line-height:1.7;margin-bottom:20px}
 .message strong{color:#a85d63}
-.date-pill{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#a85d63,#c47a80);color:#fff;font-size:.83rem;font-weight:500;padding:9px 22px;border-radius:40px;letter-spacing:.8px;margin-bottom:24px}
-.cd-label{font-size:.65rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#c47a80;margin-bottom:13px}
-.countdown{display:flex;justify-content:center;gap:11px;margin-bottom:24px;flex-wrap:wrap}
-.unit{background:linear-gradient(135deg,#fff8f5,#fff0f2);border:1px solid #f4c2c2;border-radius:18px;padding:15px 15px 11px;min-width:76px;transition:transform .25s}
-.unit:hover{transform:translateY(-5px)}
-.num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:#a85d63;line-height:1;display:block}
+
+.date-pill{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#a85d63,#c47a80);color:#fff;font-size:.82rem;font-weight:500;padding:9px 22px;border-radius:40px;letter-spacing:.8px;margin-bottom:20px}
+
+/* COUNTDOWN */
+.cd-label{font-size:.65rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#c47a80;margin-bottom:12px}
+.countdown{display:flex;justify-content:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.unit{background:linear-gradient(135deg,#fff8f5,#fff0f2);border:1px solid #f4c2c2;border-radius:18px;padding:14px 14px 10px;min-width:72px;transition:transform .25s}
+.unit:hover{transform:translateY(-4px)}
+.num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#a85d63;line-height:1;display:block}
 .lbl{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:#6b4e4e;margin-top:5px;display:block}
-.bars{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:24px;margin-bottom:16px}
+
+.bars{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:22px;margin-bottom:14px}
 .bar{width:3px;background:#e8b4b8;border-radius:2px;animation:wave 1.2s ease-in-out infinite}
 .bar:nth-child(1){height:9px;animation-delay:0s}.bar:nth-child(2){height:16px;animation-delay:.1s}.bar:nth-child(3){height:22px;animation-delay:.2s}.bar:nth-child(4){height:13px;animation-delay:.3s}.bar:nth-child(5){height:19px;animation-delay:.4s}.bar:nth-child(6){height:11px;animation-delay:.5s}.bar:nth-child(7){height:17px;animation-delay:.6s}
 @keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.7)}}
 .foot{font-size:.75rem;color:#6b4e4e;font-style:italic;opacity:.8}
-.done-msg{font-family:'Dancing Script',cursive;font-size:1.6rem;color:#a85d63;display:none;margin-bottom:14px}
-@media(max-width:440px){.card{padding:34px 22px 28px}.name{font-size:2.8rem}.num{font-size:1.9rem}.unit{min-width:62px;padding:12px 10px 9px}}
+
+@media(max-width:440px){.card{padding:30px 18px 26px}.name{font-size:2.8rem}.clock-face{width:150px;height:150px}.clock-svg{width:150px;height:150px}.digital{font-size:2rem}}
 </style>
 </head>
 <body>
@@ -47,21 +63,70 @@ body{min-height:100vh;background:linear-gradient(135deg,#faf3f0 0%,#f4c2c2 55%,#
   <h1 class="name">Anushka</h1>
   <p class="tagline">Something beautiful is being built for you</p>
   <div class="divider"><div class="divider-line"></div><span style="font-size:1rem">💕</span><div class="divider-line"></div></div>
+
+  <!-- ANALOG CLOCK -->
+  <div class="clock-wrap">
+    <div class="clock-face">
+      <svg class="clock-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer ring -->
+        <circle cx="100" cy="100" r="96" fill="white" stroke="#f4c2c2" stroke-width="2"/>
+        <!-- Soft inner -->
+        <circle cx="100" cy="100" r="88" fill="#fff8f5"/>
+        <!-- Rose gradient rim -->
+        <circle cx="100" cy="100" r="96" fill="none" stroke="#e8b4b8" stroke-width="5" opacity="0.5"/>
+
+        <!-- Hour ticks -->
+        <g stroke="#c47a80" stroke-width="2.5" stroke-linecap="round">
+          <line x1="100" y1="14" x2="100" y2="26"/>
+          <line x1="100" y1="174" x2="100" y2="186"/>
+          <line x1="14" y1="100" x2="26" y2="100"/>
+          <line x1="174" y1="100" x2="186" y2="100"/>
+        </g>
+        <!-- Minute ticks -->
+        <g id="minTicks" stroke="#f4c2c2" stroke-width="1.2" stroke-linecap="round"></g>
+
+        <!-- Hour numbers -->
+        <text x="100" y="38" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="#a85d63" font-weight="700">12</text>
+        <text x="162" y="105" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="#a85d63" font-weight="700">3</text>
+        <text x="100" y="170" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="#a85d63" font-weight="700">6</text>
+        <text x="38" y="105" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="#a85d63" font-weight="700">9</text>
+
+        <!-- Heart at center -->
+        <text x="100" y="130" text-anchor="middle" font-size="11" fill="#e8b4b8">♥</text>
+
+        <!-- Hands -->
+        <line id="hourHand"   x1="100" y1="100" x2="100" y2="48"  stroke="#a85d63" stroke-width="5"   stroke-linecap="round"/>
+        <line id="minuteHand" x1="100" y1="100" x2="100" y2="28"  stroke="#c47a80" stroke-width="3.5" stroke-linecap="round"/>
+        <line id="secondHand" x1="100" y1="110" x2="100" y2="22"  stroke="#e8b4b8" stroke-width="1.8" stroke-linecap="round"/>
+
+        <!-- Center dot -->
+        <circle cx="100" cy="100" r="5" fill="#a85d63"/>
+        <circle cx="100" cy="100" r="2.5" fill="white"/>
+      </svg>
+    </div>
+
+    <!-- Digital time -->
+    <div class="digital" id="digitalTime">00:00:00</div>
+    <div class="digital-date" id="digitalDate">Loading...</div>
+  </div>
+
   <p class="message">Wait for me, baby.<br>I'm building <strong>your world</strong><br>brick by pixel by love.</p>
-  <div class="date-pill">📅 &nbsp;4th July, 2025</div>
-  <p class="done-msg" id="doneMsg">It's time. Your world is ready. 💕</p>
-  <p class="cd-label" id="cdLabel">Unlocking in</p>
-  <div class="countdown" id="countdown">
+  <div class="date-pill">📅 &nbsp;4th July, 2026 — 11:59 PM</div>
+
+  <p class="cd-label">Unlocking in</p>
+  <div class="countdown">
     <div class="unit"><span class="num" id="cd-d">--</span><span class="lbl">Days</span></div>
     <div class="unit"><span class="num" id="cd-h">--</span><span class="lbl">Hours</span></div>
     <div class="unit"><span class="num" id="cd-m">--</span><span class="lbl">Mins</span></div>
     <div class="unit"><span class="num" id="cd-s">--</span><span class="lbl">Secs</span></div>
   </div>
+
   <div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
   <p class="foot">Made with ❤️ by Puneet — only for you</p>
 </div>
 
 <script>
+/* ── Petals ── */
 const EMOJIS=['❤️','💖','💕','💗','💓','💝','💘','🌸','🌷'];
 const pc=document.getElementById('petals');
 function spawnPetal(){
@@ -73,21 +138,80 @@ function spawnPetal(){
   const dur=Math.random()*6+7;
   el.style.animationDuration=dur+'s';
   pc.appendChild(el);
-  setTimeout(()=>el.remove(),dur*1000+500);
+  setTimeout(()=>el.remove(),(dur+1)*1000);
 }
 setInterval(spawnPetal,900);
 for(let i=0;i<6;i++)setTimeout(spawnPetal,i*300);
 
-const target=new Date('2025-07-04T00:00:00');
-const D=document.getElementById('cd-d'),H=document.getElementById('cd-h'),M=document.getElementById('cd-m'),S=document.getElementById('cd-s');
-const doneMsg=document.getElementById('doneMsg'),cdLabel=document.getElementById('cdLabel'),cdBlock=document.getElementById('countdown');
+/* ── Minute tick marks ── */
+const minGroup=document.getElementById('minTicks');
+for(let i=0;i<60;i++){
+  if(i%5===0)continue; // skip hour positions
+  const angle=(i*6-90)*Math.PI/180;
+  const x1=100+90*Math.cos(angle), y1=100+90*Math.sin(angle);
+  const x2=100+84*Math.cos(angle), y2=100+84*Math.sin(angle);
+  const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+  line.setAttribute('x1',x1);line.setAttribute('y1',y1);
+  line.setAttribute('x2',x2);line.setAttribute('y2',y2);
+  minGroup.appendChild(line);
+}
+
+/* ── Clock + digital ── */
+const hourHand=document.getElementById('hourHand');
+const minuteHand=document.getElementById('minuteHand');
+const secondHand=document.getElementById('secondHand');
+const digitalTime=document.getElementById('digitalTime');
+const digitalDate=document.getElementById('digitalDate');
+
+function rotateHand(el,cx,cy,deg,len){
+  const rad=(deg-90)*Math.PI/180;
+  el.setAttribute('x2', cx+len*Math.cos(rad));
+  el.setAttribute('y2', cy+len*Math.sin(rad));
+}
+
+const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
 function pad(n){return String(n).padStart(2,'0')}
+
+function updateClock(){
+  const now=new Date();
+  const h=now.getHours(), m=now.getMinutes(), s=now.getSeconds();
+  const ms=now.getMilliseconds();
+
+  const secDeg  = (s + ms/1000) * 6;
+  const minDeg  = (m + s/60) * 6;
+  const hourDeg = ((h % 12) + m/60) * 30;
+
+  rotateHand(secondHand, 100, 100, secDeg,  75);
+  rotateHand(minuteHand, 100, 100, minDeg,  68);
+  rotateHand(hourHand,   100, 100, hourDeg, 50);
+
+  // tail for second hand
+  const tailRad=(secDeg+90)*Math.PI/180;
+  secondHand.setAttribute('x1', 100+10*Math.cos(tailRad));
+  secondHand.setAttribute('y1', 100+10*Math.sin(tailRad));
+
+  // digital
+  const ampm = h>=12?'PM':'AM';
+  const h12  = h%12||12;
+  digitalTime.textContent = pad(h12)+':'+pad(m)+':'+pad(s)+' '+ampm;
+  digitalDate.textContent = DAYS[now.getDay()]+', '+MONTHS[now.getMonth()]+' '+now.getDate()+', '+now.getFullYear();
+}
+
+updateClock();
+setInterval(updateClock, 100);
+
+/* ── Countdown to 4 July 2026 11:59 PM ── */
+const target=new Date('2026-07-04T23:59:00');
+const D=document.getElementById('cd-d'),H=document.getElementById('cd-h'),MM=document.getElementById('cd-m'),S=document.getElementById('cd-s');
+
 function tick(){
   const diff=target-new Date();
-  if(diff<=0){cdBlock.style.display='none';cdLabel.style.display='none';doneMsg.style.display='block';return}
+  if(diff<=0){D.textContent=H.textContent=MM.textContent=S.textContent='00';return}
   D.textContent=pad(Math.floor(diff/86400000));
   H.textContent=pad(Math.floor((diff%86400000)/3600000));
-  M.textContent=pad(Math.floor((diff%3600000)/60000));
+  MM.textContent=pad(Math.floor((diff%3600000)/60000));
   S.textContent=pad(Math.floor((diff%60000)/1000));
 }
 tick();
