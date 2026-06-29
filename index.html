@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anushka — Something Beautiful is Coming</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;background:linear-gradient(135deg,#faf3f0 0%,#f4c2c2 55%,#e8b4b8 100%);font-family:'Poppins',sans-serif;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+#petals{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.petal{position:absolute;animation:floatPetal linear infinite;opacity:0.55}
+@keyframes floatPetal{0%{transform:translateY(110vh) rotate(0deg);opacity:0}8%{opacity:.55}92%{opacity:.55}100%{transform:translateY(-10vh) rotate(400deg);opacity:0}}
+.card{position:relative;z-index:2;background:rgba(255,255,255,0.82);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,0.65);border-radius:32px;padding:48px 44px 38px;max-width:480px;width:92%;text-align:center;box-shadow:0 30px 90px rgba(168,93,99,0.18);animation:cardIn 1.2s cubic-bezier(.22,1,.36,1) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(40px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.lock{font-size:2.6rem;display:block;margin-bottom:4px;animation:heartbeat 2.4s ease-in-out infinite}
+@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.18)}28%{transform:scale(1)}42%{transform:scale(1.12)}56%{transform:scale(1)}}
+.name{font-family:'Great Vibes',cursive;font-size:3.8rem;color:#a85d63;line-height:1.1;margin-bottom:4px}
+.tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:#6b4e4e;letter-spacing:1.5px;margin-bottom:22px}
+.divider{display:flex;align-items:center;gap:10px;margin:0 auto 20px}
+.divider-line{flex:1;height:1px;background:#f4c2c2}
+.message{font-family:'Dancing Script',cursive;font-size:1.35rem;color:#3d2b2b;line-height:1.75;margin-bottom:24px}
+.message strong{color:#a85d63}
+.date-pill{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#a85d63,#c47a80);color:#fff;font-size:.83rem;font-weight:500;padding:9px 22px;border-radius:40px;letter-spacing:.8px;margin-bottom:24px}
+.cd-label{font-size:.65rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#c47a80;margin-bottom:13px}
+.countdown{display:flex;justify-content:center;gap:11px;margin-bottom:24px;flex-wrap:wrap}
+.unit{background:linear-gradient(135deg,#fff8f5,#fff0f2);border:1px solid #f4c2c2;border-radius:18px;padding:15px 15px 11px;min-width:76px;transition:transform .25s}
+.unit:hover{transform:translateY(-5px)}
+.num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:#a85d63;line-height:1;display:block}
+.lbl{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:#6b4e4e;margin-top:5px;display:block}
+.bars{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:24px;margin-bottom:16px}
+.bar{width:3px;background:#e8b4b8;border-radius:2px;animation:wave 1.2s ease-in-out infinite}
+.bar:nth-child(1){height:9px;animation-delay:0s}.bar:nth-child(2){height:16px;animation-delay:.1s}.bar:nth-child(3){height:22px;animation-delay:.2s}.bar:nth-child(4){height:13px;animation-delay:.3s}.bar:nth-child(5){height:19px;animation-delay:.4s}.bar:nth-child(6){height:11px;animation-delay:.5s}.bar:nth-child(7){height:17px;animation-delay:.6s}
+@keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.7)}}
+.foot{font-size:.75rem;color:#6b4e4e;font-style:italic;opacity:.8}
+.done-msg{font-family:'Dancing Script',cursive;font-size:1.6rem;color:#a85d63;display:none;margin-bottom:14px}
+@media(max-width:440px){.card{padding:34px 22px 28px}.name{font-size:2.8rem}.num{font-size:1.9rem}.unit{min-width:62px;padding:12px 10px 9px}}
+</style>
+</head>
+<body>
+
+<div id="petals"></div>
+
+<div class="card">
+  <span class="lock">🔐</span>
+  <h1 class="name">Anushka</h1>
+  <p class="tagline">Something beautiful is being built for you</p>
+  <div class="divider"><div class="divider-line"></div><span style="font-size:1rem">💕</span><div class="divider-line"></div></div>
+  <p class="message">Wait for me, baby.<br>I'm building <strong>your world</strong><br>brick by pixel by love.</p>
+  <div class="date-pill">📅 &nbsp;4th July, 2025</div>
+  <p class="done-msg" id="doneMsg">It's time. Your world is ready. 💕</p>
+  <p class="cd-label" id="cdLabel">Unlocking in</p>
+  <div class="countdown" id="countdown">
+    <div class="unit"><span class="num" id="cd-d">--</span><span class="lbl">Days</span></div>
+    <div class="unit"><span class="num" id="cd-h">--</span><span class="lbl">Hours</span></div>
+    <div class="unit"><span class="num" id="cd-m">--</span><span class="lbl">Mins</span></div>
+    <div class="unit"><span class="num" id="cd-s">--</span><span class="lbl">Secs</span></div>
+  </div>
+  <div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+  <p class="foot">Made with ❤️ by Puneet — only for you</p>
+</div>
+
+<script>
+const EMOJIS=['❤️','💖','💕','💗','💓','💝','💘','🌸','🌷'];
+const pc=document.getElementById('petals');
+function spawnPetal(){
+  const el=document.createElement('div');
+  el.className='petal';
+  el.textContent=EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+  el.style.left=Math.random()*100+'%';
+  el.style.fontSize=(Math.random()*14+10)+'px';
+  const dur=Math.random()*6+7;
+  el.style.animationDuration=dur+'s';
+  pc.appendChild(el);
+  setTimeout(()=>el.remove(),dur*1000+500);
+}
+setInterval(spawnPetal,900);
+for(let i=0;i<6;i++)setTimeout(spawnPetal,i*300);
+
+const target=new Date('2025-07-04T00:00:00');
+const D=document.getElementById('cd-d'),H=document.getElementById('cd-h'),M=document.getElementById('cd-m'),S=document.getElementById('cd-s');
+const doneMsg=document.getElementById('doneMsg'),cdLabel=document.getElementById('cdLabel'),cdBlock=document.getElementById('countdown');
+function pad(n){return String(n).padStart(2,'0')}
+function tick(){
+  const diff=target-new Date();
+  if(diff<=0){cdBlock.style.display='none';cdLabel.style.display='none';doneMsg.style.display='block';return}
+  D.textContent=pad(Math.floor(diff/86400000));
+  H.textContent=pad(Math.floor((diff%86400000)/3600000));
+  M.textContent=pad(Math.floor((diff%3600000)/60000));
+  S.textContent=pad(Math.floor((diff%60000)/1000));
+}
+tick();
+setInterval(tick,1000);
+</script>
+</body>
+</html>
