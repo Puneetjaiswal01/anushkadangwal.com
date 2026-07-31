@@ -1,0 +1,108 @@
+
+/* Extra cinematic effects */
+
+.chapter-title{
+  opacity:0;
+  transform:translateY(60px);
+  animation:chapterReveal 1.2s ease forwards;
+}
+
+@keyframes chapterReveal{
+  to{opacity:1;transform:translateY(0)}
+}
+
+.story-progress{
+  position:fixed;
+  top:0;
+  left:0;
+  height:4px;
+  width:0%;
+  background:linear-gradient(90deg,#ff6fa9,#8b5cf6,#7dd3fc);
+  z-index:999;
+  transition:width .15s linear;
+}
+
+.shooting-star{
+  position:fixed;
+  width:2px;
+  height:120px;
+  background:linear-gradient(transparent,#fff);
+  transform:rotate(45deg);
+  opacity:.8;
+  pointer-events:none;
+  animation:shoot 1.4s linear forwards;
+}
+
+@keyframes shoot{
+  from{transform:translate(0,0) rotate(45deg);opacity:1}
+  to{transform:translate(-600px,600px) rotate(45deg);opacity:0}
+}
+
+.letter{
+  position:relative;
+  padding:40px;
+}
+
+.letter:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:24px;
+  background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  pointer-events:none;
+}
+
+.quote{
+  font-size:1.5rem;
+  font-style:italic;
+  color:#ffd8e9;
+  margin:30px auto;
+  max-width:900px;
+}
+
+.glow-text{
+  background:linear-gradient(90deg,#fff,#ffd1e5,#7dd3fc);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.memory-grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+ gap:24px;
+}
+
+.memory-card{
+ padding:28px;
+ border-radius:22px;
+ background:rgba(255,255,255,.06);
+ backdrop-filter:blur(16px);
+ border:1px solid rgba(255,255,255,.12);
+ transition:.35s;
+}
+
+.memory-card:hover{
+ transform:translateY(-10px) rotate(.5deg);
+ box-shadow:0 20px 60px rgba(125,211,252,.12);
+}
+
+.final-screen{
+ min-height:100vh;
+ display:grid;
+ place-items:center;
+ text-align:center;
+}
+
+.final-screen h1{
+ font-size:clamp(3rem,9vw,7rem);
+}
+
+.fade-in{
+ opacity:0;
+ animation:fadeUp 1s forwards;
+}
+
+@keyframes fadeUp{
+ from{opacity:0;transform:translateY(25px)}
+ to{opacity:1;transform:translateY(0)}
+}
