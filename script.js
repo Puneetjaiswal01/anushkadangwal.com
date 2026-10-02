@@ -25,16 +25,16 @@ const memoryFiles=[
 "WhatsApp Image 2026-10-02 at 10.28.25 PM (3).jpeg",
 "WhatsApp Image 2026-10-02 at 10.28.26 PM.jpeg"];
 const memoryNotes=[
-"Somewhere between meeting you and knowing you, you became someone I started looking for in every room.",
-"This one stays because happiness looks better when it isn't trying too hard.",
+"“Study break? 🎬” — I called you Pahadi girl, you corrected the universe by saying it sounded better than padhai girl, and somehow even planning an online movie became one of our things.",
+"“Hey Cutie.” Followed by your extremely affectionate: “Bhaago yha se.” Honestly, this belongs here because this is us — affection, immediately ruined by nonsense.",
+"“To my Jaat boy.” The line I keep coming back to: “Even on the tired or busy days, I still choose this, and I still choose you.” I don’t think you knew how much that sentence stayed with me.",
+"Our emails deserve their own corner here. Not because email is romantic — but because somehow we made even an inbox feel personal.",
 "One photograph. A thousand tiny details I never want my brain to misplace.",
 "Pahadan, I hope you know how beautiful you look in the moments when you are simply being you.",
 "Proof that my favourite plans are usually the ones that somehow end with you beside me.",
 "I don't need every memory to be dramatic. I just want more ordinary days that feel like ours.",
 "One day we will look older at this photo. I hope we still recognise the two idiots in it.",
 "Some pictures make me remember the place. This one makes me remember how I felt.",
-"I probably annoyed you five minutes before or after this. Statistically, it is very likely.",
-"Dear future us: please never become too grown-up for stupid photographs and unnecessary laughter.",
 "05 July — your birthday. The day was supposed to be about you, and somehow you gave me a favourite memory too.",
 "Flowers eventually fade. I wanted the feeling behind them to have somewhere permanent to live.",
 "Not every favourite memory needs perfect lighting, perfect timing, or even perfect focus.",
@@ -45,6 +45,6 @@ const memoryNotes=[
 "No caption clever enough. I just like us here. That is the whole sentence.",
 "We never formally decided what we were, yet somehow we kept collecting evidence that we mattered.",
 "And this one? I kept it for the end because after twenty memories, I still have the same problem: I want more."
-];
+]
 const mg=document.getElementById("memoryGrid");
 if(mg){memoryFiles.forEach((src,i)=>{const card=document.createElement("figure");card.className="memory-card m"+(i+1);card.innerHTML='<div class="photo-wrap"><img loading="lazy" src="'+encodeURI(src)+'" alt="A memory of Puneet and Anushka"></div><figcaption><small>MEMORY '+String(i+1).padStart(2,"0")+'</small><p>'+memoryNotes[i]+'</p><span>tap to hold this moment ✦</span></figcaption>';card.onclick=()=>card.classList.toggle("open");mg.appendChild(card)})}
