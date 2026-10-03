@@ -67,3 +67,16 @@ linear-gradient(180deg,#08091a 0%,#111129 42%,#2b172d 70%,#090910 100%)}
 .hero-dream .heroText h1 i{color:#e8a6bc;text-shadow:0 0 35px #df8ba044}
 .hero-dream .heroText p{margin-top:42px}
 @media(max-width:650px){.hero-flowers{opacity:.45}.lantern-glow{left:4%;bottom:5%;transform:scale(.7)}.hero-dream .heroText h1{font-size:clamp(53px,16vw,82px);line-height:.82}.hero-dream .moon{width:215px;height:215px}.dream-vignette{box-shadow:inset 0 0 80px 20px rgba(3,3,9,.5)}}
+
+/* cinematic proposal artwork reveal */
+.proposal-art{position:relative;min-height:100svh;background:#070711;display:grid;place-items:center;overflow:hidden;padding:7vh 0}
+.proposal-art:before,.proposal-art:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2}
+.proposal-art:before{background:linear-gradient(180deg,#070711 0%,transparent 14%,transparent 84%,#070711 100%)}
+.proposal-art:after{box-shadow:inset 0 0 120px 35px #070711}
+.proposal-art img{position:relative;z-index:1;width:min(96vw,1800px);max-height:88svh;object-fit:contain;border-radius:4px;box-shadow:0 35px 120px #000b;animation:proposalBreath 8s ease-in-out infinite alternate}
+.proposal-art-glow{position:absolute;width:65vw;height:45vh;border-radius:50%;background:#b65d7d25;filter:blur(80px);z-index:0}
+.proposal-art-caption{position:absolute;z-index:4;bottom:5vh;left:50%;transform:translateX(-50%);text-align:center;text-shadow:0 2px 18px #000;width:90%}
+.proposal-art-caption small{display:block;font:600 9px 'DM Sans';letter-spacing:.22em;color:#f3dce4}
+.proposal-art-caption span{display:block;margin-top:10px;font-style:italic;color:#e8a6bc;font-size:18px}
+@keyframes proposalBreath{from{transform:scale(1)}to{transform:scale(1.012)}}
+@media(max-width:650px){.proposal-art{min-height:82svh;padding:3vh 0}.proposal-art img{width:100vw;max-height:76svh;border-radius:0}.proposal-art:after{box-shadow:inset 0 0 55px 12px #070711}.proposal-art-caption{bottom:3vh}.proposal-art-caption span{font-size:15px}}
