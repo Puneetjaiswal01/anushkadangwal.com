@@ -31,3 +31,18 @@ radial-gradient(ellipse at 50% 105%,rgba(229,142,166,.16),transparent 38%);backg
 .hero span:hover{border-color:#e9b8c866;color:#e9b8c8;box-shadow:0 0 35px #e9b8c81c}
 .moon{z-index:0;opacity:.16}
 @media(max-width:650px){.heroText:before,.heroText:after{display:none}.hero:after{right:8%;top:17%}}
+
+/* Pahadan dreamscape hero — keep original moon centered */
+.hero{background:linear-gradient(180deg,#080711 0%,#100b18 48%,#241322 78%,#0a0910 100%)}
+.hero .moon{left:50%;top:50%;transform:translate(-50%,-50%);width:280px;height:280px;opacity:.16;z-index:0}
+.dream-cloud{position:absolute;z-index:0;border-radius:50%;filter:blur(28px);opacity:.28;pointer-events:none;animation:cloudDrift 18s ease-in-out infinite alternate}
+.dream-cloud:before,.dream-cloud:after{content:"";position:absolute;border-radius:50%;background:inherit}
+.dream-cloud.c1{width:430px;height:100px;background:#c878a2;left:-5%;top:58%}.dream-cloud.c1:before{width:220px;height:150px;left:120px;top:-65px}.dream-cloud.c1:after{width:260px;height:120px;left:280px;top:-20px}
+.dream-cloud.c2{width:520px;height:115px;background:#765f9b;right:-7%;top:48%;animation-delay:-7s}.dream-cloud.c2:before{width:260px;height:160px;left:80px;top:-70px}.dream-cloud.c2:after{width:280px;height:135px;left:300px;top:-35px}
+@keyframes cloudDrift{to{transform:translateX(45px) translateY(-8px)}}
+.mountains{position:absolute;left:-5%;right:-5%;bottom:0;pointer-events:none;z-index:0;transform-origin:bottom}
+.mountains.far{height:38%;opacity:.38;background:linear-gradient(155deg,transparent 0 12%,#51425d 12% 18%,transparent 18% 24%,#6d5068 24% 34%,transparent 34% 39%,#443c5a 39% 48%,transparent 48% 55%,#6c4b66 55% 66%,transparent 66% 72%,#44374f 72% 82%,transparent 82%);clip-path:polygon(0 100%,0 74%,8% 60%,14% 71%,23% 38%,31% 69%,40% 52%,48% 72%,58% 34%,68% 68%,78% 48%,87% 72%,94% 55%,100% 70%,100% 100%)}
+.mountains.near{height:27%;opacity:.72;background:linear-gradient(180deg,#211629,#09080e);clip-path:polygon(0 100%,0 72%,8% 54%,16% 76%,27% 48%,37% 74%,47% 57%,58% 79%,68% 49%,79% 72%,89% 55%,100% 74%,100% 100%)}
+.valley-lights{position:absolute;z-index:1;left:5%;right:5%;bottom:7%;height:13%;opacity:.65;pointer-events:none;background:radial-gradient(circle at 8% 72%,#ffd58a 0 1px,transparent 2px),radial-gradient(circle at 18% 48%,#ffd58a 0 1.5px,transparent 2.5px),radial-gradient(circle at 31% 78%,#ffc675 0 1px,transparent 2px),radial-gradient(circle at 69% 68%,#ffd58a 0 1.5px,transparent 2.5px),radial-gradient(circle at 79% 44%,#ffc675 0 1px,transparent 2px),radial-gradient(circle at 91% 73%,#ffd58a 0 1.5px,transparent 2.5px);filter:drop-shadow(0 0 7px #ffc26b)}
+.heroText{z-index:3}.heroText small{text-shadow:0 0 18px #000}.hero h1{text-shadow:0 8px 45px #050309,0 0 25px #e8b4c315}
+@media(max-width:650px){.hero .moon{width:210px;height:210px}.mountains.far{height:30%}.mountains.near{height:22%}.dream-cloud{opacity:.2}}
