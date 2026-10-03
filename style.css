@@ -12,3 +12,22 @@
 @media(min-width:651px){.memory-card:nth-child(7) img,.memory-card:nth-child(8) img,.memory-card:nth-child(9) img,.memory-card:nth-child(10) img{height:500px}}
 
 .catcorner{position:relative;overflow:hidden}.catcorner:after{content:"CAT";position:absolute;right:-3vw;top:8%;font:600 clamp(140px,28vw,380px) 'DM Sans';color:#4c263008;letter-spacing:-.08em;pointer-events:none}.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:55px 0;position:relative;z-index:1}.cat-grid article{background:#faf6f0;border:1px solid #432b3317;padding:32px;min-height:260px}.cat-grid small,.cat-note span{font:500 9px 'DM Sans';letter-spacing:.18em;color:#9b566d}.cat-grid h3{font-size:30px;line-height:1.15;margin:25px 0 15px}.cat-grid p{font-size:20px;line-height:1.5;color:#68545c}.cat-note{position:relative;z-index:1;margin-top:30px;background:#281923;color:#f7eee9;padding:clamp(30px,6vw,60px);max-width:850px}.cat-note p{font-size:clamp(24px,3vw,34px);line-height:1.45}.cat-note b{display:block;margin-top:30px;font-size:24px;color:#e9b8c8}@media(max-width:650px){.cat-grid{grid-template-columns:1fr}.cat-grid article{min-height:0}.catcorner:after{top:3%}}
+
+/* Dreamier hero — original moon preserved */
+.hero{overflow:hidden;isolation:isolate;background:
+radial-gradient(ellipse at 50% 75%,rgba(116,63,94,.18),transparent 42%),
+linear-gradient(180deg,rgba(8,7,13,0) 45%,rgba(45,20,35,.2) 100%)}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+radial-gradient(circle at 18% 25%,rgba(235,166,190,.12) 0 1px,transparent 2px),
+radial-gradient(circle at 82% 20%,rgba(255,240,221,.13) 0 1px,transparent 2px),
+radial-gradient(ellipse at 50% 105%,rgba(229,142,166,.16),transparent 38%);background-size:83px 83px,127px 127px,100% 100%}
+.hero:after{content:"✦";position:absolute;right:14%;top:22%;font-size:18px;color:#f6d5df;filter:drop-shadow(0 0 12px #f6bfd5);animation:heroTwinkle 2.8s ease-in-out infinite}
+@keyframes heroTwinkle{50%{opacity:.25;transform:scale(.7)}}
+.heroText{position:relative;z-index:2;text-shadow:0 5px 35px #000}
+.heroText:before,.heroText:after{position:absolute;color:#e9b8c8;opacity:.55;font-size:22px}
+.heroText:before{content:"☾";left:-9vw;top:35%}.heroText:after{content:"✧";right:-7vw;bottom:18%}
+.hero h1 i{filter:drop-shadow(0 0 22px rgba(233,184,200,.18))}
+.hero span{border:1px solid #ffffff17;border-radius:999px;width:max-content;margin:55px auto 0;padding:13px 22px;transition:.35s}
+.hero span:hover{border-color:#e9b8c866;color:#e9b8c8;box-shadow:0 0 35px #e9b8c81c}
+.moon{z-index:0;opacity:.16}
+@media(max-width:650px){.heroText:before,.heroText:after{display:none}.hero:after{right:8%;top:17%}}
