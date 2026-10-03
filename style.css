@@ -46,3 +46,24 @@ radial-gradient(ellipse at 50% 105%,rgba(229,142,166,.16),transparent 38%);backg
 .valley-lights{position:absolute;z-index:1;left:5%;right:5%;bottom:7%;height:13%;opacity:.65;pointer-events:none;background:radial-gradient(circle at 8% 72%,#ffd58a 0 1px,transparent 2px),radial-gradient(circle at 18% 48%,#ffd58a 0 1.5px,transparent 2.5px),radial-gradient(circle at 31% 78%,#ffc675 0 1px,transparent 2px),radial-gradient(circle at 69% 68%,#ffd58a 0 1.5px,transparent 2.5px),radial-gradient(circle at 79% 44%,#ffc675 0 1px,transparent 2px),radial-gradient(circle at 91% 73%,#ffd58a 0 1.5px,transparent 2.5px);filter:drop-shadow(0 0 7px #ffc26b)}
 .heroText{z-index:3}.heroText small{text-shadow:0 0 18px #000}.hero h1{text-shadow:0 8px 45px #050309,0 0 25px #e8b4c315}
 @media(max-width:650px){.hero .moon{width:210px;height:210px}.mountains.far{height:30%}.mountains.near{height:22%}.dream-cloud{opacity:.2}}
+
+/* Closest CSS-built version of the chosen Pahadan hero artwork */
+.hero-dream{min-height:100svh;background:
+radial-gradient(ellipse at 50% 68%,rgba(202,104,137,.20),transparent 35%),
+radial-gradient(circle at 8% 80%,rgba(255,153,91,.10),transparent 18%),
+linear-gradient(180deg,#08091a 0%,#111129 42%,#2b172d 70%,#090910 100%)}
+.dream-vignette{position:absolute;inset:0;z-index:2;pointer-events:none;box-shadow:inset 0 0 150px 45px rgba(3,3,9,.55);background:linear-gradient(90deg,rgba(5,4,10,.35),transparent 22%,transparent 78%,rgba(5,4,10,.28))}
+.hero-flowers{position:absolute;z-index:1;pointer-events:none;filter:blur(.2px) drop-shadow(0 0 15px #ef779344)}
+.hero-flowers:before,.hero-flowers:after{content:"✿  ❀  ✿";position:absolute;color:#b84d70;font-size:clamp(35px,5vw,72px);letter-spacing:12px;text-shadow:20px 15px 0 #7e385a,-15px 35px 0 #d16a85}
+.hero-flowers.left{left:-2%;top:3%;transform:rotate(-18deg)}.hero-flowers.left:after{top:70vh;left:2vw;transform:rotate(20deg) scale(1.3)}
+.hero-flowers.right{right:16%;bottom:15%;transform:rotate(12deg) scale(.65)}
+.lantern-glow{position:absolute;left:10%;bottom:8%;width:75px;height:100px;z-index:1;border:1px solid #e6b57455;border-radius:8px;background:radial-gradient(circle,#ffd98d 0 7%,#df8b42 8% 17%,#6c392055 30%,transparent 65%);box-shadow:0 0 45px 12px #f2a45a33;opacity:.7}
+.hero-dream .mountains.far{height:42%;opacity:.58;filter:drop-shadow(0 -12px 25px #b66c8a18)}
+.hero-dream .mountains.near{height:28%;opacity:.9}
+.hero-dream .valley-lights{opacity:.9}
+.hero-dream .moon{left:50%;top:48%;transform:translate(-50%,-50%);width:285px;height:285px;opacity:.15}
+.hero-dream .heroText{z-index:4}
+.hero-dream .heroText h1{font-size:clamp(64px,8.5vw,138px);line-height:.76}
+.hero-dream .heroText h1 i{color:#e8a6bc;text-shadow:0 0 35px #df8ba044}
+.hero-dream .heroText p{margin-top:42px}
+@media(max-width:650px){.hero-flowers{opacity:.45}.lantern-glow{left:4%;bottom:5%;transform:scale(.7)}.hero-dream .heroText h1{font-size:clamp(53px,16vw,82px);line-height:.82}.hero-dream .moon{width:215px;height:215px}.dream-vignette{box-shadow:inset 0 0 80px 20px rgba(3,3,9,.5)}}
