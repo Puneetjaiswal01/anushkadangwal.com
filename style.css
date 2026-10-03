@@ -4,3 +4,9 @@
 
 
 .almost{max-width:1050px}.promise-lines{margin:45px 0}.promise-lines p{font-size:clamp(25px,3.5vw,42px);padding:18px 0;margin:0;border-bottom:1px solid #ffffff14;color:#d9ccd2}.lastmail{margin:90px auto 0;background:#f3eadf;color:#33242a;padding:clamp(28px,6vw,65px);max-width:720px;box-shadow:0 35px 100px #0008;transform:rotate(-.5deg)}.lastmail small{font-size:9px;color:#8d6d79}.lastmail b{display:block;font:500 clamp(21px,3vw,30px) 'DM Sans';letter-spacing:0;margin:22px 0 38px;border-bottom:1px solid #3d293025;padding-bottom:22px}.lastmail p{font-size:clamp(22px,3vw,30px);line-height:1.55}.lastmail i{color:#8b3e58}
+
+/* final memory polish */
+.memory-card figcaption p{max-width:34ch}
+.memory-card:nth-child(7) .photo-wrap,.memory-card:nth-child(8) .photo-wrap,.memory-card:nth-child(9) .photo-wrap,.memory-card:nth-child(10) .photo-wrap{background:#f4eee7}
+.memory-card:nth-child(7) img,.memory-card:nth-child(8) img,.memory-card:nth-child(9) img,.memory-card:nth-child(10) img{object-fit:contain;background:#17151a}
+@media(min-width:651px){.memory-card:nth-child(7) img,.memory-card:nth-child(8) img,.memory-card:nth-child(9) img,.memory-card:nth-child(10) img{height:500px}}
