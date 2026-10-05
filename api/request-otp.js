@@ -2,6 +2,7 @@ const crypto = require('crypto');
 
 const RECIPIENT = process.env.OTP_RECIPIENT_EMAIL;
 const MAX_AGE = 10 * 60;
+const ALLOWED_HOSTS = new Set(['anushkadangwal.com','www.anushkadangwal.com','anushkadangwalcom.vercel.app']);
 
 function b64url(input){return Buffer.from(input).toString('base64url')}
 function sign(payload, secret){return crypto.createHmac('sha256',secret).update(payload).digest('base64url')}
@@ -9,6 +10,9 @@ function sign(payload, secret){return crypto.createHmac('sha256',secret).update(
 module.exports = async (req,res)=>{
  res.setHeader('Cache-Control','no-store');
  if(req.method!=='POST') return res.status(405).json({error:'Method not allowed'});
+ const host=String(req.headers.host||'').toLowerCase();
+ const origin=String(req.headers.origin||'');
+ if(!ALLOWED_HOSTS.has(host) || (origin && !ALLOWED_HOSTS.has(origin.replace(/^https?:\/\//,'').split('/')[0].toLowerCase()))) return res.status(403).json({error:'Not allowed'});
  const secret=process.env.AUTH_SECRET, apiKey=process.env.RESEND_API_KEY;
  if(!secret||!apiKey||!RECIPIENT) return res.status(500).json({error:'Email OTP is not configured yet.'});
  const code=String(crypto.randomInt(0,1000000)).padStart(6,'0');
