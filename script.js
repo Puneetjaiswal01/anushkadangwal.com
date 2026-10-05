@@ -37,10 +37,10 @@ if(mg){memoryFiles.forEach((src,i)=>{const card=document.createElement("figure")
  const err=document.getElementById('lockError'),send=document.getElementById('sendOtp'),stage=document.getElementById('otpStage'),otp=document.getElementById('lockOtp'),resend=document.getElementById('resendOtp'),verify=document.getElementById('verifyOtp');
  let challenge='';
  const unlock=()=>{gate.classList.add('unlocking');document.body.classList.remove('locked');setTimeout(()=>gate.remove(),1050)};
- const check=async()=>{try{const r=await fetch('/api/auth',{credentials:'same-origin'});if(r.ok){unlock();return true}}catch{}return false};check();
+ const check=async()=>{try{const r=await fetch('/api/auth',{credentials:'same-origin',cache:'no-store'});if(r.ok){unlock();return true}}catch{}return false};check();
  const requestOtp=async()=>{
    send.disabled=true; resend.disabled=true; err.textContent='sending a little piece of the sky… ✦';
-   try{const r=await fetch('/api/request-otp',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:'{}'});const d=await r.json().catch(()=>({}));
+   try{const r=await fetch('/api/request-otp?ts='+Date.now(),{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:'{}'});const d=await r.json().catch(()=>({}));
      if(!r.ok)throw new Error(d.error||'Could not send the code.');
      challenge=d.challenge; stage.hidden=false; send.hidden=true; err.textContent='Code sent to your email. It expires in 10 minutes. 🌙';otp.focus();
    }catch(e){err.textContent=e.message||'The stars lost signal. Try again. 🌙';}
@@ -50,7 +50,7 @@ if(mg){memoryFiles.forEach((src,i)=>{const card=document.createElement("figure")
  form.addEventListener('submit',async e=>{
    e.preventDefault(); const code=otp.value.replace(/\D/g,''); if(code.length!==6){err.textContent='Enter the six-digit code, Pahadan. 🌙';return}
    verify.disabled=true;verify.textContent='checking the stars… ✦';err.textContent='';
-   try{const r=await fetch('/api/verify-otp',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:JSON.stringify({code,challenge})});const d=await r.json().catch(()=>({}));
+   try{const r=await fetch('/api/verify-otp?ts='+Date.now(),{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:JSON.stringify({code,challenge})});const d=await r.json().catch(()=>({}));
      if(r.ok){err.textContent='Welcome home, Pahadan. ❤️';setTimeout(unlock,420)}
      else{err.textContent=d.error||'That constellation code does not match. Try again. 🌙';otp.value='';otp.focus()}
    }catch{err.textContent='The stars lost signal for a second. Try again. 🌙'}
