@@ -30,25 +30,33 @@ if(mg){memoryFiles.forEach((src,i)=>{const card=document.createElement("figure")
 
 
 
-// Secure Pahadan/Jaat gate — credentials are verified by Vercel serverless API.
+// Secure email OTP gate — OTP delivery and verification happen server-side on Vercel.
 (()=>{
- const gate=document.getElementById('loveLock'), form=document.getElementById('loveLogin');
+ const gate=document.getElementById('loveLock'),form=document.getElementById('loveLogin');
  if(!gate||!form)return;
- const user=document.getElementById('lockUser'),pass=document.getElementById('lockPass'),err=document.getElementById('lockError'),reveal=document.getElementById('revealPass');
+ const err=document.getElementById('lockError'),send=document.getElementById('sendOtp'),stage=document.getElementById('otpStage'),otp=document.getElementById('lockOtp'),resend=document.getElementById('resendOtp'),verify=document.getElementById('verifyOtp');
+ let challenge='';
  const unlock=()=>{gate.classList.add('unlocking');document.body.classList.remove('locked');setTimeout(()=>gate.remove(),1050)};
- const check=async()=>{try{const r=await fetch('/api/auth',{credentials:'same-origin'});if(r.ok){unlock();return true}}catch{}return false};
- check();
- reveal?.addEventListener('click',()=>{pass.type=pass.type==='password'?'text':'password';reveal.textContent=pass.type==='password'?'☾':'✦'});
+ const check=async()=>{try{const r=await fetch('/api/auth',{credentials:'same-origin'});if(r.ok){unlock();return true}}catch{}return false};check();
+ const requestOtp=async()=>{
+   send.disabled=true; resend.disabled=true; err.textContent='sending a little piece of the sky… ✦';
+   try{const r=await fetch('/api/request-otp',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:'{}'});const d=await r.json().catch(()=>({}));
+     if(!r.ok)throw new Error(d.error||'Could not send the code.');
+     challenge=d.challenge; stage.hidden=false; send.hidden=true; err.textContent='Code sent to your email. It expires in 10 minutes. 🌙';otp.focus();
+   }catch(e){err.textContent=e.message||'The stars lost signal. Try again. 🌙';}
+   finally{send.disabled=false;resend.disabled=false;}
+ };
+ send.addEventListener('click',requestOtp);resend.addEventListener('click',requestOtp);
  form.addEventListener('submit',async e=>{
-   e.preventDefault(); const btn=form.querySelector('.unlock-btn'); btn.disabled=true; btn.textContent='checking the stars… ✦'; err.textContent='';
-   try{
-     const r=await fetch('/api/login',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:JSON.stringify({username:user.value.trim(),password:pass.value})});
+   e.preventDefault(); const code=otp.value.replace(/\D/g,''); if(code.length!==6){err.textContent='Enter the six-digit code, Pahadan. 🌙';return}
+   verify.disabled=true;verify.textContent='checking the stars… ✦';err.textContent='';
+   try{const r=await fetch('/api/verify-otp',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:JSON.stringify({code,challenge})});const d=await r.json().catch(()=>({}));
      if(r.ok){err.textContent='Welcome home, Pahadan. ❤️';setTimeout(unlock,420)}
-     else{err.textContent='Wrong constellation. Only Pahadan knows the way in. 🌙';err.classList.remove('shake');void err.offsetWidth;err.classList.add('shake');pass.value='';pass.focus()}
+     else{err.textContent=d.error||'That constellation code does not match. Try again. 🌙';otp.value='';otp.focus()}
    }catch{err.textContent='The stars lost signal for a second. Try again. 🌙'}
-   finally{btn.disabled=false;btn.textContent='open our little universe ✦'}
+   finally{verify.disabled=false;verify.textContent='verify & enter our universe ✦'}
  });
- const c=document.getElementById('lockStars'),x=c?.getContext('2d'); if(!c||!x)return;
- let stars=[];const resize=()=>{c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;x.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);stars=Array.from({length:Math.min(150,Math.floor(innerWidth/7))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight*.82,r:Math.random()*1.2+.2,a:Math.random()*.65+.2,p:Math.random()*6.28}))};resize();addEventListener('resize',resize);
+ const c=document.getElementById('lockStars'),x=c?.getContext('2d');if(!c||!x)return;let stars=[];
+ const resize=()=>{c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;x.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);stars=Array.from({length:Math.min(150,Math.floor(innerWidth/7))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight*.82,r:Math.random()*1.2+.2,a:Math.random()*.65+.2,p:Math.random()*6.28}))};resize();addEventListener('resize',resize);
  const draw=t=>{if(!document.body.contains(c))return;x.clearRect(0,0,innerWidth,innerHeight);stars.forEach(s=>{x.globalAlpha=s.a*(.65+.35*Math.sin(t/1100+s.p));x.fillStyle='#fff4f5';x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fill()});x.globalAlpha=1;requestAnimationFrame(draw)};requestAnimationFrame(draw);
 })();
