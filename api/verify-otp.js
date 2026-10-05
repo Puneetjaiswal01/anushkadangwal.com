@@ -2,10 +2,13 @@ const crypto = require('crypto');
 
 function sign(payload,secret){return crypto.createHmac('sha256',secret).update(payload).digest('base64url')}
 function safe(a,b){try{const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&crypto.timingSafeEqual(x,y)}catch{return false}}
+const ALLOWED_HOSTS = new Set(['anushkadangwal.com','www.anushkadangwal.com','anushkadangwalcom.vercel.app']);
 
 module.exports=(req,res)=>{
  res.setHeader('Cache-Control','no-store');
  if(req.method!=='POST')return res.status(405).json({error:'Method not allowed'});
+ const host=String(req.headers.host||'').toLowerCase(); const origin=String(req.headers.origin||'');
+ if(!ALLOWED_HOSTS.has(host) || (origin && !ALLOWED_HOSTS.has(origin.replace(/^https?:\/\//,'').split('/')[0].toLowerCase()))) return res.status(403).json({error:'Not allowed'});
  const secret=process.env.AUTH_SECRET;if(!secret)return res.status(500).json({error:'OTP verification is not configured yet.'});
  let body=req.body||{};if(typeof body==='string'){try{body=JSON.parse(body)}catch{return res.status(400).json({error:'Invalid request'})}}
  const code=String(body.code||''),challenge=String(body.challenge||'');
