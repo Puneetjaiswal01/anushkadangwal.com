@@ -16,7 +16,7 @@ module.exports = async (req,res)=>{
  const payload=b64url(JSON.stringify({h:sign(code,secret),iat:now,exp:now+MAX_AGE,n:crypto.randomBytes(12).toString('hex')}));
  const challenge=payload+'.'+sign(payload,secret);
  const response=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+apiKey,'Content-Type':'application/json'},body:JSON.stringify({
-   from:process.env.OTP_FROM_EMAIL||'Pahadan & Jaat <onboarding@resend.dev>',
+   from:process.env.OTP_FROM_EMAIL||'Pahadan & Jaat <stars@anushkadangwal.com>',
    to:[RECIPIENT],
    subject:'Your constellation code ✦',
    html:'<div style="background:#0b0a13;color:#f8edf1;padding:36px;font-family:Arial,sans-serif;border-radius:18px"><div style="color:#d99cb0;font-size:12px;letter-spacing:2px">PAHADAN & JAAT · PRIVATE CONSTELLATION</div><h1 style="font-size:28px">Hi, Pahadan 🌙</h1><p>One tiny verification before you enter our universe.</p><div style="font-size:38px;letter-spacing:12px;font-weight:700;margin:30px 0;color:#efc7d3">'+code+'</div><p>This code expires in 10 minutes.</p><p style="opacity:.6">— Jaat ❤️</p></div>'
