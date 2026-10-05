@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-const RECIPIENT = 'anushka1dangwal@gmail.com';
+const RECIPIENT = process.env.OTP_RECIPIENT_EMAIL;
 const MAX_AGE = 10 * 60;
 
 function b64url(input){return Buffer.from(input).toString('base64url')}
@@ -10,7 +10,7 @@ module.exports = async (req,res)=>{
  res.setHeader('Cache-Control','no-store');
  if(req.method!=='POST') return res.status(405).json({error:'Method not allowed'});
  const secret=process.env.AUTH_SECRET, apiKey=process.env.RESEND_API_KEY;
- if(!secret||!apiKey) return res.status(500).json({error:'Email OTP is not configured yet.'});
+ if(!secret||!apiKey||!RECIPIENT) return res.status(500).json({error:'Email OTP is not configured yet.'});
  const code=String(crypto.randomInt(0,1000000)).padStart(6,'0');
  const now=Math.floor(Date.now()/1000);
  const payload=b64url(JSON.stringify({h:sign(code,secret),iat:now,exp:now+MAX_AGE,n:crypto.randomBytes(12).toString('hex')}));
