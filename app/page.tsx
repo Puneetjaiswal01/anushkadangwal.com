@@ -9,19 +9,17 @@ export default function Page() {
         <div className="mountain back" /><div className="mountain" />
       </div>
       <article className="farewell-letter">
-        <p className="eyebrow">A little note, from my heart</p>
+        <p className="eyebrow">A little note for you</p>
         <h1>Thank you for everything.</h1>
         <div className="farewell-copy">
           <p>Dear Anushka,</p>
-          <p>Some people come into our lives and leave behind memories that will always feel warm, no matter how much time passes. You will always be one of those people for me.</p>
-          <p>Thank you for the laughter, the conversations, the little moments, and the happiness we shared. Thank you for being a beautiful part of my life. Even though our paths are different now, I will always be grateful that they crossed.</p>
-          <p>You are the happiest, most full-of-life girl I have ever met. I hope you never lose that light in your eyes or the joy that makes you, you. Keep smiling. Keep dreaming. Keep being wonderfully yourself.</p>
-          <p>Be blessed. Grow, bloom, and glow. May life be gentle with you, may your hard work take you everywhere you want to go, and may your heart always find peace and reasons to smile.</p>
-          <p>There is nothing I ask of you. Just take care of yourself and be happy, truly happy. I will always wish good things for you, even from a distance.</p>
-          <p>Not every beautiful story has to last forever to mean something. Ours meant a lot to me.</p>
-          <p>Thank you, Pahadan. For everything.</p>
+          <p>Thank you for all the beautiful memories, the laughter, and the time we shared. You are one of the happiest, most wonderful people I have ever met, and I will always be grateful to have known you so closely.</p>
+          <p>I still love you, and I probably will for a while. I say that simply because it's true, not because I expect anything from you.</p>
+          <p>Be blessed. Grow, bloom, and glow. Keep smiling, keep chasing your dreams, and never lose that lovely spark of yours.</p>
+          <p>I wish you happiness, peace, and everything good that life has to offer. Take care of yourself, Pahadan.</p>
+          <p>Thank you for everything. ♡</p>
         </div>
-        <p className="farewell-signoff">With gratitude and warm wishes,<span>Jaat ♡</span></p>
+        <p className="farewell-signoff">Always wishing you well,<span>Jaat ♡</span></p>
       </article>
     </main>
   );
