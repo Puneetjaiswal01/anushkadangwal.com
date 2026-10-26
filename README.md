@@ -112,3 +112,5 @@ These are local guest spaces, not password-protected accounts or a cloud databas
 ## Personal colour palettes
 
 `themes.css` applies the same palette consistently to each person’s dashboard, profile cards, navigation, study timer, planner and calculator. Anushka has dreamy lavender with a starry midnight hero and pearl accents; Hardik has navy, slate and brass; Ojasvi has forest green, sage and ivory. Correct and incorrect answer colours remain green and red, independently of personal themes. This visual update does not activate the separate pending authenticated-access release.
+
+Progress, notes, plans, results and unfinished tests are stored separately per profile in this browser. Test drafts survive closing the browser and retain their original deadline. Existing tab-only drafts migrate when reopened. Settings provides profile-specific backup export and restore. Clearing site data/private browsing can remove local records; cross-device recovery requires the pending private datastore release.
