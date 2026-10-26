@@ -12,7 +12,7 @@ Permissions are enforced by authenticated API requests, not query strings or hid
 
 ## Learning features retained
 
-- Personal violet, ocean and rose interfaces, with desktop/mobile layouts.
+- Personal dreamy lavender, navy/brass and forest/ivory interfaces, with desktop/mobile layouts.
 - 40 guides and 272 original practice questions: 110 QA, 80 VARC, 82 DILR.
 - Five fixed full mocks, eight sample papers and 12 sectionals; existing paper question IDs stay unchanged.
 - Saved test reviews, error notebook, spaced revision, topic map and question search.

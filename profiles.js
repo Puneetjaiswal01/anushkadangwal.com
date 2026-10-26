@@ -1,8 +1,8 @@
 /* Guest identities are selected before any learning data is loaded. No account or password is implied. */
 const STUDY_PROFILES=[
- {id:'anushka',name:'Anushka',initial:'A',role:'Host',theme:'violet',tagline:'Your dream. Your people. Your pace.',color:'#7960cf'},
- {id:'hardik',name:'Hardik',initial:'H',role:'Study partner',theme:'ocean',tagline:'A little focus. A stronger finish.',color:'#2e718b'},
- {id:'ojasvi',name:'Ojasvi',initial:'O',role:'Study partner',theme:'rose',tagline:'Small wins, collected every day.',color:'#9e4e70'}
+ {id:'anushka',name:'Anushka',initial:'A',role:'Host',theme:'dreamscape',tagline:'Your dream. Your people. Your pace.',color:'#7251b0'},
+ {id:'hardik',name:'Hardik',initial:'H',role:'Study partner',theme:'navy-brass',tagline:'A little focus. A stronger finish.',color:'#25445d'},
+ {id:'ojasvi',name:'Ojasvi',initial:'O',role:'Study partner',theme:'forest-ivory',tagline:'Small wins, collected every day.',color:'#315c49'}
 ];
 const selectedProfileId=CAT_PRIVATE_APP.context.profileId;
 const ACTIVE_PROFILE=STUDY_PROFILES.find(p=>p.id===selectedProfileId);
