@@ -10,7 +10,7 @@ From this repository:
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-The application consists of `index.html`, `styles.css`, `profiles.js`, `app.js`, `content.js`, `universe.js`, `paper-bank.js`, `learning.js`, `exam-plan.js`, and `personal.js`. `CNAME` preserves the existing custom-domain configuration. Serve all files together. Hash routes work on static hosts such as GitHub Pages. The site is published by pushing these files to the hosting branch configured in GitHub Pages.
+The application consists of `index.html`, `styles.css`, `themes.css`, `profiles.js`, `app.js`, `content.js`, `universe.js`, `paper-bank.js`, `learning.js`, `exam-plan.js`, and `personal.js`. `CNAME` preserves the existing custom-domain configuration. Serve all files together. Hash routes work on static hosts such as GitHub Pages. The site is published by pushing these files to the hosting branch configured in GitHub Pages.
 
 ## Included
 
@@ -99,7 +99,7 @@ Suggested full mocks are on 31 October and 7, 14, 18 and 21 November, with analy
 
 ## Study partners: Anushka, Hardik and Ojasvi
 
-`profiles.js` selects an identity before `app.js` reads any progress. Query links (`?profile=hardik` or `?profile=ojasvi`) take precedence; the last selection is remembered per tab. All three have the complete learning interface, with violet/ocean/rose themes and personal greetings. A profile picker is available on desktop and mobile.
+`profiles.js` selects an identity before `app.js` reads any progress. Query links (`?profile=hardik` or `?profile=ojasvi`) take precedence; the last selection is remembered per tab. All three have the complete learning interface, with dreamy lavender, navy/brass and forest/ivory themes and personal greetings. A profile picker is available on desktop and mobile.
 
 - Anushka retains the original `catalyst-v1` progress key and `catalyst-active-test` session key. Her earlier-site migration remains restricted to her space.
 - Hardik uses `catalyst-v1:hardik` and `catalyst-active-test:hardik`; Ojasvi has equivalent `:ojasvi` keys. Attempts, tests/reviews, notes, daily tasks, plans, syllabus, revision, focus time and running timers are independent.
@@ -108,3 +108,7 @@ Suggested full mocks are on 31 October and 7, 14, 18 and 21 November, with analy
 - Study partners have personal links, separate study commitments and optional copied check-ins. Progress counts are included only when opted in; private notes and answers are never included. Nothing is messaged or uploaded automatically.
 
 These are local guest spaces, not password-protected accounts or a cloud database. A personal link selects a profile but does not synchronise devices. Export/restore moves that person’s data manually. The partner page makes this boundary explicit and does not show invented remote activity or other people’s notes.
+
+## Personal colour palettes
+
+`themes.css` applies the same palette consistently to each person’s dashboard, profile cards, navigation, study timer, planner and calculator. Anushka has dreamy lavender with a starry midnight hero and pearl accents; Hardik has navy, slate and brass; Ojasvi has forest green, sage and ivory. Correct and incorrect answer colours remain green and red, independently of personal themes. This visual update does not activate the separate pending authenticated-access release.
