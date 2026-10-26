@@ -40,3 +40,7 @@ No coaching questions, paid lessons or copyrighted passages were copied. New que
 - UI: all 19 routes checked at desktop, tablet and phone widths; existing timer, calculator, schedule, tests and notes remain in the regression suite.
 
 Core content and tools need no account or external API. Progress remains local to the browser, with manual export/restore for backups and device changes.
+
+## Subsequent exam-date alignment
+
+The user confirmed **29 November 2026** as Anushka’s exam date. `exam-plan.js` now replaces the generic planning target with that date, preserves the previous plan and learning history, provides a fixed final-month roadmap with mock/analysis pairs, tapers the final week, and uses an untimed checklist on exam day. The actual slot and reporting requirements remain tied to the admit card.

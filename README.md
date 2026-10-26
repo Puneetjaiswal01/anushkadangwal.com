@@ -10,7 +10,7 @@ From this repository:
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-The application consists of `index.html`, `styles.css`, `app.js`, `content.js`, `universe.js`, `paper-bank.js`, `learning.js`, and `personal.js`. `CNAME` preserves the existing custom-domain configuration. Serve all files together. Hash routes work on static hosts such as GitHub Pages. The site is published by pushing these files to the hosting branch configured in GitHub Pages.
+The application consists of `index.html`, `styles.css`, `app.js`, `content.js`, `universe.js`, `paper-bank.js`, `learning.js`, `exam-plan.js`, and `personal.js`. `CNAME` preserves the existing custom-domain configuration. Serve all files together. Hash routes work on static hosts such as GitHub Pages. The site is published by pushing these files to the hosting branch configured in GitHub Pages.
 
 ## Included
 
@@ -28,13 +28,13 @@ The application consists of `index.html`, `styles.css`, `app.js`, `content.js`, 
 
 Notes and progress use localStorage in the current browser. They are not uploaded or synced to another device. Export a JSON backup in My progress or My preferences; restore it in My preferences. Clearing browser data deletes local progress. Personalization does not provide authentication: the site's static content and Anushka’s name are public to anyone with access to the website.
 
-The initial 180-day plan is an editable planning template. It does not assume a CAT year or official exam date. Schedule times are local to the browser. Five-minute transitions are additional to the daily study budget. Mock-analysis work may need the following day when a full mock uses the entire daily budget.
+The exam date is 29 November 2026, supplied by the user. The final-month plan runs from 26 October to the exam; earlier planning targets are archived without clearing progress. Schedule times are local to the browser. Five-minute transitions are additional to the daily study budget. Mock-analysis work may need the following day when a full mock uses the entire daily budget.
 
 ## Content and references
 
 All educational material is original. The questions are foundational/intermediate practice, not official previous-year papers or statistically calibrated mocks. The 68-question template is based on a recent format; current-year rules must be verified with the official CAT authority.
 
-The reference destinations are Official CAT, IMS, T.I.M.E., Career Launcher, Cracku, 2IIM, Rodha, MBA Pathshala, iQuanta, CATKing, Unacademy, Handa Ka Funda and Hitbullseye. They are not presented as a ranking. The 26 October 2026 audit compared the public 2IIM and Cracku syllabus outlines with our topic coverage. Their course offerings have not been independently evaluated, and no coaching content was copied. The official CAT site denied automated access, so the application does not assert a current official exam date.
+The reference destinations are Official CAT, IMS, T.I.M.E., Career Launcher, Cracku, 2IIM, Rodha, MBA Pathshala, iQuanta, CATKing, Unacademy, Handa Ka Funda and Hitbullseye. They are not presented as a ranking. The 26 October 2026 audit compared the public 2IIM and Cracku syllabus outlines with our topic coverage. Their course offerings have not been independently evaluated, and no coaching content was copied. The official CAT site denied automated access, so exam-slot and reporting details must still be checked on the admit card. The planning date was subsequently set to 29 November 2026 at the user’s instruction.
 
 ## Validation
 
@@ -47,13 +47,14 @@ node --check personal.js
 node --check universe.js
 node --check paper-bank.js
 node --check learning.js
+node --check exam-plan.js
 ```
 
 Browser validation covered lesson search/completion/notes, MCQ and numerical-entry feedback, persisted daily completion, calendar exports, study-budget allocation, calculator errors and helpers, timer pause/refresh/completion, diagnostic recovery, full-mock section locking and automatic transitions, bookmarks and notebook, and all 19 routes at desktop, tablet and phone widths.
 
 ## Combining the earlier website
 
-`universe.js` preserves the earlier website’s paper-library structure, broad 28-area syllabus tracker and 24 original questions, while using the newer timer, calculator, configurable day-by-day plan, question engine and notes. The fixed exam-date countdown is replaced with the user's own planning deadline. The default deadline is clearly labeled as an editable template.
+`universe.js` preserves the earlier website’s paper-library structure, broad 28-area syllabus tracker and 24 original questions, while using the newer timer, calculator, configurable day-by-day plan, question engine and notes. The earlier generic planning deadline has been replaced with the user-confirmed CAT date, 29 November 2026.
 
 When the earlier `anushka-cat-nov26` browser storage is present on the same origin, its syllabus checks, reflection notes and test history are imported once. The original storage key is retained. Undated routine checkboxes are preserved as history rather than applied to a new date. Existing test dates are displayed as originally recorded.
 
@@ -67,6 +68,7 @@ With Playwright and Chromium available, start the server on port 8001 and run:
 node tests/browser-smoke.cjs
 node tests/combined.test.cjs
 node tests/learning.test.cjs
+node tests/exam-plan.test.cjs
 ```
 
 `CATALYST_TEST_URL` overrides the base URL. `CHROMIUM_PATH` overrides `/usr/bin/chromium`, and `PLAYWRIGHT_MODULE` optionally specifies an installed Playwright module. No browser testing dependencies are shipped to site users. The combined suite verifies migration, deterministic paper selection, unique questions within all 25 papers, paper result identity, syllabus tracking, escaped imported notes, preserved historical dates and mobile navigation.
@@ -78,3 +80,17 @@ See [AUDIT.md](AUDIT.md) for findings, sources and verification. `learning.js` a
 New test submissions retain their full answers, passages and explanations across reloads. Detailed reviews are kept for the latest 20 tests to control local storage use; older score summaries remain. Reviews can be filtered and downloaded as text, and JSON backups include the retained reviews. Old tests that saved only totals are clearly labeled.
 
 A checked or submitted incorrect answer is scheduled after 1 day. Successive correct attempts use 3, 7, 14 and 30 days, capped at 30. Uncertainty reflections and test review flags bring a question back after 1 day. This is a simple revision aid, not a mastery or percentile estimate. It does not send background notifications. Due items are surfaced in the dashboard, daily review task and revision page.
+
+## CAT 2026 final-month plan
+
+The user set Anushka’s exam date to **Sunday, 29 November 2026**. The dashboard and planner use a date-based countdown (34 days on 26 October). Study minutes, starting time and lighter day remain editable; the exam date is fixed. Importing an older backup also realigns its deadline while retaining the previous plan, notes and progress.
+
+- 26 October–1 November: diagnose and repair gaps.
+- 2–8 November: core revision.
+- 9–15 November: timed selection practice.
+- 16–22 November: accuracy and stability.
+- 23–26 November: lighter revision, capped at 90 minutes.
+- 27–28 November: readiness and rest, capped at 45 minutes.
+- 29 November: an untimed exam-day checklist using the actual admit-card slot; no practice test or assumed reporting time.
+
+Suggested full mocks are on 31 October and 7, 14, 18 and 21 November, with analysis on the following day. Short budgets/lighter days substitute a sectional or shorter practice block. Exam-day items are excluded from calendar study exports, and no study tasks are generated after the exam.
