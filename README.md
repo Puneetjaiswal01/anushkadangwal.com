@@ -10,14 +10,14 @@ From this repository:
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-The application consists of `index.html`, `styles.css`, `app.js`, `content.js`, `universe.js`, and `personal.js`. `CNAME` preserves the existing custom-domain configuration. Serve all files together. Hash routes work on static hosts such as GitHub Pages. The site is published by pushing these files to the hosting branch configured in GitHub Pages.
+The application consists of `index.html`, `styles.css`, `app.js`, `content.js`, `universe.js`, `paper-bank.js`, `learning.js`, and `personal.js`. `CNAME` preserves the existing custom-domain configuration. Serve all files together. Hash routes work on static hosts such as GitHub Pages. The site is published by pushing these files to the hosting branch configured in GitHub Pages.
 
 ## Included
 
 - Personalized dashboard and configurable name/preferences.
 - 40 original concept guides with examples, traps and lesson notes.
-- 216 original practice questions: 86 QA, 64 VARC, 66 DILR. The 24 questions from Anushka’s earlier site are preserved, with clarified wording. Includes 16 numerical-entry questions, 8 original linked reading passages and 12 additional linked DILR sets.
-- Question explanations, bookmarks, reflections, retries and error notebook.
+- 272 original practice questions: 110 QA, 80 VARC, 82 DILR. The 24 questions from Anushka’s earlier site are preserved, with clarified wording. Includes 28 numerical-entry questions, 10 original linked reading passages and 16 linked DILR sets.
+- Question text/topic search with answer-type filtering, explanations, bookmarks, reflections, retries and error notebook.
 - A 12-question diagnostic, 5 fixed full-length mocks, 8 fixed mixed sample papers, 12 fixed sectionals, and a 68-question/120-minute full-mock template with three locked sections. No question repeats within a paper; different papers share parts of the bank. Answer recovery uses session storage in the same tab. MCQ scoring is +3/−1; numerical-entry scoring is +3/0. No percentile prediction.
 - Editable day-by-day planning: target date, study budget, starting time, lighter day, checkboxes, daily reflections, seven-day calendar export and complete text-plan export.
 - Custom study/break countdowns, pause/resume, refresh recovery, and saved focus minutes. One timer tab is supported; there is no alarm or system notification.
@@ -34,7 +34,7 @@ The initial 180-day plan is an editable planning template. It does not assume a 
 
 All educational material is original. The questions are foundational/intermediate practice, not official previous-year papers or statistically calibrated mocks. The 68-question template is based on a recent format; current-year rules must be verified with the official CAT authority.
 
-The reference destinations are Official CAT, IMS, T.I.M.E., Career Launcher, Cracku, 2IIM, Rodha, MBA Pathshala, iQuanta, CATKing, Unacademy, Handa Ka Funda and Hitbullseye. They are not presented as a ranking. Live research was attempted but blocked by the cloud network policy. Their current offerings have not been verified, and no coaching content was copied. Required domain additions were saved in the cloud environment draft; saving does not apply or publish those changes.
+The reference destinations are Official CAT, IMS, T.I.M.E., Career Launcher, Cracku, 2IIM, Rodha, MBA Pathshala, iQuanta, CATKing, Unacademy, Handa Ka Funda and Hitbullseye. They are not presented as a ranking. The 26 October 2026 audit compared the public 2IIM and Cracku syllabus outlines with our topic coverage. Their course offerings have not been independently evaluated, and no coaching content was copied. The official CAT site denied automated access, so the application does not assert a current official exam date.
 
 ## Validation
 
@@ -45,9 +45,11 @@ node --check app.js
 node --check content.js
 node --check personal.js
 node --check universe.js
+node --check paper-bank.js
+node --check learning.js
 ```
 
-Browser validation covered lesson search/completion/notes, MCQ and numerical-entry feedback, persisted daily completion, calendar exports, study-budget allocation, calculator errors and helpers, timer pause/refresh/completion, diagnostic recovery, full-mock section locking and automatic transitions, bookmarks and notebook, and all 17 routes at desktop, tablet and phone widths.
+Browser validation covered lesson search/completion/notes, MCQ and numerical-entry feedback, persisted daily completion, calendar exports, study-budget allocation, calculator errors and helpers, timer pause/refresh/completion, diagnostic recovery, full-mock section locking and automatic transitions, bookmarks and notebook, and all 19 routes at desktop, tablet and phone widths.
 
 ## Combining the earlier website
 
@@ -64,6 +66,15 @@ With Playwright and Chromium available, start the server on port 8001 and run:
 ```sh
 node tests/browser-smoke.cjs
 node tests/combined.test.cjs
+node tests/learning.test.cjs
 ```
 
 `CATALYST_TEST_URL` overrides the base URL. `CHROMIUM_PATH` overrides `/usr/bin/chromium`, and `PLAYWRIGHT_MODULE` optionally specifies an installed Playwright module. No browser testing dependencies are shipped to site users. The combined suite verifies migration, deterministic paper selection, unique questions within all 25 papers, paper result identity, syllabus tracking, escaped imported notes, preserved historical dates and mobile navigation.
+
+## Content and learning audit — 26 October 2026
+
+See [AUDIT.md](AUDIT.md) for findings, sources and verification. `learning.js` adds 56 original questions for thin topics, a content map, saved answer reviews and a revision queue. `paper-bank.js` pins the original question IDs of all 25 named papers, so expanding practice does not change an existing paper.
+
+New test submissions retain their full answers, passages and explanations across reloads. Detailed reviews are kept for the latest 20 tests to control local storage use; older score summaries remain. Reviews can be filtered and downloaded as text, and JSON backups include the retained reviews. Old tests that saved only totals are clearly labeled.
+
+A checked or submitted incorrect answer is scheduled after 1 day. Successive correct attempts use 3, 7, 14 and 30 days, capped at 30. Uncertainty reflections and test review flags bring a question back after 1 day. This is a simple revision aid, not a mastery or percentile estimate. It does not send background notifications. Due items are surfaced in the dashboard, daily review task and revision page.
