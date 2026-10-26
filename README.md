@@ -10,7 +10,7 @@ From this repository:
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-The application consists of `index.html`, `styles.css`, `app.js`, `content.js`, `universe.js`, `paper-bank.js`, `learning.js`, `exam-plan.js`, and `personal.js`. `CNAME` preserves the existing custom-domain configuration. Serve all files together. Hash routes work on static hosts such as GitHub Pages. The site is published by pushing these files to the hosting branch configured in GitHub Pages.
+The application consists of `index.html`, `styles.css`, `profiles.js`, `app.js`, `content.js`, `universe.js`, `paper-bank.js`, `learning.js`, `exam-plan.js`, and `personal.js`. `CNAME` preserves the existing custom-domain configuration. Serve all files together. Hash routes work on static hosts such as GitHub Pages. The site is published by pushing these files to the hosting branch configured in GitHub Pages.
 
 ## Included
 
@@ -26,7 +26,7 @@ The application consists of `index.html`, `styles.css`, `app.js`, `content.js`, 
 
 ## Data and privacy
 
-Notes and progress use localStorage in the current browser. They are not uploaded or synced to another device. Export a JSON backup in My progress or My preferences; restore it in My preferences. Clearing browser data deletes local progress. Personalization does not provide authentication: the site's static content and Anushka’s name are public to anyone with access to the website.
+Notes and progress use localStorage in the current browser, under a separate key for Anushka, Hardik and Ojasvi. They are not uploaded or synced to another device. Export a JSON backup in My progress or My preferences; restore it in My preferences. Clearing browser data deletes local progress. Guest profiles do not provide authentication: anyone using the same browser can switch between spaces. Static learning content and profile names are public.
 
 The exam date is 29 November 2026, supplied by the user. The final-month plan runs from 26 October to the exam; earlier planning targets are archived without clearing progress. Schedule times are local to the browser. Five-minute transitions are additional to the daily study budget. Mock-analysis work may need the following day when a full mock uses the entire daily budget.
 
@@ -41,6 +41,7 @@ The reference destinations are Official CAT, IMS, T.I.M.E., Career Launcher, Cra
 JavaScript syntax checks:
 
 ```sh
+node --check profiles.js
 node --check app.js
 node --check content.js
 node --check personal.js
@@ -50,7 +51,7 @@ node --check learning.js
 node --check exam-plan.js
 ```
 
-Browser validation covered lesson search/completion/notes, MCQ and numerical-entry feedback, persisted daily completion, calendar exports, study-budget allocation, calculator errors and helpers, timer pause/refresh/completion, diagnostic recovery, full-mock section locking and automatic transitions, bookmarks and notebook, and all 19 routes at desktop, tablet and phone widths.
+Browser validation covered lesson search/completion/notes, MCQ and numerical-entry feedback, persisted daily completion, calendar exports, study-budget allocation, calculator errors and helpers, timer pause/refresh/completion, diagnostic recovery, full-mock section locking and automatic transitions, bookmarks and notebook, and all 20 routes at desktop, tablet and phone widths.
 
 ## Combining the earlier website
 
@@ -69,6 +70,7 @@ node tests/browser-smoke.cjs
 node tests/combined.test.cjs
 node tests/learning.test.cjs
 node tests/exam-plan.test.cjs
+node tests/profiles.test.cjs
 ```
 
 `CATALYST_TEST_URL` overrides the base URL. `CHROMIUM_PATH` overrides `/usr/bin/chromium`, and `PLAYWRIGHT_MODULE` optionally specifies an installed Playwright module. No browser testing dependencies are shipped to site users. The combined suite verifies migration, deterministic paper selection, unique questions within all 25 papers, paper result identity, syllabus tracking, escaped imported notes, preserved historical dates and mobile navigation.
@@ -94,3 +96,15 @@ The user set Anushka’s exam date to **Sunday, 29 November 2026**. The dashboar
 - 29 November: an untimed exam-day checklist using the actual admit-card slot; no practice test or assumed reporting time.
 
 Suggested full mocks are on 31 October and 7, 14, 18 and 21 November, with analysis on the following day. Short budgets/lighter days substitute a sectional or shorter practice block. Exam-day items are excluded from calendar study exports, and no study tasks are generated after the exam.
+
+## Study partners: Anushka, Hardik and Ojasvi
+
+`profiles.js` selects an identity before `app.js` reads any progress. Query links (`?profile=hardik` or `?profile=ojasvi`) take precedence; the last selection is remembered per tab. All three have the complete learning interface, with violet/ocean/rose themes and personal greetings. A profile picker is available on desktop and mobile.
+
+- Anushka retains the original `catalyst-v1` progress key and `catalyst-active-test` session key. Her earlier-site migration remains restricted to her space.
+- Hardik uses `catalyst-v1:hardik` and `catalyst-active-test:hardik`; Ojasvi has equivalent `:ojasvi` keys. Attempts, tests/reviews, notes, daily tasks, plans, syllabus, revision, focus time and running timers are independent.
+- Switching during a test explicitly saves its answers and warns that the deadline continues. Switching back in the same tab resumes the matching test. Different-profile tabs do not share selection or overwrite each other.
+- JSON backups are tagged with `ownerProfileId`. Import rejects another person’s backup; unlabeled older backups belong to Anushka. Export filenames identify guest profiles.
+- Study partners have personal links, separate study commitments and optional copied check-ins. Progress counts are included only when opted in; private notes and answers are never included. Nothing is messaged or uploaded automatically.
+
+These are local guest spaces, not password-protected accounts or a cloud database. A personal link selects a profile but does not synchronise devices. Export/restore moves that person’s data manually. The partner page makes this boundary explicit and does not show invented remote activity or other people’s notes.
