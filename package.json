@@ -1,0 +1,14 @@
+{
+  "name": "anushka-cat-universe",
+  "private": true,
+  "version": "2.0.0",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "build": "node scripts/build.cjs",
+    "test:access": "node --test tests/access.test.cjs",
+    "dev": "node scripts/dev.cjs",
+    "test:browser": "node tests/browser-smoke.cjs && node tests/combined.test.cjs && node tests/learning.test.cjs && node tests/exam-plan.test.cjs && node tests/private-interface.test.cjs"
+  }
+}
