@@ -1,15 +1,15 @@
-const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const {ownerBrowser}=require('./private-browser-support.cjs');
 const assert=require('node:assert/strict');
 (async()=>{
- const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});
+ const testHarness=await ownerBrowser();const browser=testHarness.browser;
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
- const base=process.env.CATALYST_TEST_URL||'http://127.0.0.1:8001/';
+ const base=testHarness.base;
  await page.addInitScript(()=>{if(!localStorage.getItem('test-seeded')){localStorage.setItem('anushka-cat-nov26',JSON.stringify({finished:['topic:Arithmetic: percentages','plan:07:00'],notes:['Remember to check the denominator.','<img src=x onerror=alert(1)>'],results:[{name:'Sample Paper 1',score:5,correct:2,total:24,date:'25/10/2026'}]}));localStorage.setItem('test-seeded','1')}});
  await page.goto(base);
  const migrated=await page.evaluate(()=>({syllabus:state.syllabus,notes:state.notes,results:state.results,earlier:state.earlierRoutineHistory,sourceStillPresent:!!localStorage.getItem('anushka-cat-nov26')}));
- assert.deepEqual(migrated.syllabus,['Arithmetic: percentages']);assert.equal(migrated.results.length,1);assert.equal(migrated.results[0].wrong,1);assert.equal(migrated.results[0].sourceDate,'25/10/2026');assert.equal(migrated.notes['day:Earlier reflection 1'],'Remember to check the denominator.');assert.deepEqual(migrated.earlier,['07:00']);assert.equal(migrated.sourceStillPresent,true);
- await page.reload();assert.equal(await page.evaluate(()=>state.results.length),1);console.log('PASS earlier-site progress migrates once without deleting its source');
+ assert.deepEqual(migrated.syllabus,['Arithmetic: percentages']);assert.equal(migrated.results.length,1);assert.equal(migrated.results[0].wrong,1);assert.equal(migrated.results[0].sourceDate,'25/10/2026');assert.equal(migrated.notes['day:Earlier reflection 1'],'Remember to check the denominator.');assert.deepEqual(migrated.earlier,['07:00']);assert.equal(migrated.sourceStillPresent,false);
+ await page.reload();assert.equal(await page.evaluate(()=>state.results.length),1);console.log('PASS earlier-site progress migrates once into private storage before removing plaintext copies');
  const check=await page.evaluate(()=>{const defs=[...Array.from({length:5},(_,i)=>paperDefinition('full',i+1)),...Array.from({length:8},(_,i)=>paperDefinition('sample',i+1)),...['qa','varc','dilr'].flatMap(s=>Array.from({length:4},(_,i)=>paperDefinition('sectional',i+1,s)))];return defs.map(def=>{const a=buildPaper(def),b=buildPaper(def);return {id:def.id,count:a.questions.length,expected:Object.values(def.counts).reduce((a,b)=>a+b,0),unique:new Set(a.questions.map(q=>q.id)).size,repeatable:a.questions.map(q=>q.id).join(',')===b.questions.map(q=>q.id).join(','),signature:a.questions.map(q=>q.id).join(','),sections:a.sections}})});
  assert.equal(check.length,25);for(const run of check){assert.equal(run.count,run.expected,run.id);assert.equal(run.unique,run.count,run.id);assert.equal(run.repeatable,true,run.id);if(run.id.startsWith('full'))assert.deepEqual(run.sections.map(s=>s.end-s.start),[24,22,22])}assert.equal(new Set(check.map(x=>x.signature)).size,25);console.log('PASS all 25 fixed papers are reproducible, have distinct selections and contain no repeated question');
  await page.goto(base+'#papers');assert.equal(await page.locator('[data-paper]').count(),8);await page.locator('[data-paper="sample-3"]').click();assert.equal(await page.locator('.question-map button').count(),24);await page.locator('#submitTest').click();await page.locator('#confirmSubmit').click();assert.equal(await page.evaluate(()=>state.results.at(-1).paperId),'sample-3');assert.match(await page.locator('.score').textContent(),/0.*72/);console.log('PASS sample paper launches and records its identity');
