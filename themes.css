@@ -368,3 +368,13 @@ body {
 @media (max-width: 620px) {
   :root[data-profile] .mobile-profile-picker { font-size: 10px; }
 }
+
+.birthday-dialog{width:min(510px,calc(100% - 32px));border:1px solid #b5cbb9;border-radius:26px;background:radial-gradient(ellipse at top,#e1eddf,#fffdf5 75%);color:#244534;padding:38px 30px;text-align:center;box-shadow:0 25px 100px #142c3540}
+.birthday-dialog::backdrop{background:#102b245e;backdrop-filter:blur(5px)}
+.birthday-dialog form{position:relative}.birthday-dialog .close{top:-20px;right:-12px;color:#315c49}
+.birthday-stars{color:#856626;letter-spacing:16px;margin-bottom:24px}.birthday-cake{font-size:56px;margin:18px 0}
+.birthday-dialog h2{font-family:Georgia,serif;font-size:34px;line-height:1.15;margin:14px 0;color:#244534}
+.birthday-dialog p{line-height:1.75;color:#486352}.birthday-dialog .birthday-signoff{margin:20px 0 26px}.birthday-dialog .primary{white-space:normal;line-height:1.5}
+.birthday-banner{display:flex;align-items:center;gap:16px;padding:22px;margin:0 0 22px;border:1px solid #bfd0bb;border-radius:18px;background:linear-gradient(110deg,#e4eddf,#faf7e9);color:#244534}
+.birthday-banner>span{font-size:32px}.birthday-banner b{font:700 23px Georgia,serif}.birthday-banner p{margin:6px 0 0;color:#486352}.birthday-banner button{margin-left:auto}
+@media(max-width:620px){.birthday-banner{flex-wrap:wrap;padding:18px}.birthday-banner>div{flex:1}.birthday-banner button{margin-left:0;width:100%}.birthday-dialog{padding:30px 20px}.birthday-dialog h2{font-size:29px}}
