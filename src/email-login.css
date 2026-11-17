@@ -1,0 +1,243 @@
+.email-login-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #cab1d346;
+  background: #aa86ba14;
+  border-radius: 6px;
+  padding: 9px 12px;
+  color: #e2cce9;
+  font-size: 10px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.email-login-trigger > span {
+  font-size: 16px;
+  line-height: 1;
+}
+.email-login-trigger:hover {
+  background: #b393c22e;
+}
+.email-login-dialog {
+  width: min(465px, calc(100% - 28px));
+  max-height: 88dvh;
+  border: 1px solid #ddcce4;
+  border-radius: 17px;
+  background: #fcf8f3;
+  color: #6d507b;
+  box-shadow: 0 25px 95px #2012274d;
+  padding: 34px 31px 26px;
+  text-align: center;
+  overscroll-behavior: contain;
+}
+.email-login-dialog::backdrop {
+  background: #291a346e;
+  backdrop-filter: blur(7px);
+}
+body:has(.email-login-dialog[open]) {
+  overflow: hidden;
+}
+.email-login-close {
+  position: absolute;
+  top: 12px;
+  right: 13px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #e4d5e8;
+  border-radius: 50%;
+  background: #fffaf5;
+  color: #9870a8;
+  font-size: 24px;
+  line-height: 1;
+}
+.email-login-seal {
+  display: block;
+  font-size: 31px;
+  color: #b296bd;
+  margin-bottom: 20px;
+}
+.email-login-kicker {
+  display: block;
+  color: #92719f;
+  font-size: 8px;
+  letter-spacing: 1.7px;
+  line-height: 1.8;
+}
+.email-login-dialog h2 {
+  font: 500 43px/1.1 var(--serif);
+  letter-spacing: -0.5px;
+  color: #72537f;
+  margin: 15px 0 21px;
+}
+.email-login-dialog h2 em {
+  color: #a17aad;
+}
+.email-login-intro,
+.email-login-loading > p,
+.email-login-account > p,
+.email-login-setup > p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #7d6689;
+  margin: 0 0 17px;
+}
+.email-login-account b {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.email-login-label {
+  display: block;
+  font-size: 10px;
+  color: #80608f;
+  text-align: left;
+  margin: 17px 0 7px;
+}
+.email-login-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 45px;
+  border: 1px solid #dbcbe3;
+  border-radius: 7px;
+  background: #fffdf9;
+  color: #765383;
+  padding: 12px 13px;
+  font:
+    12px "DM Sans",
+    sans-serif;
+  outline-offset: 3px;
+}
+.email-login-input[readonly] {
+  background: #f1eaf3;
+  color: #826c8d;
+}
+.email-login-code {
+  font-size: 23px;
+  letter-spacing: 9px;
+  text-align: center;
+  padding-right: 4px;
+}
+.email-login-help {
+  font-size: 10px;
+  color: #8b7296;
+  line-height: 1.8;
+  text-align: left;
+  margin-top: 9px;
+}
+.email-login-primary {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #8b659c;
+  border-radius: 7px;
+  background: #8b659c;
+  color: #fff8ff;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.7;
+  padding: 12px 16px;
+  margin-top: 20px;
+}
+.email-login-primary:hover {
+  background: #735080;
+}
+.email-login-primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.email-login-retry {
+  border: 0;
+  background: none;
+  color: #896598;
+  font-size: 10px;
+  line-height: 1.8;
+  padding: 13px 0 0;
+}
+.email-login-retry:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.email-login-setup {
+  padding: 18px 17px 3px;
+  border: 1px solid #e4d7e9;
+  border-radius: 10px;
+  background: #f5eff7;
+}
+.email-login-setup h3 {
+  font: 500 23px var(--serif);
+  color: #80608f;
+  margin-bottom: 12px;
+}
+.email-login-setup > p {
+  font-size: 11px;
+  margin-bottom: 14px;
+}
+.email-login-error,
+.email-login-notice {
+  font-size: 11px;
+  line-height: 1.9;
+  margin-top: 17px;
+  padding: 11px 13px;
+  border-radius: 7px;
+}
+.email-login-error {
+  color: #87535d;
+  background: #f7e7e8;
+  border: 1px solid #ebcfd4;
+}
+.email-login-notice {
+  color: #61734f;
+  background: #ecf0e5;
+  border: 1px solid #d8e1cd;
+}
+.email-login-footnote {
+  font-size: 9px;
+  color: #8c7597;
+  line-height: 1.9;
+  margin-top: 22px;
+  border-top: 1px solid #e6dbea;
+  padding-top: 15px;
+}
+.email-login-dialog button:focus-visible,
+.email-login-dialog input:focus-visible {
+  outline: 3px solid #a67bb5;
+  outline-offset: 4px;
+}
+.email-login-trigger:focus-visible {
+  outline: 3px solid #d9b7ea;
+  outline-offset: 4px;
+}
+@media (max-width: 600px) {
+  .email-login-trigger {
+    font-size: 9px;
+    padding: 8px 10px;
+  }
+  .email-login-dialog {
+    padding: 31px 24px 23px;
+  }
+  .email-login-dialog h2 {
+    font-size: 38px;
+  }
+  .email-login-kicker {
+    font-size: 7px;
+    letter-spacing: 1.3px;
+  }
+  .email-login-intro,
+  .email-login-loading > p,
+  .email-login-account > p {
+    font-size: 11px;
+  }
+  .email-login-input {
+    font-size: 12px;
+  }
+  .email-login-code {
+    font-size: 23px;
+  }
+  .email-login-footnote {
+    font-size: 9px;
+  }
+  .email-login-setup {
+    padding: 17px 14px 2px;
+  }
+}

@@ -18,76 +18,58 @@ export const innerChildLetter = {
 
 export const originalShayari = [
   {
-    id: "naam",
-    title: "Tumhara naam",
-    hindi:
-      "किसी नतीजे से पहले भी तुम्हारा नाम था,\nकिसी नतीजे के बाद भी तुम्हारा नाम रहेगा।\nकाग़ज़ पर कुछ अंक बदल जाएँ तो क्या—\nमेरे लिए अनुष्का, अनुष्का ही रहेगी।",
-    roman:
-      "Kisi nateeje se pehle bhi tumhara naam tha,\nKisi nateeje ke baad bhi tumhara naam rahega.\nKaagaz par kuch ank badal jaayein toh kya—\nMere liye Anushka, Anushka hi rahegi.",
-    meaning:
-      "You had a name before any result, and you will have it afterward. Numbers on paper may change. The person I love does not become somebody else.",
+    "id": "naam",
+    "title": "Tumse hi toh pyaar hai",
+    "hindi": "कुछ ख़्वाब हैं तुम्हारे, उन्हें दिल से निभाना,\nपर एक नतीजे से ख़ुद को कम मत बताना।\nमंज़िल का पता बदले, तो बदलने दो राहें,\nतुम थककर भी लौटो, खुली मिलेंगी बाँहें।",
+    "roman": "Kuch khwaab hain tumhare, unhein dil se nibhaana,\nPar ek nateeje se khud ko kam mat bataana.\nManzil ka pata badle, toh badalne do raahein,\nTum thak kar bhi lauto, khuli milengi baahein.",
+    "meaning": "Care about your dreams, but do not call yourself less because of one result. The route may change. You can come back tired and still be welcomed with love."
   },
   {
-    id: "aahista",
-    title: "Aahista bhi chalo",
-    hindi:
-      "हर मोड़ पर ख़ुद को साबित करना ज़रूरी नहीं,\nहर थकान को मुस्कान में ढकना ज़रूरी नहीं।\nज़रा बैठो, साँस लो, शाम को शाम रहने दो—\nज़िंदगी है, हर पल इम्तिहान होना ज़रूरी नहीं।",
-    roman:
-      "Har mod par khud ko saabit karna zaroori nahin,\nHar thakaan ko muskaan mein dhakna zaroori nahin.\nZara baitho, saans lo, shaam ko shaam rehne do—\nZindagi hai, har pal imtihaan hona zaroori nahin.",
-    meaning:
-      "You do not need to prove yourself at every turn or hide every tired moment with a smile. Sit for a little while. Let an evening simply be an evening. Every moment of a life need not be a test.",
+    "id": "aahista",
+    "title": "Ab aaraam se sona",
+    "hindi": "दिन भर के सवालों को थोड़ी देर टालो,\nदो घूँट पानी पीकर ख़ुद को भी सँभालो।\nकल की तैयारी में आज की नींद मत खोना,\nबस इतना ही कहना है—आराम से सोना।",
+    "roman": "Din bhar ke sawaalon ko thodi der taalo,\nDo ghoont paani peekar khud ko bhi sambhaalo.\nKal ki taiyaari mein aaj ki neend mat khona,\nBas itna hi kehna hai—aaraam se sona.",
+    "meaning": "Set the questions aside for a little while and drink some water. Looking after tomorrow should not cost you tonight’s sleep. All I want to say right now is: rest."
   },
   {
-    id: "mohabbat",
-    title: "Mohabbat ka hisaab",
-    hindi:
-      "मोहब्बत में तुम्हारे अंकों का हिसाब नहीं रखता,\nतुम्हें चाहने की कोई शर्त नहीं रखता।\nजिस दिन ख़ुद से मिलना भी मुश्किल लगे तुम्हें,\nउस दिन भी तुम्हारे लिए अपना लहजा नरम रखता हूँ।",
-    roman:
-      "Mohabbat mein tumhare ankon ka hisaab nahin rakhta,\nTumhein chaahne ki koi shart nahin rakhta.\nJis din khud se milna bhi mushkil lage tumhein,\nUs din bhi tumhare liye apna lehja naram rakhta hoon.",
-    meaning:
-      "I do not keep score in loving you. There are no conditions to meet. Even on a day when it is hard to face yourself, you deserve a gentle voice from me.",
+    "id": "mohabbat",
+    "title": "Wahi pyaar rahega",
+    "hindi": "नतीजा जो भी आए, मुझे तुमसे प्यार रहेगा,\nतुमसे मिलने का वही छोटा-सा इंतज़ार रहेगा।\nख़ुशी हो तो बताना, उदासी हो तो कहना,\nमेरे सामने तुम्हें बस अपने जैसा रहना।",
+    "roman": "Nateeja jo bhi aaye, mujhe tumse pyaar rahega,\nTumse milne ka wahi chhota-sa intezaar rahega.\nKhushi ho toh bataana, udaasi ho toh kehna,\nMere saamne tumhein bas apne jaisa rehna.",
+    "meaning": "Whatever the result, I will love you the same and still look forward to seeing you. You can tell me when you are happy or sad. You do not have to put on a different face with me."
   },
   {
-    id: "raaste",
-    title: "Aur bhi raaste hain",
-    hindi:
-      "एक दरवाज़ा तुम्हारी पूरी दुनिया तो नहीं,\nएक ठहराव तुम्हारी आख़िरी मंज़िल तो नहीं।\nतुम्हारी कहानी को अभी बहुत आगे जाना है—\nयह एक पन्ना है, पूरी किताब तो नहीं।",
-    roman:
-      "Ek darwaaza tumhari poori duniya toh nahin,\nEk thehraav tumhari aakhiri manzil toh nahin.\nTumhari kahaani ko abhi bahut aage jaana hai—\nYeh ek panna hai, poori kitaab toh nahin.",
-    meaning:
-      "One door is not your whole world, and one pause is not your final destination. There is more of your story still to come. This is a page, not the entire book.",
+    "id": "raaste",
+    "title": "Bina kahe bhi",
+    "hindi": "हर उदासी के पीछे लंबी कहानी नहीं होती,\nहर ख़ामोशी नाराज़गी की निशानी नहीं होती।\nकुछ देर बिना बोले भी पास बैठ सकती हो,\nहर मुलाक़ात में लफ़्ज़ों की रवानी नहीं होती।",
+    "roman": "Har udaasi ke peechhe lambi kahaani nahin hoti,\nHar khaamoshi naaraazgi ki nishaani nahin hoti.\nKuch der bina bole bhi paas baith sakti ho,\nHar mulaaqaat mein lafzon ki rawaani nahin hoti.",
+    "meaning": "Sadness does not always come with a story to explain, and quiet does not always mean anger. We can sit together without words; conversation does not have to flow at every meeting."
   },
   {
-    id: "chhoti-khushi",
-    title: "Thodi si khushi",
-    hindi:
-      "बड़े ख़्वाबों के बीच छोटी हँसी रहने दो,\nइस भागती दुनिया में थोड़ी नर्मी रहने दो।\nहर ख़ुशी को ‘बाद में’ कहकर मत टालो—\nआज के दिन में भी थोड़ी ज़िंदगी रहने दो।",
-    roman:
-      "Bade khwaabon ke beech chhoti hansi rehne do,\nIs bhaagti duniya mein thodi narmi rehne do.\nHar khushi ko ‘baad mein’ kehkar mat taalo—\nAaj ke din mein bhi thodi zindagi rehne do.",
-    meaning:
-      "Keep a little laughter among the big dreams, and a little softness in a hurried world. Not every joy has to wait until later. There is room to live a little today, too.",
+    "id": "chhoti-khushi",
+    "title": "Us chhoti-si ladki ke liye",
+    "hindi": "तुम्हारे भीतर की बच्ची को फिर मुस्कुराने दो,\nउसे भी अपनी छोटी-सी ख़ुशी पर इतराने दो।\nबड़ी होकर भी हर पल तो बड़ा बनना नहीं पड़ता,\nउसे भी अपने हिस्से के ज़रा सपने सजाने दो।",
+    "roman": "Tumhare bheetar ki bachchi ko phir muskuraane do,\nUse bhi apni chhoti-si khushi par itraane do.\nBadi hokar bhi har pal toh bada banna nahin padta,\nUse bhi apne hisse ke zara sapne sajaane do.",
+    "meaning": "Let the little girl inside you smile and enjoy a small happiness. Growing up does not require you to be serious every moment. Leave room for her wishes, too."
   },
   {
-    id: "jaisi-ho",
-    title: "Jaisi ho",
-    hindi:
-      "तुम्हें हर दिन बेहतर बनकर आने की ज़रूरत नहीं,\nहर उदासी की वजह बताने की ज़रूरत नहीं।\nमेरे पास आओ तो बस अनुष्का बनकर आना—\nयहाँ अपने होने की सफ़ाई देने की ज़रूरत नहीं।",
-    roman:
-      "Tumhein har din behtar bankar aane ki zaroorat nahin,\nHar udaasi ki wajah bataane ki zaroorat nahin.\nMere paas aao toh bas Anushka bankar aana—\nYahaan apne hone ki safaai dene ki zaroorat nahin.",
-    meaning:
-      "You do not have to arrive as an improved version of yourself or explain every sadness. Come as Anushka. You do not have to justify being who you are.",
-  },
+    "id": "jaisi-ho",
+    "title": "Apne naam ek chitthi",
+    "hindi": "अपनी ही चिट्ठी में ख़ुद को ये बताना है,\nथक जाओ तो अपने मन को भी मनाना है।\nदुनिया की हर दौड़ में शामिल होना छोड़ो,\nतुम्हें अपनी ज़िंदगी से रिश्ता भी निभाना है।",
+    "roman": "Apni hi chitthi mein khud ko yeh bataana hai,\nThak jaao toh apne man ko bhi manaana hai.\nDuniya ki har daud mein shaamil hona chhodo,\nTumhein apni zindagi se rishta bhi nibhaana hai.",
+    "meaning": "Here is something you can tell yourself in a letter: when you are tired, your own heart deserves care. You do not have to enter every race. Your relationship with your life needs some attention, too."
+  }
 ];
 
 export const loveNotes = [
-  "I don’t want you to become smaller so a dream can fit. There is room for the dream and the whole of you.",
-  "I hope you get the college you want. I also hope you know you already have my love.",
-  "You can say ‘I’m tired’ before you can explain why. I can listen before I understand everything.",
-  "I love the little girl inside you, and I respect the woman choosing her own way forward.",
-  "You are not a result I am waiting to see. You are a person I am grateful to love.",
-  "Your parents have a daughter. I have someone I love. None of us needs a college logo to know who you are.",
-  "Let the exam be important. Let your sleep, your laughter, and your life be important too.",
-  "Whatever happens on that screen when the result opens, you can still come to me as you are.",
+  "Exam ke baad pehle yeh batana—tum kaisi ho. Paper ki baat phir kar lenge.",
+  "Main chahta hoon tumhara exam achha ho. Par mera tumse pyaar achhe exam par depend nahi karta.",
+  "Anushka, college mil jaaye toh bhi tum. Na mile toh bhi tum. Mere liye tumhari jagah nahi badlegi.",
+  "Main har baar sahi baat nahi keh paata. Tum thaki ho toh kam se kam behas na karun—yeh main seekh raha hoon.",
+  "Abhi reply karne ki zaroorat nahi. Padh lo, ya aaraam kar lo. Yeh letter yahin rahega.",
+  "Tumhare andar ki us chhoti-si ladki se bhi pyaar hai. Use kabhi-kabhi bas bina kisi wajah ke khush rehne do.",
+  "IIM ka sapna tumhara hai, aur main uski izzat karta hoon. Bas tumse pyaar karne ke liye mujhe admission letter nahi chahiye.",
+  "Mummy-papa se baat karne ke liye har baar achhi khabar hona zaroori nahi. Tum kaisi ho, woh bhi ek baat hai."
 ];
 
 export const songSuggestions = [

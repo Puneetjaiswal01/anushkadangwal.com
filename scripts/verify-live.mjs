@@ -40,8 +40,38 @@ for (let attempt = 1; attempt <= 24; attempt++) {
       throw new Error(
         "The published instrumental does not match this release.",
       );
+    const manifestResponse = await fetch(base + "/manifest.webmanifest", {
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!manifestResponse.ok) throw new Error("The app manifest is missing.");
+    const manifest = await manifestResponse.json();
+    if (manifest.display !== "standalone")
+      throw new Error("The app manifest is not standalone.");
+    for (const icon of manifest.icons) {
+      const response = await fetch(base + icon.src, {
+        signal: AbortSignal.timeout(15000),
+      });
+      if (
+        !response.ok ||
+        !(response.headers.get("content-type") || "").startsWith("image/")
+      )
+        throw new Error("Install icon missing: " + icon.src);
+    }
+    const worker = await fetch(base + "/sw.js", {
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!worker.ok || !(await worker.text()).includes("anushka-shell-"))
+      throw new Error("Offline app worker missing.");
+    const accountResponse = await fetch(base + "/api/auth", {
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!accountResponse.ok)
+      throw new Error("The account endpoint is unavailable.");
+    const account = await accountResponse.json();
+    if (typeof account.configured !== "boolean")
+      throw new Error("Account endpoint did not report its real setup state.");
     console.log(
-      `Verified the new site, compiled assets and playable instrumental at ${base}`,
+      `Verified the new app, media, install icons, service worker and account endpoint at ${base}. Email delivery configured: ${account.configured}`,
     );
     process.exit(0);
   } catch (error) {

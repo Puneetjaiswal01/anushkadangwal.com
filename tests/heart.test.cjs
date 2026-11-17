@@ -12,27 +12,20 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
     args: ["--no-sandbox"],
   });
   try {
-    // Allow a production preview started immediately before this suite to become ready.
-    let reachable = false;
-    for (let attempt = 0; attempt < 20; attempt++) {
-      try {
-        const response = await fetch(base);
-        if (response.ok) {
-          reachable = true;
-          break;
-        }
-      } catch {}
-      await new Promise((resolve) => setTimeout(resolve, 300));
-    }
-    assert.ok(reachable, "production preview is available");
     const context = await browser.newContext({
       viewport: { width: 1440, height: 1000 },
     });
     const page = await context.newPage();
     const errors = [];
     page.on("pageerror", (error) => errors.push(error.message));
-    await page.goto(base);
-    await page.locator("#little-you-title").waitFor();
+    await page.goto(base + "/#letters");
+    const room = async (name, selector) => {
+      await page.evaluate((name) => {
+        location.hash = name;
+      }, name);
+      await page.locator(selector).first().waitFor({ state: "visible" });
+    };
+    await page.locator("#little-you-title").waitFor({ state: "visible" });
     assert.equal(await page.locator(".heart-story-copy > p").count(), 1);
     assert.equal(
       await page
@@ -91,6 +84,7 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
       "PASS all inner-child letter pages, whole-letter toggle, and distinct feeling choices",
     );
 
+    await room("shayari", ".shayari-lines");
     assert.equal(
       await page.locator(".shayari-lines").getAttribute("lang"),
       "hi",
@@ -144,14 +138,13 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
       "PASS Hindi/Roman scripts, every shayari, resettable English meanings, and love notes",
     );
 
+    await room("music", "#music-title");
     assert.deepEqual(
-      await page
-        .locator("#music audio")
-        .evaluate((element) => ({
-          paused: element.paused,
-          autoplay: element.autoplay,
-          preload: element.preload,
-        })),
+      await page.locator("#music audio").evaluate((element) => ({
+        paused: element.paused,
+        autoplay: element.autoplay,
+        preload: element.preload,
+      })),
       { paused: true, autoplay: false, preload: "none" },
     );
     await page
@@ -195,15 +188,13 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
     await page
       .getByRole("button", { name: "Play little instrumental", exact: true })
       .waitFor();
-    const songs = await page
-      .locator(".music-song a")
-      .evaluateAll((links) =>
-        links.map((link) => ({
-          href: link.href,
-          target: link.target,
-          rel: link.rel,
-        })),
-      );
+    const songs = await page.locator(".music-song a").evaluateAll((links) =>
+      links.map((link) => ({
+        href: link.href,
+        target: link.target,
+        rel: link.rel,
+      })),
+    );
     assert.equal(songs.length, 4);
     for (const song of songs) {
       assert.match(
@@ -217,6 +208,64 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
       "PASS no autoplay, actual MP3 playback and pause, volume control, and safe song links",
     );
 
+    await room("home", ".quote-text");
+    const spotify = page.locator(".home-song iframe");
+    assert.match(
+      await spotify.getAttribute("title"),
+      /Yellow Hearts.*Spotify player/,
+    );
+    const spotifyURL = new URL(await spotify.getAttribute("src"));
+    assert.equal(spotifyURL.origin, "https://open.spotify.com");
+    assert.equal(spotifyURL.pathname, "/embed/track/2W4yABdLc4Jnds67Poi5Nl");
+    assert.notEqual(spotifyURL.searchParams.get("autoplay"), "1");
+    assert.notEqual(spotifyURL.searchParams.get("autoplay"), "true");
+    assert.equal(await spotify.getAttribute("autoplay"), null);
+    const fallback = await page.locator(".home-song a").evaluateAll((links) =>
+      links.map((link) => ({
+        href: link.href,
+        target: link.target,
+        rel: link.rel,
+      })),
+    );
+    assert.equal(fallback.length, 2);
+    for (const link of fallback) {
+      assert.match(
+        link.href,
+        /^https:\/\/open\.spotify\.com\/(track|search)\//,
+      );
+      assert.equal(link.target, "_blank");
+      assert.match(link.rel, /noopener/);
+    }
+    // Provider streaming is external; these assertions verify configuration, not Spotify playback.
+    await page
+      .getByRole("button", { name: "Play instrumental from Home", exact: true })
+      .click();
+    await page.waitForFunction(() => {
+      const audio = document.querySelector("#music audio");
+      return !audio.paused && audio.currentTime > 0;
+    });
+    await room("music", "#music-title");
+    assert.equal(
+      await page.locator("#music audio").evaluate((audio) => audio.paused),
+      false,
+      "original music keeps playing between rooms",
+    );
+    await room("home", ".quote-text");
+    await page
+      .getByRole("button", {
+        name: "Pause instrumental from Home",
+        exact: true,
+      })
+      .click();
+    assert.equal(
+      await page.locator("#music audio").evaluate((audio) => audio.paused),
+      true,
+    );
+    console.log(
+      "PASS Spotify embed configuration/fallbacks, original music from Home, and playback across rooms",
+    );
+
+    await room("self-letter", "#self-letter-body");
     const draft =
       "Dear Anushka, these are my own words.\nI am allowed to be more than one exam. ♡";
     await page.locator("#self-letter-body").fill(draft);
@@ -266,7 +315,7 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
     });
     const blockedPage = await blocked.newPage();
     blockedPage.on("pageerror", (error) => errors.push(error.message));
-    await blockedPage.goto(base);
+    await blockedPage.goto(base + "/#self-letter");
     await blockedPage
       .locator("#self-letter-body")
       .fill("Words still here when the browser cannot save.");
@@ -286,35 +335,71 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
       "PASS unavailable browser storage preserves the live draft and download option",
     );
 
+    const unconfigured = await browser.newContext();
+    let authRequests = 0;
+    await unconfigured.route("**/api/auth", (route) => {
+      authRequests++;
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ authenticated: false, configured: false }),
+      });
+    });
+    const setupPage = await unconfigured.newPage();
+    await setupPage.goto(base + "/#home");
+    await setupPage
+      .getByRole("button", { name: "Email sign-in", exact: true })
+      .click();
+    await setupPage
+      .locator(".email-login-dialog[open] .email-login-setup")
+      .waitFor();
+    assert.match(
+      await setupPage.locator(".email-login-setup").innerText(),
+      /No code has been sent/,
+    );
+    assert.equal(
+      await setupPage
+        .locator('.email-login-dialog[open] input[type="email"]')
+        .count(),
+      0,
+    );
+    assert.ok(authRequests >= 1);
+    await setupPage
+      .getByRole("button", { name: "Close email sign-in", exact: true })
+      .click();
+    await unconfigured.close();
+    console.log(
+      "PASS unconfigured email service is shown honestly without offering a pretend code",
+    );
+
     for (const width of [320, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 950 });
-      await page.goto(base);
+      await page.goto(base + "/#home");
       await page.evaluate(() => document.fonts.ready);
-      assert.equal(
-        await page.evaluate(
-          () => document.documentElement.scrollWidth > innerWidth,
-        ),
-        false,
-        `page overflow at ${width}`,
-      );
-      for (const selector of [
-        "#little-you",
-        ".heart-feelings",
-        "#shayari",
-        "#music",
-        "#self-letter",
-      ]) {
+      const rooms = [
+        ["home", ".quote-text"],
+        ["letters", "#little-you"],
+        ["shayari", "#shayari"],
+        ["music", "#music-title"],
+        ["self-letter", "#self-letter"],
+      ];
+      for (const [name, selector] of rooms) {
+        await room(name, selector);
         assert.equal(
-          await page
-            .locator(selector)
-            .evaluate(
-              (element) => element.scrollWidth > element.clientWidth + 1,
-            ),
+          await page.evaluate(
+            () => document.documentElement.scrollWidth > innerWidth,
+          ),
           false,
-          `${selector} overflows at ${width}`,
+          `${name} page overflows at ${width}`,
+        );
+        assert.equal(
+          await page.locator(selector).isVisible(),
+          true,
+          `${name} room is visible at ${width}`,
         );
       }
       if (width === 390 || width === 1440) {
+        await room("home", ".quote-text");
         await page.emulateMedia({ reducedMotion: "reduce" });
         await page.screenshot({
           path: `/tmp/anushka-heart-${width}.png`,

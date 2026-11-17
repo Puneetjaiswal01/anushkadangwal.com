@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && node scripts/build-pwa.mjs",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "node tests/site.cjs && node tests/heart.test.cjs",
-    "test:heart": "node tests/heart.test.cjs"
+    "test": "node --test tests/auth.test.mjs && node tests/site.cjs && node tests/heart.test.cjs && node tests/app-install.test.cjs",
+    "test:heart": "node tests/heart.test.cjs",
+    "test:pwa": "node tests/app-install.test.cjs",
+    "test:auth": "node --test tests/auth.test.mjs"
   },
   "dependencies": {
     "@fontsource/caveat": "^5.2.0",

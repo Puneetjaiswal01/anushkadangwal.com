@@ -97,22 +97,22 @@ export const letters = [
   },
 ];
 export const reminders = [
-  "You are Anushka before you are anybody’s idea of success.",
-  "You don’t need an extraordinary result to deserve an ordinary, lovely day.",
-  "A college name can be part of your story. It cannot hold all of you.",
-  "Rest is something your body needs, not a reward your marks unlock.",
-  "Being loved is not another exam you have to pass.",
-  "You can be proud of trying, even while wishing it felt easier.",
-  "One difficult day does not get to tell the whole story.",
-  "Your future has more than one door.",
-  "You are allowed to ask for company without having an explanation ready.",
-  "You are someone to care for. Not something to keep improving.",
-  "You can take this one breath at a time. The whole month can wait.",
-  "There is room for your dreams, your doubts, and your unproductive afternoons.",
-  "The people who love you are rooting for you, not grading you.",
-  "You don’t have to become somebody else to make your life worthwhile.",
-  "The love waiting for you is not conditional on a result.",
-  "You can begin again softly. It still counts as beginning.",
+  "Anushka, khud se baat karte waqt thoda dheere bolna. Tum pehle hi bahut kuch sambhaal rahi ho.",
+  "Aaj ka paper kharaab gaya? Abhi uska poora matlab nikaalna zaroori nahi. Pehle thoda saans le lo.",
+  "Thak gayi ho toh kitaab band kar sakti ho. Kal ka plan baad mein bhi ban sakta hai.",
+  "Kuch theek se kha lena. Padhai ke beech tumhara khayaal rakhna bhi toh zaroori hai.",
+  "Main tumhari taraf hoon. Haan, us din bhi jab exam tumhare hisaab se nahi gaya.",
+  "No advice for a minute. You can just be tired here.",
+  "Tumhari hansi exam ke baad ke liye reserve nahi hai.",
+  "You do not have to make a bad day sound inspiring when you tell me about it.",
+  "Marks dekh lenge. Abhi yeh batao, neend poori hui?",
+  "Result kholne se pehle yaad rakhna: jo bhi number ho, main tumse isi tarah pyaar karta hoon.",
+  "Aaj jitna padha, padha. Sone se pehle usse “kuch bhi nahi” mat keh dena.",
+  "Pehle paani. Phir jo karna hai, ek-ek karke.",
+  "Apni chitthi mein “mujhe nahi pata main kya feel kar rahi hoon” bhi likh sakti ho. Wahaan sahi jawaab nahi chahiye.",
+  "Mummy-papa ko phone karne ke liye result ka wait mat karna. Roz ki chhoti baatein bhi baatein hoti hain.",
+  "I want this to go well for you. And if it doesn’t, I still want to hear how your day was.",
+  "College ki baat ke alawa bhi tumse kitni baatein karni hain. Abhi poori zindagi padi hai."
 ];
 export const examDays = [
   {

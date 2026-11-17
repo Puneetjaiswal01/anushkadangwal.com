@@ -1,0 +1,249 @@
+.install-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid #c5add23d;
+  border-radius: 6px;
+  background: #b99ac415;
+  color: #dfcce8;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.install-trigger:hover {
+  background: #b99ac42e;
+}
+.install-trigger svg {
+  flex-shrink: 0;
+}
+.install-trigger:focus-visible {
+  outline: 3px solid #d9bce8;
+  outline-offset: 4px;
+}
+.install-dialog {
+  width: min(500px, calc(100% - 28px));
+  max-height: 88dvh;
+  padding: 36px 34px 26px;
+  border: 1px solid #ddcfe6;
+  border-radius: 18px;
+  background: #fbf7f2;
+  color: #5b4568;
+  box-shadow: 0 20px 90px #1f0e3938;
+  overscroll-behavior: contain;
+  text-align: center;
+}
+.install-dialog::backdrop {
+  background: #24182e80;
+  backdrop-filter: blur(7px);
+}
+body:has(.install-dialog[open]) {
+  overflow: hidden;
+}
+.install-close {
+  position: absolute;
+  top: 13px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #e1d3e7;
+  background: #fffaf5;
+  color: #80608e;
+  font-size: 23px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+.install-close:hover {
+  background: #eee2f2;
+}
+.install-illustration {
+  width: 64px;
+  height: 64px;
+  border: 1px solid #d4bfdf;
+  border-radius: 16px;
+  background: linear-gradient(140deg, #e9dcf2, #f3e6e7);
+  position: relative;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 20px #8c66981a;
+  margin: 0 auto 23px;
+  transform: rotate(-5deg);
+}
+.install-illustration > span {
+  font: italic 39px var(--serif);
+  color: #9975aa;
+  transform: translateY(-3px);
+}
+.install-illustration > i {
+  position: absolute;
+  right: 10px;
+  bottom: 9px;
+  font-size: 11px;
+  font-style: normal;
+  color: #b78cbd;
+}
+.install-kicker {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 1.7px;
+  line-height: 1.8;
+  color: #8b6c9a;
+}
+.install-dialog h2 {
+  font: 500 40px/1.08 var(--serif);
+  letter-spacing: -0.4px;
+  margin: 14px 0 17px;
+  color: #664973;
+}
+.install-dialog h2 em {
+  color: #9c77aa;
+}
+.install-intro {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #7d6887;
+  max-width: 330px;
+  margin: 0 auto;
+}
+.install-now {
+  margin: 21px 0 0;
+  padding: 12px 17px;
+  border: 1px solid #886197;
+  background: #886197;
+  color: #fff7ff;
+  border-radius: 7px;
+  font-size: 11px;
+  line-height: 1.6;
+  min-height: 43px;
+}
+.install-now:hover {
+  background: #714982;
+}
+.install-now:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+.install-status {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #876197;
+  margin: 12px auto 0;
+  max-width: 340px;
+}
+.install-status:empty {
+  display: none;
+}
+.install-instructions {
+  text-align: left;
+  border-top: 1px solid #e2d6e7;
+  margin-top: 23px;
+  padding-top: 7px;
+}
+.install-instructions h3 {
+  font:
+    500 12px "DM Sans",
+    sans-serif;
+  color: #72527f;
+  margin: 18px 0 9px;
+}
+.install-instructions ol {
+  padding-left: 19px;
+  margin: 0;
+}
+.install-instructions li,
+.install-instructions > p {
+  font-size: 11px;
+  line-height: 1.9;
+  color: #7e6c87;
+}
+.install-instructions li {
+  padding-left: 3px;
+  margin-bottom: 7px;
+}
+.install-instructions b {
+  font-weight: 600;
+  color: #70547d;
+}
+.install-share {
+  display: inline-block;
+  width: 17px;
+  height: 16px;
+  line-height: 15px;
+  border: 1px solid currentColor;
+  border-top: 0;
+  text-align: center;
+  font-size: 19px;
+  margin: 0 3px;
+  vertical-align: baseline;
+}
+.install-footnote {
+  font-size: 10px;
+  line-height: 1.9;
+  color: #8a7593;
+  border-top: 1px solid #e2d6e7;
+  padding-top: 15px;
+  margin-top: 19px;
+}
+.install-later {
+  font-size: 11px;
+  color: #8e6a9c;
+  background: none;
+  border: 0;
+  padding: 16px 0 0;
+  line-height: 1.7;
+}
+.install-later:hover {
+  color: #654471;
+}
+.install-dialog button:focus-visible {
+  outline: 3px solid #a47bb4;
+  outline-offset: 4px;
+}
+@media (max-width: 600px) {
+  .install-trigger {
+    font-size: 9px;
+    padding: 8px 10px;
+    gap: 6px;
+  }
+  .install-trigger svg {
+    width: 15px;
+    height: 15px;
+  }
+  .install-dialog {
+    padding: 31px 24px 23px;
+    border-radius: 18px;
+  }
+  .install-dialog h2 {
+    font-size: 36px;
+  }
+  .install-intro {
+    font-size: 11px;
+  }
+  .install-kicker {
+    font-size: 7px;
+    letter-spacing: 1.4px;
+  }
+  .install-illustration {
+    margin-bottom: 20px;
+  }
+  .install-footnote {
+    font-size: 9px;
+  }
+  .install-instructions li,
+  .install-instructions > p {
+    font-size: 11px;
+  }
+  .install-later {
+    font-size: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .install-trigger {
+    transition: none;
+  }
+}
