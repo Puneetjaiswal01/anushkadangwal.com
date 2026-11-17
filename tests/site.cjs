@@ -1,3 +1,4 @@
+const { unlock } = require("./unlock.cjs");
 const { chromium } = require("playwright");
 const assert = require("node:assert/strict");
 (async () => {
@@ -24,6 +25,7 @@ const assert = require("node:assert/strict");
       await page.locator(selector).first().waitFor({ state: "visible" });
     };
     await page.goto(base + "/#home");
+    await unlock(page);
     await page.evaluate(() => document.fonts.ready);
     await page.locator("h1").first().waitFor();
     await room("letters", ".letter-card");
@@ -127,6 +129,7 @@ const assert = require("node:assert/strict");
     for (const width of [1440, 1024, 768, 390, 320]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(base + "/#home");
+      await unlock(page);
       await page.evaluate(() => document.fonts.ready);
       assert.equal(
         await page.evaluate(
@@ -189,6 +192,7 @@ const assert = require("node:assert/strict");
     const noStore = await blocked.newPage();
     noStore.on("pageerror", (error) => errors.push(error.message));
     await noStore.goto(base + "/#home");
+    await unlock(noStore);
     await noStore
       .getByRole("button", { name: "Save this reminder", exact: true })
       .click();

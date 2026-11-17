@@ -45,3 +45,11 @@ The site asks search engines not to index it. This is a public gift page, not an
 `npm run build` creates the Vite output, then `scripts/build-pwa.mjs` writes a cache-versioned service worker based on that exact build. It precaches only the app shell, local fonts/icons and original music. It ignores API, third-party, and non-GET requests. The MP3 has offline byte-range support. No drafts or OTPs are stored in Cache Storage. Safari storage and offline availability remain under the browser’s control.
 
 The install dialog gives the real iPhone Share → Add to Home Screen instructions; it does not pretend iOS supports a programmatic install prompt. Android uses beforeinstallprompt when provided by that browser.
+
+## Welcome password
+
+The app opens on a smiling-A welcome screen with the four-digit password chosen by the owner. The password is checked locally against a SHA-256 digest; a sessionStorage marker remembers the current tab’s unlocked state. Closing the little world clears that marker, hides the app, pauses music, and preserves her current writing in memory and its existing local draft. If sessionStorage is unavailable, unlocking still works until reload. The password itself is not saved in storage.
+
+This is a lightweight presentation lock for the gift, not server-side authentication, encryption, or private account protection. The site’s compiled assets remain public, and an inspector can bypass a client-side screen. It does not activate or depend on the unconfigured email OTP backend.
+
+`npm run test:welcome` checks incorrect/correct password, leading zero, visibility toggle, session reload, closing/reopening without losing writing, session storage failure and responsive layouts. Existing browser suites unlock through the welcome form before testing the app.

@@ -1,3 +1,4 @@
+const { unlock } = require("./unlock.cjs");
 const { chromium } = require("playwright");
 const assert = require("node:assert/strict");
 const fs = require("node:fs/promises");
@@ -19,6 +20,7 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
     const errors = [];
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto(base + "/#letters");
+    await unlock(page);
     const room = async (name, selector) => {
       await page.evaluate((name) => {
         location.hash = name;
@@ -316,6 +318,7 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
     const blockedPage = await blocked.newPage();
     blockedPage.on("pageerror", (error) => errors.push(error.message));
     await blockedPage.goto(base + "/#self-letter");
+    await unlock(blockedPage);
     await blockedPage
       .locator("#self-letter-body")
       .fill("Words still here when the browser cannot save.");
@@ -338,6 +341,7 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
     for (const width of [320, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 950 });
       await page.goto(base + "/#home");
+      await unlock(page);
       await page.evaluate(() => document.fonts.ready);
       const rooms = [
         ["home", ".quote-text"],

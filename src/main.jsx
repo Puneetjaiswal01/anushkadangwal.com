@@ -17,6 +17,7 @@ import InstallApp from "./InstallApp";
 import { Icon, Garden } from "./Illustrations";
 import "./app-ui.css";
 import HomeSong from "./HomeSong";
+import WelcomeGate from "./WelcomeGate";
 
 const rooms = [
   {
@@ -94,7 +95,7 @@ function readSaved() {
     return [];
   }
 }
-function App() {
+function App({ onLock }) {
   const [room, setRoom] = useState(getRoom),
     [activeLetter, setActiveLetter] = useState(null),
     [quote, setQuote] = useState(0),
@@ -667,6 +668,9 @@ function App() {
         <footer className="app-footer">
           <span>always, anushka ♡</span>
           <span>A little love. Every time you come back.</span>
+          <button className="app-close-world" onClick={onLock}>
+            Close my little world <span aria-hidden="true">↗</span>
+          </button>
         </footer>
       </div>
       <nav className="app-bottom-nav" aria-label="Your rooms on mobile">
@@ -801,7 +805,9 @@ function App() {
     </div>
   );
 }
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(
+  <WelcomeGate>{(lock) => <App onLock={lock} />}</WelcomeGate>,
+);
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("/sw.js").catch(() => {

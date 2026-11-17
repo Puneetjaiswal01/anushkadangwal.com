@@ -1,3 +1,4 @@
+const { unlock } = require("./unlock.cjs");
 const { chromium, devices } = require("playwright");
 const assert = require("node:assert/strict");
 const base = (process.env.SITE_URL || "http://127.0.0.1:4173").replace(
@@ -20,6 +21,7 @@ const base = (process.env.SITE_URL || "http://127.0.0.1:4173").replace(
     const errors = [];
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto(base);
+    await unlock(page);
     await page.locator("h1").first().waitFor();
     const manifestURL = await page
       .locator('link[rel="manifest"]')
@@ -125,6 +127,7 @@ const base = (process.env.SITE_URL || "http://127.0.0.1:4173").replace(
     }
     await context.setOffline(true);
     await page.goto(base + "/#home");
+    await unlock(page);
     await page
       .locator(".quote-text")
       .waitFor({ state: "visible", timeout: 10000 });
@@ -171,9 +174,16 @@ const base = (process.env.SITE_URL || "http://127.0.0.1:4173").replace(
       draft,
       "draft survives offline reload",
     );
+    const offlineTab = await context.newPage();
+    offlineTab.on("pageerror", (error) => errors.push(error.message));
+    await offlineTab.goto(base + "/#home");
+    await offlineTab.locator("#gift-password").waitFor({ state: "visible" });
+    await unlock(offlineTab);
+    await offlineTab.locator(".quote-text").waitFor({ state: "visible" });
+    await offlineTab.close();
     assert.deepEqual(errors, []);
     console.log(
-      "PASS service-worker control, offline Home reload, all five rooms, and offline draft restoration",
+      "PASS service-worker control, offline Home and welcome gate, all five rooms, and offline draft restoration",
     );
     await context.close();
   } finally {

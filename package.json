@@ -7,10 +7,11 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build && node scripts/build-pwa.mjs",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "node --test tests/auth.test.mjs && node tests/site.cjs && node tests/heart.test.cjs && node tests/app-install.test.cjs",
+    "test": "node --test tests/auth.test.mjs && node tests/welcome.test.cjs && node tests/site.cjs && node tests/heart.test.cjs && node tests/app-install.test.cjs",
     "test:heart": "node tests/heart.test.cjs",
     "test:pwa": "node tests/app-install.test.cjs",
-    "test:auth": "node --test tests/auth.test.mjs"
+    "test:auth": "node --test tests/auth.test.mjs",
+    "test:welcome": "node tests/welcome.test.cjs"
   },
   "dependencies": {
     "@fontsource/caveat": "^5.2.0",
