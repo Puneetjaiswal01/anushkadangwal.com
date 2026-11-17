@@ -335,43 +335,6 @@ const base = process.env.SITE_URL || "http://127.0.0.1:4173";
       "PASS unavailable browser storage preserves the live draft and download option",
     );
 
-    const unconfigured = await browser.newContext();
-    let authRequests = 0;
-    await unconfigured.route("**/api/auth", (route) => {
-      authRequests++;
-      return route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({ authenticated: false, configured: false }),
-      });
-    });
-    const setupPage = await unconfigured.newPage();
-    await setupPage.goto(base + "/#home");
-    await setupPage
-      .getByRole("button", { name: "Email sign-in", exact: true })
-      .click();
-    await setupPage
-      .locator(".email-login-dialog[open] .email-login-setup")
-      .waitFor();
-    assert.match(
-      await setupPage.locator(".email-login-setup").innerText(),
-      /No code has been sent/,
-    );
-    assert.equal(
-      await setupPage
-        .locator('.email-login-dialog[open] input[type="email"]')
-        .count(),
-      0,
-    );
-    assert.ok(authRequests >= 1);
-    await setupPage
-      .getByRole("button", { name: "Close email sign-in", exact: true })
-      .click();
-    await unconfigured.close();
-    console.log(
-      "PASS unconfigured email service is shown honestly without offering a pretend code",
-    );
-
     for (const width of [320, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 950 });
       await page.goto(base + "/#home");

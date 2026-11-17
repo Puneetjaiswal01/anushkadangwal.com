@@ -14,7 +14,6 @@ import { HeartStory, ShayariRoom } from "./HeartExperience";
 import MusicRoom from "./MusicRoom";
 import SelfLetter from "./SelfLetter";
 import InstallApp from "./InstallApp";
-import EmailLogin from "./EmailLogin";
 import { Icon, Garden } from "./Illustrations";
 import "./app-ui.css";
 import HomeSong from "./HomeSong";
@@ -294,7 +293,6 @@ function App() {
           </div>
           <div className="app-top-actions">
             <InstallApp className="topbar-install" />
-            <EmailLogin />
           </div>
         </header>
         <main id="main" tabIndex="-1">
@@ -575,19 +573,6 @@ function App() {
                 ))}
               </div>
             </details>
-            <div className="home-install-card">
-              <img
-                src="/icons/apple-touch-icon.png"
-                width="47"
-                height="47"
-                alt="A smiling A app icon"
-              />
-              <div>
-                <h2>A little comfort, one tap away.</h2>
-                <p>Keep this little world on your Home Screen.</p>
-              </div>
-              <InstallApp className="home-install" />
-            </div>
             <p className="home-last-line">
               You are Anushka. That has always been enough. <span>♡</span>
             </p>

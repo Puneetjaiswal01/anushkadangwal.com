@@ -69,21 +69,23 @@ const base = (process.env.SITE_URL || "http://127.0.0.1:4173").replace(
         .getAttribute("content"),
       "yes",
     );
-    await page.locator(".install-trigger:visible").first().click();
-    await page.locator(".install-dialog[open]").waitFor();
-    assert.match(
-      await page.locator(".install-dialog[open]").innerText(),
-      /On your iPhone or iPad/,
+    assert.equal(
+      await page.locator(".email-login-trigger").count(),
+      0,
+      "removed top-right account control stays absent",
     );
-    assert.match(
-      await page.locator(".install-dialog[open]").innerText(),
-      /Add to Home Screen/,
+    assert.equal(
+      await page.locator(".home-install-card").count(),
+      0,
+      "removed Home install banner stays absent",
     );
-    await page
-      .getByRole("button", { name: "Close install instructions", exact: true })
-      .click();
+    assert.equal(
+      await page.locator(".install-trigger:visible").count(),
+      0,
+      "mobile has no replacement install prompt",
+    );
     console.log(
-      "PASS standalone manifest, launch URL, 192/512 icons, iPhone metadata and Safari install steps",
+      "PASS standalone manifest, launch URL, 192/512 icons, iPhone metadata and clean mobile Home",
     );
 
     await page.evaluate(async () => {

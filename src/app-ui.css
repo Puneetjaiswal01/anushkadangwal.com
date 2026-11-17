@@ -1975,44 +1975,6 @@ body:has(dialog[open]) {
     transform: none;
   }
 }
-.home-install-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  border: 1px solid #e0d0e8;
-  background: #f2ebf5;
-  border-radius: 13px;
-  margin-top: 24px;
-  padding: 18px 20px;
-}
-.home-install-card > img {
-  border-radius: 13px;
-  box-shadow: 0 4px 8px #79518c14;
-}
-.home-install-card > div {
-  flex: 1;
-}
-.home-install-card h2 {
-  font-size: 23px;
-  color: #866591;
-  line-height: 1.2;
-}
-.home-install-card p {
-  font-size: 10px;
-  color: #947d9e;
-  margin-top: 6px;
-  line-height: 1.7;
-}
-.home-install-card .home-install {
-  background: #b295be;
-  border: 0;
-  color: white;
-  border-radius: 30px;
-  font-size: 10px;
-  padding: 11px 16px;
-  white-space: nowrap;
-  min-height: 38px;
-}
 .app-room .daily-note-top {
   color: #92726b;
 }
@@ -2052,29 +2014,7 @@ body:has(dialog[open]) {
 .home-section-label > span {
   color: #89738e;
 }
-@media (max-width: 600px) {
-  .home-install-card {
-    padding: 17px;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .home-install-card > div {
-    min-width: 180px;
-  }
-  .home-install-card h2 {
-    font-size: 23px;
-  }
-  .home-install-card p {
-    font-size: 10px;
-  }
-  .home-install-card .home-install {
-    width: 100%;
-    justify-content: center;
-    font-size: 12px;
-    margin-top: 2px;
-    min-height: 42px;
-  }
-}
+
 .home-song {
   margin-top: 24px;
   padding: 21px 22px 17px;
