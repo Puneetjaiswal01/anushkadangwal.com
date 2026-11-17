@@ -1,0 +1,32 @@
+name: Build and verify website
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: website-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Verify the automatic Vercel deployment
+        run: node scripts/verify-live.mjs
+      - name: Write deployment result
+        if: always()
+        env:
+          RESULT: ${{ job.status }}
+        run: |
+          echo "## Always Anushka" >> "$GITHUB_STEP_SUMMARY"
+          echo "Build and live verification: $RESULT" >> "$GITHUB_STEP_SUMMARY"
+          echo "Website: https://anushkadangwal.com" >> "$GITHUB_STEP_SUMMARY"
