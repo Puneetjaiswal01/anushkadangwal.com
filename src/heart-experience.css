@@ -1,0 +1,1129 @@
+/* A letter-book rhythm: midnight, paper, poetry, then a little daylight. */
+.site-header {
+  max-width: none;
+  background: #241c30;
+  color: #f4e9e6;
+  padding-left: max(32px, calc((100vw - 1224px) / 2));
+  padding-right: max(32px, calc((100vw - 1224px) / 2));
+  padding-top: 24px;
+  padding-bottom: 20px;
+}
+.top-note {
+  background: #1d1727;
+  color: #d0b9d9;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  height: 36px;
+}
+.site-header .brand-mark {
+  color: #e4cbe5;
+  border-color: #81628e;
+}
+.site-header .brand-mark > span {
+  background: #241c30;
+}
+.site-header .brand small {
+  color: #c3a8ca;
+}
+.site-header nav {
+  color: #decedf;
+  font-size: 12px;
+  gap: 25px;
+}
+.site-header nav a:hover {
+  color: white;
+}
+.site-header nav .nav-heart {
+  border-color: #80668d;
+  color: #e8c1d9;
+}
+.site-header .menu-toggle {
+  color: #ead8e9;
+  border-color: #7f618a;
+}
+.hero {
+  max-width: none;
+  padding-left: max(32px, calc((100vw - 1124px) / 2));
+  padding-right: max(32px, calc((100vw - 1124px) / 2));
+  background:
+    radial-gradient(ellipse at 75% 55%, #59355966, transparent 50%),
+    radial-gradient(ellipse at 5% 10%, #49315170, transparent 60%), #241c30;
+  color: #f9efeb;
+  min-height: 710px;
+  padding-top: 50px;
+  padding-bottom: 77px;
+  grid-template-columns: 1.1fr 1fr;
+}
+.hero .pill {
+  background: #ffffff07;
+  color: #dec5df;
+  border-color: #8b6d9577;
+  font-size: 9px;
+  padding: 10px 15px;
+}
+.hero h1 {
+  font-size: 70px;
+  font-weight: 400;
+  letter-spacing: -1.5px;
+  line-height: 1.04;
+  margin-top: 27px;
+  margin-bottom: 25px;
+}
+.hero h1 em {
+  color: #e0bad5;
+}
+.hero h1 em:after {
+  border-color: #b389b8;
+}
+.hero .hero-star {
+  color: #cfa7d2;
+  font-size: 35px;
+  right: 0;
+  top: 82px;
+}
+.hero-description {
+  color: #e0cede;
+  font-size: 15px;
+  line-height: 1.9;
+  max-width: 400px;
+}
+.hero .handwritten {
+  color: #d6accc;
+  font-size: 30px;
+}
+.hero-actions .primary {
+  background: #e7cbdc;
+  color: #3c2847;
+  border-color: #e7cbdc;
+  font-size: 12px;
+  padding: 15px 23px;
+}
+.hero-actions .primary:hover {
+  background: #f6deea;
+}
+.hero .text-link {
+  color: #e5c8e5;
+  font-size: 12px;
+}
+.hero-footnote {
+  color: #c3accb !important;
+  font-size: 11px !important;
+  line-height: 1.8;
+}
+.hero-footnote > span {
+  color: #d3afcf;
+}
+.hero .art-note {
+  color: #d5b6d7;
+}
+.hero .garden text {
+  fill: #dbbedb;
+}
+.hero .floating-note {
+  background: #fff3e9;
+  left: -15px;
+  bottom: 58px;
+  color: #6a4274;
+  border-color: #f4deea;
+  box-shadow: 0 15px 70px #160f2360;
+  font-size: 12px;
+  padding: 20px 24px;
+}
+.hero .floating-note small {
+  color: #826782;
+  font-size: 10px;
+}
+.love-strip {
+  background: #eadfe9;
+  color: #65506d;
+  font-size: 22px;
+  padding: 26px 22px;
+  gap: 45px;
+}
+.love-strip em {
+  color: #76537d;
+}
+.heart-story {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 70px;
+  padding-top: 95px;
+  padding-bottom: 70px;
+  align-items: center;
+}
+.heart-story-heading {
+  text-align: center;
+  position: relative;
+}
+.heart-child-art {
+  width: 185px;
+  position: relative;
+  margin: 0 auto 24px;
+}
+.heart-child-art svg {
+  display: block;
+  width: 145px;
+  margin: auto;
+}
+.heart-child-moon {
+  position: absolute;
+  font: 65px var(--serif);
+  left: -3px;
+  top: 14px;
+  color: #c5abc9;
+  transform: rotate(-15deg);
+}
+.heart-child-star {
+  position: absolute;
+  color: #b694ba;
+  right: 7px;
+  top: 33px;
+  font-size: 21px;
+}
+.heart-child-caption {
+  font: 21px var(--script);
+  color: #8e7197;
+  display: block;
+  transform: rotate(-4deg);
+  margin-top: 4px;
+}
+.heart-story-heading h2 {
+  font-size: 47px;
+  line-height: 1.1;
+  margin: 18px 0;
+}
+.heart-story-heading > p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #7d697d;
+}
+.heart-story-book {
+  background: #fff9ef;
+  border: 1px solid #e8dacc;
+  padding: 37px 40px 25px;
+  border-radius: 3px 17px 17px 3px;
+  box-shadow:
+    7px 8px 0 -2px #f2e9df,
+    8px 9px 0 -2px #ded0c3,
+    0 20px 55px #6552440a;
+  min-height: 415px;
+  position: relative;
+}
+.heart-story-book:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 9px;
+  border-left: 1px solid #e7d9c650;
+}
+.heart-book-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  color: #91717d;
+  margin-bottom: 25px;
+}
+.heart-book-top > span:last-child {
+  font-size: 25px;
+  letter-spacing: 0;
+}
+.heart-story-book h3 {
+  font-size: 32px;
+  line-height: 1.2;
+  max-width: 350px;
+  color: #6c4c64;
+  margin-bottom: 22px;
+}
+.heart-story-copy {
+  animation: soft-appear 0.5s ease;
+}
+.heart-story-copy p {
+  font-size: 15px;
+  line-height: 2;
+  color: #74605e;
+  margin-bottom: 18px;
+}
+.heart-story-signature {
+  font: 25px/1.5 var(--script);
+  white-space: pre-line;
+  color: #9a758d;
+  margin: 25px 0;
+}
+.heart-book-controls {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  flex-wrap: wrap;
+  border-top: 1px solid #e8dccc;
+  margin-top: 22px;
+  padding-top: 18px;
+}
+.heart-book-controls button {
+  border: 0;
+  background: none;
+  color: #80566f;
+  font-size: 11px;
+  padding: 8px 0;
+  min-height: 34px;
+}
+.heart-book-controls button:first-child {
+  padding: 8px;
+  min-width: 34px;
+}
+.heart-book-controls button:disabled {
+  opacity: 0.35;
+}
+.heart-book-controls > span {
+  font-size: 11px;
+  color: #7b5c73;
+}
+.heart-book-controls i {
+  font-style: normal;
+  color: #a995a2;
+}
+.heart-book-controls .heart-read-all {
+  display: block;
+  width: 100%;
+  font-size: 10px;
+  text-align: right;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.heart-feelings {
+  padding-top: 25px;
+  padding-bottom: 70px;
+  text-align: center;
+}
+.heart-feelings h2 {
+  font-size: 39px;
+  line-height: 1.2;
+  margin: 15px 0 25px;
+}
+.heart-feeling-options {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+.heart-feeling-options button {
+  border: 1px solid #d8c7dd;
+  background: transparent;
+  border-radius: 30px;
+  padding: 13px 20px;
+  font-size: 12px;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #7a5b87;
+  transition: background 0.2s;
+}
+.heart-feeling-options button[aria-pressed="true"] {
+  background: #7b5a89;
+  color: white;
+  border-color: #7b5a89;
+}
+.heart-feeling-options button:hover {
+  border-color: #886894;
+}
+.heart-feeling-options span {
+  font-size: 17px;
+  line-height: 1;
+}
+.heart-feeling-response {
+  max-width: 790px;
+  margin: 35px auto 0;
+  padding: 25px 40px 0;
+  animation: soft-appear 0.5s ease;
+}
+.heart-feeling-response > span {
+  font: 75px/0.7 var(--serif);
+  color: #c9b2cf;
+}
+.heart-feeling-response h3 {
+  font-size: 30px;
+  line-height: 1.25;
+  color: #705379;
+  margin: 5px 0 20px;
+}
+.heart-feeling-response > p {
+  font-size: 14px;
+  line-height: 2;
+  color: #7c6b81;
+}
+.heart-feeling-response .heart-feeling-promise {
+  font: 25px/1.5 var(--script);
+  color: #a17e9f;
+  margin-top: 21px;
+}
+.letters-section {
+  padding-top: 65px;
+  border-top: 1px solid #e7ddea;
+}
+.letter-card {
+  min-height: 300px;
+}
+.letter-card .eyebrow {
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.letter-card h3 {
+  font-size: 32px;
+}
+.letter-card p {
+  font-size: 12px;
+}
+.open-letter {
+  font-size: 11px;
+}
+.section-heading > p {
+  font-size: 14px;
+}
+.shayari-section {
+  padding: 75px 0 55px;
+  background:
+    radial-gradient(ellipse at 5% 20%, #eddce7, transparent 60%), #f4e9ea;
+  border-block: 1px solid #e9d8df;
+}
+.shayari-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 840px;
+  margin: auto;
+}
+.shayari-heading h2 {
+  font-size: 53px;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 18px 0;
+}
+.shayari-heading h2 em {
+  color: #a0798b;
+}
+.shayari-heading p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #906c7d;
+}
+.shayari-moon {
+  position: relative;
+  font: 120px/1 var(--serif);
+  color: #be91ab;
+  width: 130px;
+  transform: rotate(-15deg);
+  text-align: center;
+}
+.shayari-moon i {
+  font-size: 23px;
+  position: absolute;
+  right: 4px;
+  top: 22px;
+  font-style: normal;
+}
+.shayari-paper {
+  max-width: 840px;
+  background: #fffaf5;
+  border: 1px solid #e5d3ce;
+  margin: 32px auto 0;
+  border-radius: 8px;
+  box-shadow: 0 12px 45px #8c5b6d0a;
+  padding: 28px 35px;
+}
+.shayari-paper-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: #a47d87;
+  font-size: 11px;
+}
+.shayari-paper-top i {
+  font-style: normal;
+  margin-left: 8px;
+  color: #8a6573;
+}
+.shayari-language {
+  display: flex;
+  gap: 3px;
+  border: 1px solid #e5d4d6;
+  padding: 3px;
+  border-radius: 30px;
+  background: #f9eeee;
+}
+.shayari-language button {
+  background: transparent;
+  border: 0;
+  border-radius: 30px;
+  padding: 7px 13px;
+  color: #98717e;
+  font-size: 11px;
+}
+.shayari-language button[aria-pressed="true"] {
+  background: #fffaf5;
+  box-shadow: 0 2px 5px #8e677315;
+  color: #71515d;
+}
+.shayari-lines {
+  padding: 42px 0 32px;
+  text-align: center;
+  font-family: "Noto Serif Devanagari", Georgia, serif;
+  color: #865f73;
+  font-size: 24px;
+  line-height: 2.25;
+  animation: soft-appear 0.4s ease;
+}
+.shayari-lines[lang="hi-Latn"] {
+  font-family: var(--serif);
+  font-size: 28px;
+  line-height: 1.8;
+}
+.shayari-lines p {
+  margin: 0;
+}
+.shayari-paper-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #ebdedd;
+}
+.shayari-paper-bottom > span {
+  font-size: 10px;
+  color: #9c7d83;
+  line-height: 1.8;
+}
+.shayari-paper-bottom > div {
+  display: flex;
+  gap: 9px;
+}
+.shayari-paper-bottom button {
+  background: transparent;
+  border: 1px solid #dfcbd1;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  color: #9b7083;
+}
+.shayari-paper-bottom button:hover {
+  background: #f7edf0;
+}
+.shayari-meaning {
+  border-top: 1px solid #ecdedf;
+  margin-top: 15px;
+  padding-top: 13px;
+  font-size: 11px;
+  color: #8e6a79;
+}
+.shayari-meaning summary {
+  cursor: pointer;
+  padding: 4px 0;
+}
+.shayari-meaning p {
+  font-size: 13px;
+  line-height: 1.9;
+  padding: 15px 0 3px;
+  color: #84666c;
+}
+.heart-quote-ribbon {
+  text-align: center;
+  max-width: 780px;
+  margin: 48px auto 0;
+}
+.heart-quote-ribbon blockquote {
+  font: 500 30px/1.4 var(--serif);
+  color: #876276;
+  margin: 17px 0 20px;
+  animation: soft-appear 0.4s;
+}
+.heart-quote-ribbon button {
+  font-size: 11px;
+  color: #916b81;
+  border: none;
+  background: transparent;
+  padding: 10px;
+}
+.heart-quote-ribbon button span {
+  margin-left: 12px;
+  font-size: 18px;
+}
+.always-section {
+  background: radial-gradient(ellipse at center, #4a2f50, #241c30);
+  color: #f4e6ec;
+  padding-top: 80px;
+  padding-bottom: 85px;
+}
+.always-section .eyebrow {
+  color: #d5afca;
+}
+.always-section h2 {
+  font-size: 72px;
+}
+.always-section em {
+  color: #dfb6d5;
+}
+.always-section > p:not(.handwritten) {
+  color: #dcc4d9 !important;
+  font-size: 15px;
+  line-height: 2;
+}
+.always-section .handwritten {
+  color: #e7bad9;
+  font-size: 33px;
+}
+.always-section .button {
+  background: #e8cddd;
+  color: #4f3656;
+  border: 0;
+  font-size: 12px;
+}
+.always-flower {
+  color: #a779aa20;
+}
+.always-stars {
+  color: #d9b4d5;
+}
+.site-footer {
+  background: #fbf9fc;
+}
+.quiet-copy > p {
+  line-height: 2;
+}
+.letter-paper > p {
+  font-size: 15px;
+}
+.letter-paper .salutation {
+  font-size: 30px;
+}
+.letter-paper .letter-closing {
+  font-size: 28px;
+}
+.letter-dialog {
+  max-height: 86dvh;
+}
+.hero-description em {
+  color: #e5c2dd;
+  font-style: normal;
+  font-weight: 500;
+}
+.chapter-cue {
+  display: block;
+  font: 22px var(--script);
+  color: #d7b6d2;
+  margin-bottom: 16px;
+}
+@media (max-width: 1050px) {
+  .hero h1 {
+    font-size: 61px;
+  }
+  .hero {
+    min-height: 650px;
+  }
+  .hero .hero-star {
+    display: none;
+  }
+  .site-header nav {
+    gap: 17px;
+    font-size: 11px;
+  }
+  .heart-story {
+    gap: 40px;
+  }
+  .heart-story-book {
+    padding: 30px 28px;
+  }
+  .heart-story-heading h2 {
+    font-size: 42px;
+  }
+  .heart-story-copy p {
+    font-size: 14px;
+  }
+  .shayari-lines {
+    font-size: 21px;
+  }
+}
+@media (max-width: 800px) {
+  .hero {
+    min-height: 580px;
+    padding-top: 35px;
+    padding-bottom: 50px;
+  }
+  .hero h1 {
+    font-size: 50px;
+  }
+  .hero-description {
+    font-size: 13px;
+  }
+  .hero .handwritten {
+    font-size: 25px;
+  }
+  .hero-actions .primary {
+    font-size: 11px;
+    padding: 13px 18px;
+  }
+  .hero .text-link {
+    font-size: 11px;
+  }
+  .hero .floating-note {
+    font-size: 10px;
+    padding: 14px;
+  }
+  .hero .floating-note small {
+    font-size: 8px;
+  }
+  .site-header nav {
+    gap: 16px;
+    font-size: 10px;
+  }
+  .heart-story {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding-top: 65px;
+  }
+  .heart-story-heading {
+    max-width: 450px;
+    margin: auto;
+  }
+  .heart-child-art {
+    margin-bottom: 20px;
+  }
+  .heart-story-heading h2 {
+    font-size: 45px;
+  }
+  .heart-story-book {
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    padding: 35px 38px 25px;
+    min-height: 0;
+  }
+  .heart-story-book h3 {
+    max-width: none;
+  }
+  .heart-story-copy p {
+    font-size: 15px;
+  }
+  .heart-feelings {
+    padding-top: 10px;
+  }
+  .heart-feelings h2 {
+    font-size: 35px;
+  }
+  .heart-feeling-response {
+    padding: 25px 10px 0;
+  }
+  .shayari-heading h2 {
+    font-size: 45px;
+  }
+  .shayari-paper {
+    padding: 25px;
+  }
+  .shayari-lines {
+    font-size: 19px;
+  }
+  .shayari-lines[lang="hi-Latn"] {
+    font-size: 25px;
+  }
+  .love-strip {
+    font-size: 20px;
+    gap: 22px;
+  }
+  .letter-card {
+    padding: 22px 18px;
+  }
+  .letter-card h3 {
+    font-size: 28px;
+  }
+  .letter-card p {
+    font-size: 11px;
+  }
+  .open-letter {
+    font-size: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .site-header {
+    padding: 22px 24px;
+  }
+  .site-header nav {
+    background: #34283f;
+    border-color: #654d70;
+    font-size: 13px;
+  }
+  .site-header nav a {
+    padding: 13px;
+  }
+  .top-note {
+    font-size: 9px;
+    gap: 10px;
+    height: 33px;
+  }
+  .hero {
+    padding: 25px 24px 40px;
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 56px;
+    margin-top: 25px;
+    margin-bottom: 23px;
+    line-height: 1.02;
+  }
+  .hero .pill {
+    font-size: 7px;
+    letter-spacing: 1.2px;
+  }
+  .hero-description {
+    font-size: 14px;
+    max-width: 340px;
+  }
+  .hero .handwritten {
+    font-size: 29px;
+    margin-top: 20px;
+  }
+  .hero-actions {
+    gap: 18px;
+    margin-top: 27px;
+    flex-wrap: wrap;
+  }
+  .hero-actions .primary {
+    font-size: 12px;
+    padding: 14px 20px;
+  }
+  .hero .text-link {
+    font-size: 11px;
+  }
+  .hero .hero-footnote {
+    font-size: 10px !important;
+    margin-top: 24px;
+    max-width: 300px;
+  }
+  .hero-art {
+    margin-top: 32px;
+    max-width: 380px;
+  }
+  .hero .art-note {
+    font-size: 20px;
+    right: 0;
+    top: 10px;
+  }
+  .hero .floating-note {
+    left: -2px;
+    bottom: 54px;
+    padding: 15px;
+    font-size: 11px;
+  }
+  .hero .floating-note small {
+    font-size: 9px;
+  }
+  .hero .garden {
+    margin-bottom: 0;
+  }
+  .love-strip {
+    font-size: 19px;
+    gap: 12px;
+    padding: 23px 18px;
+  }
+  .love-strip > span:nth-of-type(2),
+  .love-strip > span:nth-of-type(3) {
+    font-size: 17px;
+  }
+  .heart-story {
+    padding-top: 50px;
+    padding-bottom: 45px;
+    gap: 28px;
+  }
+  .heart-child-art {
+    width: 160px;
+  }
+  .heart-child-art svg {
+    width: 127px;
+  }
+  .heart-child-caption {
+    font-size: 20px;
+  }
+  .heart-child-moon {
+    font-size: 56px;
+  }
+  .heart-story-heading h2 {
+    font-size: 42px;
+    margin-top: 15px;
+  }
+  .heart-story-heading > p {
+    font-size: 12px;
+  }
+  .heart-story-book {
+    padding: 27px 24px 20px;
+  }
+  .heart-book-top {
+    font-size: 8px;
+    margin-bottom: 18px;
+  }
+  .heart-story-book h3 {
+    font-size: 29px;
+    margin-bottom: 19px;
+  }
+  .heart-story-copy p {
+    font-size: 14px;
+    line-height: 1.95;
+  }
+  .heart-book-controls {
+    gap: 13px;
+  }
+  .heart-book-controls > button {
+    font-size: 10px;
+  }
+  .heart-story-signature {
+    font-size: 24px;
+  }
+  .heart-feelings {
+    padding-top: 8px;
+    padding-bottom: 45px;
+  }
+  .heart-feelings h2 {
+    font-size: 33px;
+    margin-top: 12px;
+  }
+  .heart-feeling-options {
+    gap: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .heart-feeling-options button {
+    font-size: 12px;
+    padding: 12px 18px;
+    border-radius: 9px;
+    text-align: left;
+  }
+  .heart-feeling-response {
+    margin-top: 25px;
+    padding: 25px 3px 0;
+  }
+  .heart-feeling-response h3 {
+    font-size: 28px;
+  }
+  .heart-feeling-response > p {
+    font-size: 13px;
+    line-height: 2;
+  }
+  .heart-feeling-response .heart-feeling-promise {
+    font-size: 25px;
+  }
+  .letters-section {
+    padding-top: 42px;
+  }
+  .section-heading > p {
+    font-size: 12px;
+  }
+  .letters-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .letter-card {
+    min-height: 0;
+    padding: 24px 24px 18px;
+    position: relative;
+    padding-left: 102px;
+  }
+  .letter-top {
+    position: absolute;
+    left: 20px;
+    top: 26px;
+    margin: 0;
+    display: block;
+  }
+  .envelope {
+    width: 61px;
+    height: 46px;
+  }
+  .letter-number {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 20px;
+  }
+  .letter-card .eyebrow {
+    font-size: 8px;
+    min-height: 0;
+    letter-spacing: 1px;
+  }
+  .letter-card h3 {
+    font-size: 31px;
+    margin: 12px 0;
+  }
+  .letter-card p {
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+  }
+  .open-letter {
+    font-size: 10px;
+    padding-top: 12px;
+  }
+  .shayari-section {
+    padding-top: 45px;
+    padding-bottom: 38px;
+  }
+  .shayari-heading h2 {
+    font-size: 41px;
+  }
+  .shayari-heading p {
+    font-size: 12px;
+    max-width: 260px;
+  }
+  .shayari-moon {
+    font-size: 75px;
+    width: 75px;
+    align-self: flex-start;
+    margin-top: 24px;
+  }
+  .shayari-moon i {
+    font-size: 16px;
+    right: -6px;
+  }
+  .shayari-paper {
+    padding: 22px 17px;
+    margin-top: 25px;
+  }
+  .shayari-paper-top {
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 10px;
+  }
+  .shayari-paper-top i {
+    margin-left: 5px;
+  }
+  .shayari-language button {
+    font-size: 10px;
+    padding: 7px 12px;
+  }
+  .shayari-lines {
+    font-size: 18px;
+    line-height: 2.2;
+    padding: 30px 0;
+    white-space: normal;
+    text-align: left;
+  }
+  .shayari-lines p {
+    margin-bottom: 13px;
+  }
+  .shayari-lines[lang="hi-Latn"] {
+    font-size: 25px;
+    line-height: 1.6;
+  }
+  .shayari-paper-bottom > span {
+    font-size: 9px;
+    max-width: 170px;
+  }
+  .shayari-paper-bottom button {
+    width: 32px;
+    height: 32px;
+  }
+  .shayari-meaning {
+    font-size: 10px;
+  }
+  .shayari-meaning p {
+    font-size: 12px;
+  }
+  .heart-quote-ribbon {
+    margin-top: 35px;
+  }
+  .heart-quote-ribbon blockquote {
+    font-size: 29px;
+    line-height: 1.4;
+    margin: 18px 0;
+  }
+  .heart-quote-ribbon button {
+    font-size: 11px;
+  }
+  .letter-paper > p {
+    font-size: 15px;
+  }
+  .letter-paper .salutation {
+    font-size: 27px;
+  }
+  .letter-paper .letter-closing {
+    font-size: 25px;
+  }
+  .always-section {
+    padding: 55px 24px 60px;
+  }
+  .always-section h2 {
+    font-size: 55px;
+  }
+  .always-section > p:not(.handwritten) {
+    font-size: 13px;
+    line-height: 2;
+    max-width: 325px;
+  }
+  .always-section .handwritten {
+    font-size: 29px;
+  }
+  .always-section .button {
+    font-size: 12px;
+  }
+}
+@media (max-width: 360px) {
+  .hero {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .hero h1 {
+    font-size: 50px;
+  }
+  .hero-description {
+    font-size: 13px;
+  }
+  .hero-actions {
+    gap: 14px;
+  }
+  .hero-actions .primary {
+    font-size: 11px;
+    padding: 13px 17px;
+  }
+  .hero .text-link {
+    font-size: 10px;
+  }
+  .heart-story-heading h2 {
+    font-size: 38px;
+  }
+  .letter-card {
+    padding-left: 85px;
+    padding-right: 18px;
+  }
+  .letter-top {
+    left: 13px;
+  }
+  .envelope {
+    width: 55px;
+  }
+  .letter-card h3 {
+    font-size: 28px;
+  }
+  .shayari-lines {
+    font-size: 17px;
+  }
+  .shayari-lines[lang="hi-Latn"] {
+    font-size: 23px;
+  }
+  .heart-book-controls {
+    gap: 10px;
+  }
+  .heart-story-book {
+    padding: 25px 21px 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heart-story-copy,
+  .heart-feeling-response,
+  .shayari-lines,
+  .heart-quote-ribbon blockquote {
+    animation: none;
+  }
+}

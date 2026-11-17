@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 const base = "https://anushkadangwal.com";
 const built = readFileSync("dist/index.html", "utf8");
 const assets = [...built.matchAll(/(?:src|href)="(\/assets\/[^\"]+)"/g)].map(
@@ -28,7 +29,20 @@ for (let attempt = 1; attempt <= 24; attempt++) {
       if ((response.headers.get("content-type") || "").includes("text/html"))
         throw new Error(`Expected an asset, received HTML: ${asset}`);
     }
-    console.log(`Verified the new site and its compiled assets at ${base}`);
+    const song = "/audio/a-little-place-to-land.mp3";
+    const music = await fetch(base + song, {
+      signal: AbortSignal.timeout(20000),
+    });
+    if (!music.ok) throw new Error(`Music returned ${music.status}`);
+    const liveMusic = Buffer.from(await music.arrayBuffer());
+    const digest = (data) => createHash("sha256").update(data).digest("hex");
+    if (digest(liveMusic) !== digest(readFileSync("public" + song)))
+      throw new Error(
+        "The published instrumental does not match this release.",
+      );
+    console.log(
+      `Verified the new site, compiled assets and playable instrumental at ${base}`,
+    );
     process.exit(0);
   } catch (error) {
     reason = error.message;

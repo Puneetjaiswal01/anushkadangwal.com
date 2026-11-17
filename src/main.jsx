@@ -9,6 +9,10 @@ import "@fontsource/cormorant-garamond/latin-500-italic.css";
 import "@fontsource/caveat/latin-500.css";
 import { letters, reminders, examDays } from "./content";
 import "./styles.css";
+import { HeartStory, ShayariRoom } from "./HeartExperience";
+import SelfLetter from "./SelfLetter";
+import MusicRoom from "./MusicRoom";
+import "@fontsource/noto-serif-devanagari/devanagari-400.css";
 
 function Icon({ name, ...props }) {
   const paths = {
@@ -55,9 +59,9 @@ function Garden() {
           y2="485"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#c9b5df" />
-          <stop offset=".55" stopColor="#e4d6ed" />
-          <stop offset="1" stopColor="#f8e9e7" />
+          <stop stopColor="#392b50" />
+          <stop offset=".55" stopColor="#765371" />
+          <stop offset="1" stopColor="#d7acb0" />
         </linearGradient>
         <radialGradient id="moon">
           <stop stopColor="#fffef4" />
@@ -282,8 +286,9 @@ function App() {
           {[
             ["home", "Your little world"],
             ["letters", "Letters for you"],
-            ["reminders", "Gentle reminders"],
-            ["quiet", "A quiet corner"],
+            ["shayari", "Shayari & love"],
+            ["music", "A little music"],
+            ["self-letter", "From you, to you"],
           ].map(([id, label]) => (
             <a key={id} href={"#" + id} onClick={() => setMenu(false)}>
               {label}
@@ -303,7 +308,8 @@ function App() {
         <section id="home" className="hero section-wrap">
           <div className="hero-copy">
             <span className="pill">
-              <span className="tiny-star">✦</span> MADE OF LOVE. MADE FOR YOU.
+              <span className="tiny-star">✦</span> FOR ALL YOUR COURAGE. AND ALL
+              YOUR SOFTNESS.
             </span>
             <h1>
               Before anything else,
@@ -314,10 +320,14 @@ function App() {
               </span>
             </h1>
             <p className="hero-description">
-              Not a score. Not a college name. Not a result.
-              <br />A whole, wonderful person. And so, so loved.
+              These exams are a part of your life.{" "}
+              <em>They are not all of it.</em>
+              <br />
+              And my love has never depended on a result.
             </p>
-            <p className="handwritten">Today. Tomorrow. Exactly as you are.</p>
+            <p className="handwritten">
+              I love the little girl inside you, too.
+            </p>
             <div className="hero-actions">
               <button
                 className="button primary"
@@ -325,8 +335,8 @@ function App() {
               >
                 A letter for you <Icon name="arrow" />
               </button>
-              <a className="text-link" href="#quiet">
-                Take a little breath <span>↗</span>
+              <a className="text-link" href="#music">
+                Put on a little music <span>♪</span>
               </a>
             </div>
             <div className="hero-footnote">
@@ -360,6 +370,7 @@ function App() {
           <i>✧</i>
           <span>A degree doesn’t define a life.</span>
         </section>
+        <HeartStory />
         <section id="letters" className="section-wrap letters-section">
           <SectionHeading
             eyebrow="A FEW THINGS I HOPE YOU NEVER FORGET"
@@ -405,6 +416,8 @@ function App() {
             Little letters. Big love. Read them as many times as you need. ♡
           </p>
         </section>
+        <ShayariRoom />
+        <MusicRoom />
         <section id="reminders" className="reminders-section">
           <div className="section-wrap reminders-layout">
             <div className="reminders-intro">
@@ -603,6 +616,7 @@ function App() {
             Your dates, held gently. No countdowns. No ticking clocks.
           </p>
         </section>
+        <SelfLetter />
         <section id="always" className="always-section">
           <div className="always-stars" aria-hidden="true">
             ✧ <span>♡</span> ✧
