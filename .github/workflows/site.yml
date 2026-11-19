@@ -27,6 +27,6 @@ jobs:
         env:
           RESULT: ${{ job.status }}
         run: |
-          echo "## Quote page" >> "$GITHUB_STEP_SUMMARY"
+          echo "## Invitation page" >> "$GITHUB_STEP_SUMMARY"
           echo "Build and live verification: $RESULT" >> "$GITHUB_STEP_SUMMARY"
           echo "Website: https://anushkadangwal.com" >> "$GITHUB_STEP_SUMMARY"

@@ -1,7 +1,9 @@
 # anushkadangwal.com
 
-The current site displays only the exact quote supplied by the owner. Previous app pages, login, audio, artwork, content and dependencies have been removed from this revision.
+A personal date invitation for Anushka: Avengers: Doomsday on release night, followed by a candlelight dinner. The cinema, showtime and dinner venue are left open. No specific release date is asserted because the current official listing could not be verified in this environment.
 
-`npm ci` and `npm run build` create a two-file static deployment under `dist/`. The retiring `sw.js` and an invisible cleanup routine remove the former app’s offline caches and registration on the next online visit. Previously cached offline copies cannot receive this change until they reconnect. Personal browser drafts are not read or transmitted.
+There is no booking, reply submission, account login or tracking. No message is sent automatically.
 
-Pushes to `main` deploy through the existing Vercel integration. GitHub Actions verifies the exact published index and that old assets and API paths are gone.
+`npm ci` and `npm run build` create the static page and retiring service worker under `dist/`. The previous app stays removed; cleanup retires its offline caches on the next online visit.
+
+GitHub Actions verifies the deployed page byte-for-byte and checks that the former app paths remain unavailable.
