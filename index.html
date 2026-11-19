@@ -16,13 +16,17 @@
     @media(max-width:900px){.invitation{padding:31px 35px 27px}.hero{padding:52px 0 37px;gap:0}h1{font-size:58px;letter-spacing:-2px}.intro{font-size:15px}.handwritten{font-size:21px}.plan h2{font-size:25px}.plan p:last-child{font-size:13px}.art{margin-right:-10px;margin-left:-10px}}
     @media(max-width:600px){.invitation{padding:28px 25px 25px}header{padding-bottom:20px;gap:13px}.wordmark{font-size:23px}.top-note{font-size:7px;letter-spacing:1.3px;max-width:130px;text-align:right}.hero{grid-template-columns:1fr;padding:42px 0 26px;gap:10px}.eyebrow{font-size:8px;letter-spacing:2px}h1{font-size:59px;line-height:1.03;letter-spacing:-2px;margin:21px 0 24px}.intro{font-size:16px;line-height:1.9}.handwritten{font-size:22px;margin-top:23px}.art{margin:12px -9px 0;max-width:440px;width:calc(100% + 18px)}.art-caption{font-size:8px;letter-spacing:2px;margin-top:-4px}.itinerary{grid-template-columns:1fr;gap:0;padding:10px 0 7px}.plan{padding:23px 0;grid-template-columns:37px 1fr;gap:11px}.plan:first-child{border-right:0;border-bottom:1px solid var(--line);padding-right:0}.plan h2{font-size:28px;margin-bottom:11px}.plan p:last-child{font-size:14px;line-height:1.9}.label{font-size:8px;letter-spacing:1.8px;margin-bottom:9px}.number{font-size:19px}.closing{padding:30px 0 25px}.closing .question{font-size:30px;line-height:1.4}.closing .choice{font-size:11px;line-height:2;max-width:295px}.heart{font-size:24px;margin-top:23px}footer{font-size:8px;letter-spacing:1px;padding-top:20px}}
     @media(max-width:360px){.invitation{padding-left:22px;padding-right:22px}h1{font-size:52px}.wordmark{font-size:21px}.intro{font-size:15px}.top-note{font-size:6px;max-width:110px}.plan h2{font-size:25px}.closing .question{font-size:28px}}
+
+    [hidden]{display:none!important}html{scroll-behavior:smooth;scroll-padding-top:28px}button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid #e4c58a;outline-offset:5px}.answer-link{display:inline-flex;align-items:center;gap:23px;padding:13px 20px;margin-top:27px;border:1px solid #b9a16c70;border-radius:30px;color:#ddc28b;text-decoration:none;font:11px/1.6 Arial,sans-serif;background:#bd9a5c0c}.answer-link:hover{background:#b99a5920}.answer-link>span{font-size:17px}.closing h2.question{font-weight:400}.rsvp-choices{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:26px auto 0}.rsvp-choice{display:flex;align-items:center;justify-content:center;gap:15px;border:1px solid #a08a5670;border-radius:8px;background:#b9a16c0a;color:#d6c393;padding:14px 20px;min-height:47px;font:12px/1.6 Arial,sans-serif;transition:background .15s,color .15s}.rsvp-choice:first-child{background:#c7aa73;color:#243026;border-color:#c7aa73}.rsvp-choice:hover{background:#a38a4b30}.rsvp-choice:first-child:hover{background:#dbbf88}.rsvp-choice[aria-pressed=true]{background:#e4cb99;color:#17281f;border-color:#e4cb99}.rsvp-choice>span{font-size:18px;line-height:1}.reply-panel{text-align:left;width:min(100%,620px);margin:26px auto 0;background:#203129;border:1px solid #a99b6a55;border-radius:12px;padding:24px}.reply-panel>label{font-size:24px;line-height:1.3;color:#dfc99d;display:block}.reply-help{font:11px/1.9 Arial,sans-serif;color:#b5b9a5;margin:10px 0 15px}.reply-panel textarea{width:100%;min-height:130px;resize:vertical;background:#14261e;border:1px solid #a4946066;border-radius:7px;color:#e3ddcd;padding:15px 17px;font:14px/1.8 Arial,sans-serif}.reply-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}.reply-actions button{font:11px/1.6 Arial,sans-serif;padding:12px 18px;border:1px solid #c7ad74;border-radius:7px;background:#c7ad74;color:#223024;min-height:43px}.reply-actions button:last-child{background:transparent;color:#d6c290;border-color:#b4a06c80}.reply-actions button:disabled{opacity:.6;cursor:wait}.reply-delivery{font:10px/1.9 Arial,sans-serif;color:#b2b69f;margin:15px 0 0}.reply-status{font:12px/1.9 Arial,sans-serif;color:#d6c89f;margin:18px auto 0;max-width:570px;min-height:0}.reply-status:empty{margin:0}
+    @media(max-width:600px){.answer-link{padding:12px 18px;font-size:11px;margin-top:24px}.rsvp-choices{display:grid;grid-template-columns:1fr;gap:10px;margin-top:24px;max-width:360px}.rsvp-choice{font-size:13px;min-height:49px;padding:13px 18px}.reply-panel{padding:21px 18px;margin-top:23px}.reply-panel>label{font-size:25px}.reply-help{font-size:11px;line-height:1.8}.reply-panel textarea{font-size:16px;padding:13px;min-height:180px}.reply-actions{gap:10px;display:grid;grid-template-columns:1fr}.reply-actions button{font-size:12px;min-height:45px}.reply-delivery{font-size:10px}.reply-status{font-size:11px;max-width:300px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rsvp-choice{transition:none}}
   </style>
 </head>
 <body>
  <main class="invitation">
   <header><span class="wordmark">for Anushka.</span><span class="top-note">ONE EVENING. A LITTLE ADVENTURE.</span></header>
   <section class="hero" aria-labelledby="invitation-title">
-   <div><span class="eyebrow">ANUSHKA, I HAVE A LITTLE QUESTION</span><h1 id="invitation-title">Will you go<br>on a date<br><em>with me?</em></h1><p class="intro">Anushka, how about <strong>Avengers: Doomsday on release night</strong>, followed by a candlelight dinner?</p><p class="handwritten">A big screen. A quiet table. You.</p></div>
+   <div><span class="eyebrow">ANUSHKA, I HAVE A LITTLE QUESTION</span><h1 id="invitation-title">Will you go<br>on a date<br><em>with me?</em></h1><p class="intro">Anushka, how about <strong>Avengers: Doomsday on release night</strong>, followed by a candlelight dinner?</p><p class="handwritten">A big screen. A quiet table. You.</p><a class="answer-link" href="#rsvp">Choose your answer <span aria-hidden="true">↓</span></a></div>
    <div class="art" aria-hidden="true"><svg viewBox="0 0 490 480" fill="none">
     <defs><radialGradient id="glow"><stop stop-color="#dfae58" stop-opacity=".2"/><stop offset="1" stop-color="#dfae58" stop-opacity="0"/></radialGradient><linearGradient id="paper" x1="155" y1="80" x2="350" y2="300" gradientUnits="userSpaceOnUse"><stop stop-color="#e9ddbe"/><stop offset="1" stop-color="#bdab7d"/></linearGradient><linearGradient id="wax" x1="0" y1="0" x2="40" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#cfc5a4"/><stop offset=".5" stop-color="#ebe0c1"/><stop offset="1" stop-color="#a69e81"/></linearGradient></defs>
     <circle cx="298" cy="310" r="170" fill="url(#glow)"/>
@@ -35,9 +39,60 @@
    </svg><p class="art-caption">A MOVIE NIGHT, THEN CANDLELIGHT.</p></div>
   </section>
   <section class="itinerary" aria-label="The evening I have in mind"><article class="plan"><span class="number">01</span><div><p class="label">FIRST, A LITTLE CINEMA</p><h2>Avengers: Doomsday</h2><p>On release night. A big screen, a little popcorn, and you beside me. We’ll choose the cinema and showtime together.</p></div></article><article class="plan"><span class="number">02</span><div><p class="label">THEN, A LITTLE CANDLELIGHT</p><h2>Dinner, just us.</h2><p>A candlelit table, something good to eat, and time to talk. No rushing the evening.</p></div></article></section>
-  <section class="closing"><p class="question">Would you like that, Anushka?</p><p class="choice">If you’d like to go, <strong>tell me in your own words.</strong><br>We can choose the details together.</p><span class="heart" aria-hidden="true">♡</span></section>
+  <section class="closing" id="rsvp" aria-labelledby="rsvp-title"><h2 class="question" id="rsvp-title">Would you like that, Anushka?</h2><p class="choice">Choose your answer, then copy or share your reply with me.</p><div class="rsvp-choices" role="group" aria-label="Your answer"><button class="rsvp-choice" type="button" data-answer="yes" aria-pressed="false">Yes, let’s plan it <span aria-hidden="true">♡</span></button><button class="rsvp-choice" type="button" data-answer="another" aria-pressed="false">Another day?</button><button class="rsvp-choice" type="button" data-answer="no" aria-pressed="false">No, thank you</button></div><div class="reply-panel" id="reply-panel" hidden><label for="reply-text">Your reply, in your words.</label><p class="reply-help">Keep this as it is, or change anything you like.</p><textarea id="reply-text" rows="4" spellcheck="true"></textarea><div class="reply-actions"><button type="button" id="copy-reply">Copy my reply</button><button type="button" id="share-reply" hidden>Share my reply</button></div><p class="reply-delivery">Copy it into your chat, or choose where to send it from your phone’s share menu.</p></div><p class="reply-status" id="reply-status" role="status" aria-live="polite"></p><span class="heart" aria-hidden="true">♡</span></section>
   <footer>AN EVENING I’D LOVE TO SPEND WITH YOU.</footer>
  </main>
+  <script>
+    (function () {
+      const buttons = Array.from(document.querySelectorAll('.rsvp-choice'));
+      const panel = document.querySelector('#reply-panel');
+      const field = document.querySelector('#reply-text');
+      const status = document.querySelector('#reply-status');
+      const shareButton = document.querySelector('#share-reply');
+      const drafts = {
+        yes: 'Yes, I’d love to go to Avengers: Doomsday on release night and have a candlelight dinner with you. Let’s pick the show and place together.',
+        another: 'I’d like to go on a date with you, but can we choose another day? Let’s find an evening that works for both of us.',
+        no: 'Thank you for asking, but I don’t want to go on this date.'
+      };
+      let selected = null;
+      const names = { yes: 'Yes, let’s plan it', another: 'Another day?', no: 'No, thank you' };
+      buttons.forEach(button => button.addEventListener('click', function () {
+        if (selected) drafts[selected] = field.value;
+        selected = button.dataset.answer;
+        buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        field.value = drafts[selected];
+        panel.hidden = false;
+        status.textContent = names[selected] + ' selected. You can edit your reply, then copy or share it.';
+        panel.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+      }));
+      field.addEventListener('input', function () { status.textContent = ''; });
+      if (typeof navigator.share !== 'function') document.querySelector('.reply-delivery').textContent = 'Copy your reply, then paste it into your chat with me to send it.';
+      document.querySelector('#copy-reply').addEventListener('click', async function () {
+        if (!field.value.trim()) { status.textContent = 'Write a little reply first, then copy it.'; field.focus(); return; }
+        try {
+          if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('clipboard_unavailable');
+          await navigator.clipboard.writeText(field.value);
+          status.textContent = 'Reply copied. Paste it into your chat with me to send it.';
+        } catch (_) {
+          field.focus(); field.select(); field.setSelectionRange(0, field.value.length);
+          status.textContent = 'Your reply is selected. Copy it from the text box, then paste it into your chat to send it.';
+        }
+      });
+      if (typeof navigator.share === 'function') {
+        shareButton.hidden = false;
+        shareButton.addEventListener('click', async function () {
+          if (!field.value.trim()) { status.textContent = 'Write a little reply first, then share it.'; field.focus(); return; }
+          shareButton.disabled = true;
+          try {
+            await navigator.share({ title: 'My reply to your date invitation', text: field.value });
+            status.textContent = 'Sharing finished. Your reply is still here if you want to edit or copy it.';
+          } catch (error) {
+            status.textContent = error.name === 'AbortError' ? 'Sharing cancelled. Your reply is still here.' : 'Sharing couldn’t open. You can copy your reply and send it in your chat instead.';
+          } finally { shareButton.disabled = false; }
+        });
+      }
+    }());
+  </script>
   <script>
     // Retire only this former app's offline cache and service-worker registration.
     // Personal drafts and other browser data are not read or transmitted.
