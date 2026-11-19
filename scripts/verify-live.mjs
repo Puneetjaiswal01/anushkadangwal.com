@@ -1,22 +1,81 @@
-import { readFileSync } from 'node:fs';
-import { createHash } from 'node:crypto';
-const base='https://anushkadangwal.com';
-const digest=data=>createHash('sha256').update(data).digest('hex');
-const expected=digest(readFileSync('dist/index.html'));
-let reason='';
-for(let attempt=1;attempt<=24;attempt++){
- try{
-  const response=await fetch(`${base}/?release=${process.env.GITHUB_SHA||Date.now()}`,{signal:AbortSignal.timeout(15000),headers:{'Cache-Control':'no-cache'}});
-  if(!response.ok)throw new Error(`Page returned ${response.status}`);
-  if(digest(Buffer.from(await response.arrayBuffer()))!==expected)throw new Error('The domain is still serving a different page.');
-  const worker=await fetch(base+'/sw.js',{signal:AbortSignal.timeout(15000)});
-  if(!worker.ok||!(await worker.text()).includes('registration.unregister()'))throw new Error('The retiring offline worker is not published.');
-  for(const path of ['/api/auth','/manifest.webmanifest','/audio/a-little-place-to-land.mp3','/icons/icon-192.png','/src/main.jsx']){
-   const removed=await fetch(base+path,{signal:AbortSignal.timeout(15000),method:'HEAD'});
-   if(![404,410].includes(removed.status))throw new Error(`Removed path is still available: ${path} (${removed.status})`);
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+const base = "https://anushkadangwal.com";
+const built = readFileSync("dist/index.html", "utf8");
+const assets = [...built.matchAll(/(?:src|href)="(\/assets\/[^\"]+)"/g)].map(
+  (match) => match[1],
+);
+if (!assets.length) throw new Error("No compiled assets found in the build.");
+let reason = "";
+for (let attempt = 1; attempt <= 24; attempt++) {
+  try {
+    const response = await fetch(
+      `${base}/?release=${process.env.GITHUB_SHA || Date.now()}`,
+      {
+        signal: AbortSignal.timeout(15000),
+        headers: { "Cache-Control": "no-cache" },
+      },
+    );
+    if (!response.ok) throw new Error(`Homepage returned ${response.status}`);
+    const live = await response.text();
+    if (!assets.every((asset) => live.includes(asset)))
+      throw new Error("The deployed page is still from a different build.");
+    for (const asset of assets) {
+      const response = await fetch(base + asset, {
+        signal: AbortSignal.timeout(15000),
+      });
+      if (!response.ok)
+        throw new Error(`Asset returned ${response.status}: ${asset}`);
+      if ((response.headers.get("content-type") || "").includes("text/html"))
+        throw new Error(`Expected an asset, received HTML: ${asset}`);
+    }
+    const song = "/audio/a-little-place-to-land.mp3";
+    const music = await fetch(base + song, {
+      signal: AbortSignal.timeout(20000),
+    });
+    if (!music.ok) throw new Error(`Music returned ${music.status}`);
+    const liveMusic = Buffer.from(await music.arrayBuffer());
+    const digest = (data) => createHash("sha256").update(data).digest("hex");
+    if (digest(liveMusic) !== digest(readFileSync("public" + song)))
+      throw new Error(
+        "The published instrumental does not match this release.",
+      );
+    const manifestResponse = await fetch(base + "/manifest.webmanifest", {
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!manifestResponse.ok) throw new Error("The app manifest is missing.");
+    const manifest = await manifestResponse.json();
+    if (manifest.display !== "standalone")
+      throw new Error("The app manifest is not standalone.");
+    for (const icon of manifest.icons) {
+      const response = await fetch(base + icon.src, {
+        signal: AbortSignal.timeout(15000),
+      });
+      if (
+        !response.ok ||
+        !(response.headers.get("content-type") || "").startsWith("image/")
+      )
+        throw new Error("Install icon missing: " + icon.src);
+    }
+    const worker = await fetch(base + "/sw.js", {
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!worker.ok || !(await worker.text()).includes("anushka-shell-"))
+      throw new Error("Offline app worker missing.");
+    const oldAuth = await fetch(base + "/api/auth", {
+      method: "HEAD",
+      signal: AbortSignal.timeout(15000),
+    });
+    if (![404, 410].includes(oldAuth.status))
+      throw new Error("The unused email-login endpoint should remain removed.");
+    console.log(
+      `Verified the new Anushka app, compiled assets, local music, install icons and offline worker at ${base}`,
+    );
+    process.exit(0);
+  } catch (error) {
+    reason = error.message;
+    console.log(`Deployment check ${attempt}/24: ${reason}`);
   }
-  console.log(`Verified the exact page, cache retirement and removed app paths at ${base}`);process.exit(0);
- }catch(error){reason=error.message;console.log(`Deployment check ${attempt}/24: ${reason}`)}
- if(attempt<24)await new Promise(resolve=>setTimeout(resolve,15000));
+  if (attempt < 24) await new Promise((resolve) => setTimeout(resolve, 15000));
 }
-throw new Error('Live verification failed: '+reason);
+throw new Error(`Could not verify the live deployment: ${reason}`);
