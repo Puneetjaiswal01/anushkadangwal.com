@@ -1,27 +1,9 @@
 {
-  "name": "a-little-world-for-anushka",
+  "name": "anushkadangwal-quote",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "vite build && node scripts/build-pwa.mjs",
-    "preview": "vite preview --host 0.0.0.0",
-    "test": "node --test tests/auth.test.mjs && node tests/welcome.test.cjs && node tests/site.cjs && node tests/heart.test.cjs && node tests/app-install.test.cjs",
-    "test:heart": "node tests/heart.test.cjs",
-    "test:pwa": "node tests/app-install.test.cjs",
-    "test:auth": "node --test tests/auth.test.mjs",
-    "test:welcome": "node tests/welcome.test.cjs"
-  },
-  "dependencies": {
-    "@fontsource/caveat": "^5.2.0",
-    "@fontsource/cormorant-garamond": "^5.2.0",
-    "@fontsource/dm-sans": "^5.2.0",
-    "@fontsource/noto-serif-devanagari": "^5.3.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
-  },
-  "devDependencies": {
-    "vite": "^7.2.0"
+    "build": "node scripts/build.mjs"
   }
 }

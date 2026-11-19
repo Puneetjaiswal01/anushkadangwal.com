@@ -1,31 +1,34 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <meta name="theme-color" content="#f8f5ef" />
-    <meta name="robots" content="noindex, nofollow" />
-    <meta
-      name="description"
-      content="A little world for Anushka. Letters, gentle reminders, and a place to take a breath. You are loved, exactly as you are."
-    />
-    <link rel="icon" type="image/png" href="/icons/icon-192.png" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/icons/apple-touch-icon.png"
-    />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Anushka" />
-    <title>Always Anushka — a little world for you</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="robots" content="noindex, nofollow">
+  <title>If I wasn’t real to you</title>
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:#faf9f6;color:#343139}
+    body{min-height:100svh;display:grid;place-items:center;padding:48px 28px;font-family:Georgia,"Times New Roman",serif}
+    main{width:min(100%,860px)}
+    blockquote{margin:0;font-size:clamp(24px,3.25vw,43px);font-weight:400;line-height:1.65;letter-spacing:-.02em;text-wrap:pretty}
+    @media(max-width:480px){body{padding:38px 29px}blockquote{font-size:26px;line-height:1.7}}
+    @media(prefers-color-scheme:dark){html,body{background:#1e1d20;color:#e8e4e1}}
+  </style>
+</head>
+<body>
+  <main><blockquote>If I wasn’t real to you, at least you could have been honest with me instead of making me question the love, effort, and sincerity I gave you</blockquote></main>
+  <script>
+    // Retire only this former app's offline cache and service-worker registration.
+    // Personal drafts and other browser data are not read or transmitted.
+    (async function () {
+      if ('caches' in window) {
+        try { const keys = await caches.keys(); await Promise.all(keys.filter(key => key.startsWith('anushka-shell-')).map(key => caches.delete(key))); } catch (_) {}
+      }
+      if ('serviceWorker' in navigator) {
+        try { const registrations = await navigator.serviceWorker.getRegistrations(); await Promise.all(registrations.filter(reg => { const worker = reg.active || reg.waiting || reg.installing; return worker && new URL(worker.scriptURL).origin === location.origin && new URL(worker.scriptURL).pathname === '/sw.js'; }).map(reg => reg.unregister())); } catch (_) {}
+      }
+    }());
+  </script>
+</body>
 </html>
